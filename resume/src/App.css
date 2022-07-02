@@ -1,0 +1,276 @@
+.ResumePage {
+  position: relative;
+  text-align: center;
+  min-width: 1200px;
+}
+
+.ResumeTopHeader {
+  background-color: white;
+  margin-bottom: 40px;
+}
+
+.ResumeTop {
+  margin: 0 auto;
+  width: 1200px;
+  height: 40px;
+  font-size: 20px;
+  position: relative;
+}
+
+.Rname {
+  position: absolute;
+  top: 5px;
+  left: 0px;
+}
+
+.ToGitLink {
+  text-decoration-line: none;
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  color: rgb(13, 17, 23);
+}
+
+.ResumeList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 1200px;
+}
+
+.ResumeLi {
+  display: inline;
+  background-color : white;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin-left: 16px;
+  padding: 0px 2px;
+  font-size: 22px;
+  cursor: pointer;
+  user-select : none;
+}
+
+.ResumeLi:first-child {
+  margin-left: 0px;
+}
+
+.ResumeLiClik {
+  display: inline;
+  background-color : wheat;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin-left: 16px;
+  padding: 0px 2px;
+  font-size: 22px;
+  cursor: pointer;
+  user-select : none;
+}
+
+.ResumeLiClik:first-child {
+  margin-left: 0px;
+}
+
+.ResumeTitle {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.ResumeTitle input {
+  width: 1156px;
+  height: 100px;
+  padding: 0 20px;
+  margin: 0;
+  font-size: 40px;
+  border: 2px solid black;
+}
+
+.contentBox {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.basicInfo {
+  position: relative;
+  background-color: white;
+  padding: 20px 20px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin-bottom: 40px;
+}
+
+.imgBox {
+  position: absolute;
+  border: 2px solid black;
+  top: 72px;
+  right: 20px;
+  width: 132.8px;
+  height: 166px;
+}
+
+.imgFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 166px;
+}
+
+.imgFlex button {
+  background: white;
+  color: gray;
+  border: 0;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.imgFlex button:hover {
+  background: white; 
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.imgFlex button:active {
+  background: gainsboro; 
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.basicInfo h2 {
+  text-align: left;
+  margin: 0;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.row {
+  position: relative;
+  text-align: left;
+  margin-bottom: 10px;
+  height: 80px;
+  font-size: 0;
+}
+
+.inputBox {
+  position: relative;
+  display: inline-block;
+  border: 2px solid black;
+  margin-right: 10px;
+  height: 76px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.inputBox span {
+  box-sizing: border-box;
+  display: block;
+  color: gray;
+  font-size: 18px;
+  padding: 5px 5px 0 10px;
+  text-align: left;
+}
+
+.inputBox input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 45px;
+  line-height: 40px;
+  font-size: 20px;
+  border: 0;
+  padding: 0 10px;
+}
+
+.inputBox input:focus {
+  outline: none;
+}
+
+.inputBox ul {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.inputBox li {
+  list-style: none;
+  height: 38px;
+}
+
+.inputBox button {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.이름 {
+  width: 250px;
+}
+
+.영문 {
+  width: 300px;
+}
+
+.성별 {
+  width: 100px;
+}
+
+.성별선택 {
+  background-color: white;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  padding: 0;
+  margin: 0;
+}
+
+.표시 {
+  display: block;
+}
+
+.숨김 {
+  display: none;
+}
+
+
+.생년월일 {
+  width: 313.2px;
+}
+
+.연락처 {
+  width: 250px;
+}
+
+.이메일 {
+  width: 300px;
+}
+
+.주소 {
+  width: 427.2px;
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px white inset;
+	box-shadow: 0 0 0 1000px white inset;
+}
+
+.학력 {
+  width: 300px;
+}
+
