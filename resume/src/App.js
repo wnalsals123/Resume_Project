@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 function App() {
 
@@ -28,8 +28,60 @@ function App() {
     console.log(성별상태)
   }
 
-  const ChkNum = () => {
-    console.log("chk")
+  const [numTel, setNumTel] = useState('');
+  const phoneRef = useRef();
+  const [numBir, setNumBir] = useState('');
+  const birthRef = useRef();
+
+  const ChkNum = (e) => {
+    const pho = phoneRef.current.value.replace(/\D+/g, "");
+    const bir = birthRef.current.value.replace(/\D+/g, "");
+    const numberLength = e.target.id === "연락처" ? 11 : 8;
+
+    let result;
+    result = "";
+
+    if (numberLength === 11) {
+      for (let i = 0; i < pho.length && i < numberLength; i++) {
+        switch (i) {
+          case 3:
+            result += "-";
+            break;
+          case 7:
+            result += "-";
+            break;
+
+          default:
+            break;
+        }
+
+        result += pho[i];
+      }
+
+      phoneRef.current.value = result;
+      setNumTel(e.target.value);
+      console.log("phone")
+    } else {
+      for (let i = 0; i < bir.length && i < numberLength; i++) {
+        switch (i) {
+          case 4:
+            result += ".";
+            break;
+          case 6:
+            result += ".";
+            break;
+
+          default:
+            break;
+        }
+
+        result += bir[i];
+      }
+
+      birthRef.current.value = result;
+      setNumBir(e.target.value);
+      console.log("birth")
+    }
   }
 
   return (
@@ -95,14 +147,14 @@ function App() {
             </div>
             <div className="inputBox 생년월일">
               <span>생년월일</span>
-              <input id="생년월일" type="text" placeholder="123456"></input>
+              <input onChange={ChkNum} id="생년월일" type="tel" placeholder="1434.12.18" value={numBir} ref={birthRef}></input>
             </div>
           </div>
 
           <div className="row">
             <div className="inputBox 연락처">
               <span>연락처</span>
-              <input onKeyUp={ChkNum} id="연락처" type="tel" placeholder="010-1234-5678" maxlength="13"></input>
+              <input onChange={ChkNum} id="연락처" type="tel" placeholder="010-1234-5678" value={numTel} ref={phoneRef}></input>
             </div>
             <div className="inputBox 이메일">
               <span>이메일</span>
@@ -115,19 +167,19 @@ function App() {
           </div>
 
           <div className="imgBox">
-              <div className="imgFlex">
-                <button>사진 등록</button>
-              </div>
+            <div className="imgFlex">
+              <button>사진 등록</button>
             </div>
+          </div>
 
         </div>
 
         <div className="basicInfo 숨김" id="학력">
-          
+
           <h2>학력</h2>
 
           <div className="row">
-          <div className="inputBox 학력">
+            <div className="inputBox 학력">
               <span>학교명</span>
               <input id="학교명" type="text" placeholder="기장고교"></input>
             </div>
