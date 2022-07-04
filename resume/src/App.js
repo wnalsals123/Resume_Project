@@ -84,6 +84,27 @@ function App() {
     }
   }
 
+  const imageInput = useRef();
+
+  const inputClk = () => {
+    imageInput.current.click();
+  }
+
+  const [imgSrc, setImgSrc] = useState("");
+
+  const loadImg = (e) => {
+    const file = e.target.files[0]
+    let reader = new FileReader();
+    let elemnet = document.getElementById("imgUse")
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImgSrc(reader.result)
+      elemnet.className = "imgContent"
+      elemnet = document.getElementById("imgNotUse")
+      elemnet.className = "imgFlex 숨김"
+    }
+  }
+
   return (
     <div className="ResumePage">
 
@@ -167,8 +188,12 @@ function App() {
           </div>
 
           <div className="imgBox">
-            <div className="imgFlex">
-              <button>사진 등록</button>
+            <div className="imgFlex" id="imgNotUse">
+              <input onChange={loadImg} type="file" accept="image/jpg,impge/png,image/jpeg,image/gif" style={{display:"none"}} ref={imageInput}></input>
+              <button onClick={inputClk}>사진 등록</button>
+            </div>
+            <div className="imgContent 숨김" id="imgUse">
+              <img src={imgSrc} alt="preview-img"></img>
             </div>
           </div>
 
