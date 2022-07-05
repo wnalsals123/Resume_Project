@@ -1,14 +1,16 @@
 import './App.css';
 import React, { useState, useRef } from 'react';
+import PopupDom from './PopupDom';
+import PopupPostCode from './PopupPostCode';
 
 function App() {
-
+  // 이력서 항목 관리
   const LibtuClik = (e) => {
     let elemnet = document.getElementById(e.target.innerText)
     e.target.className = e.target.className === "ResumeLi" ? "ResumeLiClik" : "ResumeLi"
     elemnet.className = elemnet.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
   }
-
+  // 성별 선택
   const [성별상태, 성별상태바꾸기] = useState("inputBox 성별 성별선택 숨김")
 
   const ShowDrop = () => {
@@ -27,7 +29,7 @@ function App() {
     console.log(성별값)
     console.log(성별상태)
   }
-
+  // 생년월일, 연락처 구분자
   const [numTel, setNumTel] = useState('');
   const phoneRef = useRef();
   const [numBir, setNumBir] = useState('');
@@ -37,6 +39,8 @@ function App() {
     const pho = phoneRef.current.value.replace(/\D+/g, "");
     const bir = birthRef.current.value.replace(/\D+/g, "");
     const numberLength = e.target.id === "연락처" ? 11 : 8;
+    const test = birthRef.current.value
+    console.log(test)
 
     let result;
     result = "";
@@ -56,11 +60,11 @@ function App() {
         }
 
         result += pho[i];
+        console.log(pho)
       }
 
       phoneRef.current.value = result;
       setNumTel(e.target.value);
-      console.log("phone")
     } else {
       for (let i = 0; i < bir.length && i < numberLength; i++) {
         switch (i) {
@@ -76,14 +80,14 @@ function App() {
         }
 
         result += bir[i];
+        console.log(bir)
       }
 
       birthRef.current.value = result;
       setNumBir(e.target.value);
-      console.log("birth")
     }
   }
-
+  // 이력서 증명사진 업로드
   const imageInput = useRef();
 
   const inputClk = () => {
@@ -103,6 +107,35 @@ function App() {
       elemnet = document.getElementById("imgNotUse")
       elemnet.className = "imgFlex 숨김"
     }
+  }
+  // 주소 찾기
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [postValue, setPostValue] = useState("")
+  const postRef = useRef();
+  const [postBtn, setPostBtn] = useState(false)
+
+  const openPostCode = () => {
+    setIsPopupOpen(true)
+  }
+
+  const closePostCode = () => {
+    setIsPopupOpen(false)
+  }
+
+  const setPostInput = () => {
+    let result = ""
+    const post = postRef.current.value
+    const numberLength = 50
+
+    if (postValue !== "") {
+      for (let i = 0; i < post.length && i < numberLength; i++) {
+        result += post[i];
+      }
+    } else{
+      setPostBtn(false)
+      alert("주소를 검색하세요")
+    }
+    setPostValue(result)
   }
 
   return (
@@ -141,7 +174,7 @@ function App() {
 
       <div className="contentBox">
 
-        <div className="basicInfo">
+        <div className="basicInfo" id="기본정보">
 
           <h2>기본 정보</h2>
 
@@ -182,14 +215,16 @@ function App() {
               <input id="이메일" type="text" placeholder="hong@naeinom.com"></input>
             </div>
             <div className="inputBox 주소">
-              <span>주소</span>
-              <input id="주소" type="text" placeholder="주소검색"></input>
+              <button type='button' onClick={openPostCode} disabled={postBtn} style={{ cursor: "default" }}>
+                <span>주소</span>
+                <input onChange={setPostInput} id="주소" type="text" placeholder="서울특별시 강남구" value={postValue} ref={postRef}></input>
+              </button>
             </div>
           </div>
 
           <div className="imgBox">
             <div className="imgFlex" id="imgNotUse">
-              <input onChange={loadImg} type="file" accept="image/jpg,impge/png,image/jpeg,image/gif" style={{display:"none"}} ref={imageInput}></input>
+              <input onChange={loadImg} type="file" accept="image/jpg,impge/png,image/jpeg,image/gif" style={{ display: "none" }} ref={imageInput}></input>
               <button onClick={inputClk}>사진 등록</button>
             </div>
             <div className="imgContent 숨김" id="imgUse">
@@ -270,6 +305,14 @@ function App() {
 
           <h2>자기소개서</h2>
 
+        </div>
+
+        <div id='popupDom'>
+          {isPopupOpen && (
+            <PopupDom>
+              <PopupPostCode onClose={closePostCode} setPostValue={setPostValue} setPostBtn={setPostBtn} />
+            </PopupDom>
+          )}
         </div>
 
       </div>

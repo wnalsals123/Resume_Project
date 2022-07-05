@@ -1,7 +1,7 @@
 .ResumePage {
   position: relative;
   text-align: center;
-  min-width: 1200px;
+  min-width: 1240px;
 }
 
 .ResumeTopHeader {
@@ -10,24 +10,24 @@
 }
 
 .ResumeTop {
+  position: relative;
   margin: 0 auto;
-  width: 1200px;
+  width: 1240px;
   height: 40px;
   font-size: 20px;
-  position: relative;
 }
 
 .Rname {
   position: absolute;
   top: 5px;
-  left: 0px;
+  left: 20px;
 }
 
 .ToGitLink {
   text-decoration-line: none;
   position: absolute;
   top: 5px;
-  right: 0px;
+  right: 20px;
   color: rgb(13, 17, 23);
 }
 
