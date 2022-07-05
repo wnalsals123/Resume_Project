@@ -145,7 +145,7 @@ function App() {
         <div className="ResumeTop">
           <b className="Rname">간단 이력서</b>
           <a className="ToGitLink"
-            href="https://github.com/wnalsals123"
+            href="https://github.com/wnalsals123/Resume_Project"
             target="_blank"
             rel="noopener noreferrer">
             <b>Github</b>
