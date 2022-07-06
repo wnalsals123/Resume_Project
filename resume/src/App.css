@@ -42,10 +42,8 @@
 .ResumeLi {
   display: inline;
   background-color : white;
+  border: 2px solid black;
   border-radius: 10px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: black;
   margin-left: 16px;
   padding: 0px 2px;
   font-size: 22px;
@@ -54,24 +52,6 @@
 }
 
 .ResumeLi:first-child {
-  margin-left: 0px;
-}
-
-.ResumeLiClik {
-  display: inline;
-  background-color : wheat;
-  border-radius: 10px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: black;
-  margin-left: 16px;
-  padding: 0px 2px;
-  font-size: 22px;
-  cursor: pointer;
-  user-select : none;
-}
-
-.ResumeLiClik:first-child {
   margin-left: 0px;
 }
 
@@ -89,6 +69,10 @@
   margin: 0;
   font-size: 40px;
   border: 2px solid black;
+}
+
+.ResumeTitle input:focus {
+  outline-color: #E9967A;
 }
 
 .contentBox {
@@ -217,6 +201,10 @@
   background: transparent;
   cursor: pointer;
   font-size: 18px;
+}
+
+.Clik {
+  border-color: #E9967A;
 }
 
 .이름 {

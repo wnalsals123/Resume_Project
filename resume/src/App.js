@@ -7,14 +7,19 @@ function App() {
   // 이력서 항목 관리
   const LibtuClik = (e) => {
     let elemnet = document.getElementById(e.target.innerText)
-    e.target.className = e.target.className === "ResumeLi" ? "ResumeLiClik" : "ResumeLi"
+    e.target.className = e.target.className === "ResumeLi" ? "ResumeLi Clik" : "ResumeLi"
     elemnet.className = elemnet.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
   }
   // 성별 선택
   const [성별상태, 성별상태바꾸기] = useState("inputBox 성별 성별선택 숨김")
 
   const ShowDrop = () => {
-    성별상태바꾸기("inputBox 성별 성별선택 표시")
+    성별상태바꾸기("inputBox 성별 성별선택 표시 Clik")
+    console.log(성별상태)
+  }
+
+  const HideDrop = () => {
+    성별상태바꾸기("inputBox 성별 성별선택 숨김")
     console.log(성별상태)
   }
 
@@ -137,7 +142,19 @@ function App() {
     }
     setPostValue(result)
   }
+  // InputBox 포커스 이벤트
+  const inputBoxFocus = (e) => {
+    let str = "inputBox " + (e.target.id)
+    let element = document.getElementById(str)
+    element.className = str + " Clik"
+  }
 
+  const inputBoxBlur = (e) => {
+    let str = "inputBox " + (e.target.id)
+    let element = document.getElementById(str)
+    element.className = "inputBox " + (e.target.id)
+  }
+  // 이력서 작성 웹페이지 구성
   return (
     <div className="ResumePage">
 
@@ -179,45 +196,45 @@ function App() {
           <h2>기본 정보</h2>
 
           <div className="row">
-            <div className="inputBox 이름">
+            <div className="inputBox 이름" id="inputBox 이름">
               <span>이름</span>
-              <input id="이름" type="text" placeholder="홍길동"></input>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="이름" type="text" placeholder="홍길동"></input>
             </div>
-            <div className="inputBox 영문">
+            <div className="inputBox 영문" id="inputBox 영문">
               <span>영문</span>
-              <input id="영문" type="text" placeholder="HONG GILDONG"></input>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="영문" type="text" placeholder="HONG GILDONG"></input>
             </div>
-            <div className="inputBox 성별">
-              <button onClick={ShowDrop}>
+            <div className="inputBox 성별" id="inputBox 성별">
+              <button onClick={ShowDrop} onBlur={HideDrop}>
                 <span>성별</span>
                 <span style={{ fontSize: "20px", color: 색상, height: "45px" }}>{성별값}</span>
               </button>
               <div className={성별상태}>
                 <ul>
-                  <li><button onClick={SelectValue} name="남자">남자</button></li>
-                  <li><button onClick={SelectValue} name="여자">여자</button></li>
+                  <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="남자">남자</button></li>
+                  <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="여자">여자</button></li>
                 </ul>
               </div>
             </div>
-            <div className="inputBox 생년월일">
+            <div className="inputBox 생년월일" id="inputBox 생년월일">
               <span>생년월일</span>
-              <input onChange={ChkNum} id="생년월일" type="tel" placeholder="1434.12.18" value={numBir} ref={birthRef}></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="생년월일" type="tel" placeholder="1434.12.18" value={numBir} ref={birthRef}></input>
             </div>
           </div>
 
           <div className="row">
-            <div className="inputBox 연락처">
+            <div className="inputBox 연락처" id="inputBox 연락처">
               <span>연락처</span>
-              <input onChange={ChkNum} id="연락처" type="tel" placeholder="010-1234-5678" value={numTel} ref={phoneRef}></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="연락처" type="tel" placeholder="010-1234-5678" value={numTel} ref={phoneRef}></input>
             </div>
-            <div className="inputBox 이메일">
+            <div className="inputBox 이메일" id="inputBox 이메일">
               <span>이메일</span>
-              <input id="이메일" type="text" placeholder="hong@naeinom.com"></input>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="이메일" type="text" placeholder="hong@naeinom.com"></input>
             </div>
-            <div className="inputBox 주소">
+            <div className="inputBox 주소" id="inputBox 주소">
               <button type='button' onClick={openPostCode} disabled={postBtn} style={{ cursor: "default" }}>
                 <span>주소</span>
-                <input onChange={setPostInput} id="주소" type="text" placeholder="서울특별시 강남구" value={postValue} ref={postRef}></input>
+                <input onChange={setPostInput} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="주소" type="text" placeholder="서울특별시 강남구" value={postValue} ref={postRef}></input>
               </button>
             </div>
           </div>

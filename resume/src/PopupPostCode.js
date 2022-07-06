@@ -30,7 +30,8 @@ const PopupPostCode = (props) => {
         width: "427.188px",
         height: "466px",
         padding: "0px",
-        border: "2px solid black"
+        border: "2px solid black",
+        borderColor: "#E9967A"
     };
 
     const postCodeBtnStyle = {
@@ -44,7 +45,8 @@ const PopupPostCode = (props) => {
         padding: "0px",
         border: "2px solid black",
         borderRadius: "10px",
-        cursor: "pointer"
+        cursor: "pointer",
+        borderColor: "#E9967A",
     };
 
     return (

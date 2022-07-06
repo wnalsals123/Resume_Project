@@ -3,6 +3,7 @@
 ## 리액트를 이용한 간단 이력서 작성 웹페이지
 
 ### <개발 일지>
+
 <details>
 <summary>22년 7월 5일</summary>
 <div markdown="1">
@@ -17,6 +18,16 @@
 >- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177326882-726eaad0-7b51-4adb-95de-ef3a5e0efb2e.gif"/>
 >5. DaumPostcode API 이용 주소 등록
 >- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177327059-8d4d22ca-aceb-4683-a7b0-a79691f53ff4.gif"/>
+
+</div>
+</details>
+
+<details>
+<summary>22년 7월 6일</summary>
+<div markdown="1">
+
+>1. 항목 포커스 이벤트 추가
+>- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177549633-cb750ed7-a518-47f0-b614-5631fb0c9608.gif"/>
 
 </div>
 </details>
