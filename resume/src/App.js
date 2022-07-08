@@ -246,6 +246,7 @@ function App() {
             </div>
             <div className="imgContent 숨김" id="imgUse">
               <img src={imgSrc} alt="preview-img"></img>
+              <button>삭제</button>
             </div>
           </div>
 
