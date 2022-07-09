@@ -94,19 +94,21 @@ function App() {
   }
   // 이력서 증명사진 업로드
   const imageInput = useRef();
+  const [imgSrc, setImgSrc] = useState("");
 
   const inputClk = () => {
     imageInput.current.click();
     console.log("inputClk!")
   }
 
-  const [imgSrc, setImgSrc] = useState("");
-
   const loadImg = (e) => {
     const file = e.target.files[0]
-    let reader = new FileReader();
+    let reader = new FileReader()
     let elemnet = document.getElementById("imgUse")
-    reader.readAsDataURL(file);
+
+    if(file === undefined) return;
+
+    reader.readAsDataURL(file)
     reader.onloadend = () => {
       setImgSrc(reader.result)
       elemnet.className = "imgContent"
@@ -114,6 +116,8 @@ function App() {
       elemnet.className = "imgFlex 숨김"
       console.log("loadImg!")
     }
+
+    e.target.value = ""
   }
   // 이력서 증명사진 삭제
   const imgDelete = () => {
@@ -122,7 +126,6 @@ function App() {
     elemnet = document.getElementById("imgUse")
     elemnet.className = "imgContent 숨김"
     console.log("imgDelete!")
-
   }
   // 주소 찾기
   const [isPopupOpen, setIsPopupOpen] = useState(false)

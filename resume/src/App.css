@@ -118,7 +118,7 @@
 .imgFlex button:hover {
   background: white; 
   color: black;
-  border: 2px solid black;
+  border: 2px solid #E9967A;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -126,7 +126,7 @@
 .imgFlex button:active {
   background: gainsboro; 
   color: black;
-  border: 2px solid black;
+  border: 2px solid #E9967A;
   border-radius: 10px;
 }
 
