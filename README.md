@@ -1,8 +1,10 @@
 # Resume_Project
+* Link : [JMJ-Resume-Page-Demo][https://jmj-resume-page.netlify.app/]
 
 ## 리액트를 이용한 간단 이력서 작성 웹페이지
-1. 개발도구: VSCode, React, Git
+1. 개발도구 : VSCode, React, Git
 2. API : DaumPostcode
+3. 웹 호스팅 : Netlify
 
 ### <개발 일지>
 
