@@ -171,7 +171,7 @@ function App() {
 
       <div className="ResumeTopHeader">
         <div className="ResumeTop">
-          <b className="Rname">간단 이력서</b>
+          <b className="Rname">간단 이력서Beta</b>
           <a className="ToGitLink"
             href="https://github.com/wnalsals123/Resume_Project"
             target="_blank"
