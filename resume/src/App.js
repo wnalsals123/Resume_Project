@@ -97,6 +97,7 @@ function App() {
 
   const inputClk = () => {
     imageInput.current.click();
+    console.log("inputClk!")
   }
 
   const [imgSrc, setImgSrc] = useState("");
@@ -111,7 +112,17 @@ function App() {
       elemnet.className = "imgContent"
       elemnet = document.getElementById("imgNotUse")
       elemnet.className = "imgFlex 숨김"
+      console.log("loadImg!")
     }
+  }
+  // 이력서 증명사진 삭제
+  const imgDelete = () => {
+    let elemnet = document.getElementById("imgNotUse")
+    elemnet.className = "imgFlex"
+    elemnet = document.getElementById("imgUse")
+    elemnet.className = "imgContent 숨김"
+    console.log("imgDelete!")
+
   }
   // 주소 찾기
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -246,7 +257,7 @@ function App() {
             </div>
             <div className="imgContent 숨김" id="imgUse">
               <img src={imgSrc} alt="preview-img"></img>
-              <button>삭제</button>
+              <button onClick={imgDelete}>삭제</button>
             </div>
           </div>
 
