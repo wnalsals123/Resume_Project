@@ -1,5 +1,5 @@
 # Resume_Project
-* [Resume-Page-Demo](https://jmj-resume-page.netlify.app/){: target="_blank"}
+* <a href="https://jmj-resume-page.netlify.app/" target="_blank">JMJ-ResumePage-Demo</a>
 
 ## 리액트를 이용한 간단 이력서 작성 웹페이지
 1. 개발도구 : VSCode, React, Git
