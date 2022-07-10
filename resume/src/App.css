@@ -85,9 +85,7 @@
   position: relative;
   background-color: white;
   padding: 20px 20px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: black;
+  border: 2px solid black;
   margin-bottom: 40px;
 }
 
@@ -285,4 +283,55 @@ input:-webkit-autofill {
   background-color: #E9967A;
   color: white;
   cursor: pointer;
+}
+
+.checkBoxWrap {
+  display: inline-block;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  height: 35px;
+}
+
+.checkBox {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.checkBox input {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  vertical-align: top;
+}
+
+.checkBox span{
+  font-size: 20px;
+  padding-left: 5px;
+  vertical-align: top;
+  line-height: 20px;
+}
+
+.학교명 {
+  width: 250px;
+}
+
+.입학년월 {
+  width: 250px;
+}
+
+.졸업년월 {
+  width: 250px;
+}
+
+.전공명 {
+  width: 250px;
+}
+
+.학점 {
+  width: 250px;
+}
+
+.총점 {
+  width: 250px;
 }
