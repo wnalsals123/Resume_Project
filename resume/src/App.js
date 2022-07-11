@@ -9,8 +9,8 @@ function App() {
     let elemnet = document.getElementById(e.target.innerText)
     e.target.className = e.target.className === "ResumeLi" ? "ResumeLi Clik" : "ResumeLi"
     elemnet.className = elemnet.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
-    
-    if(elemnet.id === "학력") {
+
+    if (elemnet.id === "학력") {
       let disableBox = checkBox.filter((item) => (item.id !== "checkBox4"))
       disableBox.map((item) => (document.getElementById(item.id).checked = false))
       document.getElementById("checkBox4").checked = true
@@ -113,7 +113,7 @@ function App() {
     let reader = new FileReader()
     let elemnet = document.getElementById("imgUse")
 
-    if(file === undefined) return;
+    if (file === undefined) return;
 
     reader.readAsDataURL(file)
     reader.onloadend = () => {
@@ -157,7 +157,7 @@ function App() {
       for (let i = 0; i < post.length && i < numberLength; i++) {
         result += post[i];
       }
-    } else{
+    } else {
       setPostBtn(false)
       alert("주소를 검색하세요")
     }
@@ -177,18 +177,18 @@ function App() {
   }
   // checkBox 리스트 이벤트
   const checkBox = [
-    { id: "checkBox1", name: "고졸 미만"},
-    { id: "checkBox2", name: "고졸"},
-    { id: "checkBox3", name: "대졸(2,3년)"},
-    { id: "checkBox4", name: "대졸(4년)"},
+    { id: "checkBox1", name: "고졸 미만" },
+    { id: "checkBox2", name: "고졸" },
+    { id: "checkBox3", name: "대졸(2,3년)" },
+    { id: "checkBox4", name: "대졸(4년)" },
   ]
 
   const [preCheck, setPreCheck] = useState("")
 
   const checkBoxChange = (e) => {
-    console.log("pre: " + preCheck,"curr: " + e.target.id, e.target.checked)
+    console.log("pre: " + preCheck, "curr: " + e.target.id, e.target.checked)
 
-    if(e.target.id === preCheck){
+    if (e.target.id === preCheck) {
       e.target.checked = true
       console.log(e.target.checked)
     } else {
@@ -210,29 +210,31 @@ function App() {
       {/* 탑 배너 */}
       <div className="ResumeTopHeader">
         <div className="ResumeTop">
-          <b className="Rname">간단 이력서Beta</b>
-          <a className="ToGitLink"
-            href="https://github.com/wnalsals123/Resume_Project"
-            target="_blank"
-            rel="noopener noreferrer">
-            <b>Github</b>
-          </a>
+          {/* 사이트 배너 */}
+          <div className="siteBanner">
+            <b style={{ paddingRight: "10px", borderRight: "2px solid black" }}>간단 이력서</b>
+            <a className="ToGitLink"
+              href="https://github.com/wnalsals123/Resume_Project"
+              target="_blank"
+              rel="noopener noreferrer">
+              <b style={{ paddingLeft: "10px" }}>Github</b>
+            </a>
+          </div>
+
+          {/* 이력서 리스트 */}
+          <ul className="ResumeList">
+            <li className="ResumeLi" onClick={LibtuClik}>학력</li>
+            <li className="ResumeLi" onClick={LibtuClik}>경력</li>
+            <li className="ResumeLi" onClick={LibtuClik}>자격증</li>
+            <li className="ResumeLi" onClick={LibtuClik}>어학</li>
+            <li className="ResumeLi" onClick={LibtuClik}>인턴·대외활동</li>
+            <li className="ResumeLi" onClick={LibtuClik}>병역·취업우대</li>
+            <li className="ResumeLi" onClick={LibtuClik}>자기소개서</li>
+            <li className="ResumeLi" onClick={LibtuClik}>포트폴리오</li>
+          </ul>
+
         </div>
       </div>
-      {/* 이력서 리스트 */}
-      <ul className="ResumeList">
-        <li className="ResumeLi" onClick={LibtuClik}>학력</li>
-        <li className="ResumeLi" onClick={LibtuClik}>경력</li>
-        <li className="ResumeLi" onClick={LibtuClik}>인턴·대외활동</li>
-        <li className="ResumeLi" onClick={LibtuClik}>교육이수</li>
-        <li className="ResumeLi" onClick={LibtuClik}>자격증</li>
-        <li className="ResumeLi" onClick={LibtuClik}>수상</li>
-        <li className="ResumeLi" onClick={LibtuClik}>해외경험</li>
-        <li className="ResumeLi" onClick={LibtuClik}>어학</li>
-        <li className="ResumeLi" onClick={LibtuClik}>포트폴리오</li>
-        <li className="ResumeLi" onClick={LibtuClik}>취업우대·병역</li>
-        <li className="ResumeLi" onClick={LibtuClik}>자기소개서</li>
-      </ul>
       {/* 이력서 제목 */}
       <div className="ResumeTitle">
         <input className="ResumeTitleInput" id="이력서제목" type="text" placeholder="이력서 제목">
@@ -240,7 +242,7 @@ function App() {
       </div>
 
       <div className="contentBox">
-      {/* 기본정보 */}
+        {/* 기본정보 */}
         <div className="basicInfo" id="기본정보">
 
           <h2>기본 정보</h2>
@@ -344,19 +346,45 @@ function App() {
         {/* 경력 */}
         <div className="basicInfo 숨김" id="경력">
 
-          <h2>경력</h2>
+          <h2>경력
+            <div className='checkBoxWrap'>
+              <div className='checkBox'>
+                <input type="checkbox"></input>
+                <span>재직중</span>
+              </div>
+            </div>
+          </h2>
 
-        </div>
-        {/* 인턴·대외활동 */}
-        <div className="basicInfo 숨김" id="인턴·대외활동">
+          <div className="row">
+            <div className="inputBox 회사명" id="inputBox 회사명">
+              <span>회사명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="회사명" type="text" placeholder="OO컴퍼니"></input>
+            </div>
+            <div className="inputBox 입사년월" id="inputBox 입사년월">
+              <span>입사년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입사년월" type="text" placeholder="2002.03"></input>
+            </div>
+            <div className="inputBox 퇴사년월" id="inputBox 퇴사년월">
+              <span>퇴사년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="퇴사년월" type="text" placeholder="2006.02"></input>
+            </div>
+          </div>
 
-          <h2>인턴·대외활동</h2>
+          <div className="row">
+            <div className="inputBox 직급" id="inputBox 직급">
+              <span>직급</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="직급" type="text" placeholder="과장"></input>
+            </div>
+            <div className="inputBox 직무" id="inputBox 직무">
+              <span>직무</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="직무" type="text" placeholder="프론트엔드 개발"></input>
+            </div>
+            <div className="inputBox 연봉" id="inputBox 연봉">
+              <span>연봉</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="연봉" type="text" placeholder="3000"></input>
+            </div>
+          </div>
 
-        </div>
-        {/* 교육이수 */}
-        <div className="basicInfo 숨김" id="교육이수">
-
-          <h2>교육이수</h2>
 
         </div>
         {/* 자격증 */}
@@ -364,17 +392,20 @@ function App() {
 
           <h2>자격증</h2>
 
-        </div>
-        {/* 수상 */}
-        <div className="basicInfo 숨김" id="수상">
-
-          <h2>수상</h2>
-
-        </div>
-        {/* 해외경험 */}
-        <div className="basicInfo 숨김" id="해외경험">
-
-          <h2>해외경험</h2>
+          <div className="row">
+            <div className="inputBox 자격증명" id="inputBox 자격증명">
+              <span>자격증명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="자격증명" type="text" placeholder="정보처리기사"></input>
+            </div>
+            <div className="inputBox 발행처" id="inputBox 발행처">
+              <span>발행처</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="발행처" type="text" placeholder="한국산업인력공단"></input>
+            </div>
+            <div className="inputBox 취득년월" id="inputBox 취득년월">
+              <span>취득년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="취득년월" type="text" placeholder="2006.02"></input>
+            </div>
+          </div>
 
         </div>
         {/* 어학 */}
@@ -382,23 +413,102 @@ function App() {
 
           <h2>어학</h2>
 
+          <div className="row">
+            <div className="inputBox 외국어명" id="inputBox 외국어명">
+              <span>외국어명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="외국어명" type="text" placeholder="영어"></input>
+            </div>
+            <div className="inputBox 시험명" id="inputBox 시험명">
+              <span>시험명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="시험명" type="text" placeholder="TOEIC"></input>
+            </div>
+            <div className="inputBox 취득년월" id="inputBox 취득년월">
+              <span>취득년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="취득년월" type="text" placeholder="2006.02"></input>
+            </div>
+          </div>
+
         </div>
-        {/* 포트폴리오 */}
-        <div className="basicInfo 숨김" id="포트폴리오">
+        {/* 인턴·대외활동 */}
+        <div className="basicInfo 숨김" id="인턴·대외활동">
 
-          <h2>포트폴리오</h2>
+          <h2>인턴·대외활동</h2>
+
+          <div className="row">
+            <div className="inputBox 인턴·대외활동명" id="inputBox 인턴·대외활동명">
+              <span>인턴·대외활동명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="인턴·대외활동명" type="text" placeholder="인턴"></input>
+            </div>
+            <div className="inputBox 소속단체명" id="inputBox 소속단체명">
+              <span>소속단체명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="소속단체명" type="text" placeholder="인턴컴퍼니"></input>
+            </div>
+            <div className="inputBox 시작년월" id="inputBox 시작년월">
+              <span>시작년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="시작년월" type="text" placeholder="2006.02"></input>
+            </div>
+            <div className="inputBox 종료년월" id="inputBox 종료년월">
+              <span>종료년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="종료년월" type="text" placeholder="2006.02"></input>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="inputBox 활동내용" id="inputBox 활동내용">
+              <span>활동내용</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="활동내용" type="text" placeholder="내용기입"></input>
+            </div>
+          </div>
 
         </div>
-        {/* 취업우대·병역 */}
-        <div className="basicInfo 숨김" id="취업우대·병역">
+        {/* 병역·취업우대 */}
+        <div className="basicInfo 숨김" id="병역·취업우대">
 
-          <h2>취업우대·병역</h2>
+          <h2>병역·취업우대</h2>
+
+          <div className='checkBox'>
+            <input type="checkbox"></input>
+            <span>보훈대상</span>
+          </div>
+          <div className='checkBox'>
+            <input type="checkbox"></input>
+            <span>취업보호 대상</span>
+          </div>
+          <div className='checkBox'>
+            <input type="checkbox"></input>
+            <span>고용지원금 대상</span>
+          </div>
+          <div className='checkBox'>
+            <input type="checkbox"></input>
+            <span>장애</span>
+          </div>
+          <div className='checkBox'>
+            <input type="checkbox"></input>
+            <span>병역</span>
+          </div>
 
         </div>
         {/* 자기소개서 */}
         <div className="basicInfo 숨김" id="자기소개서">
 
           <h2>자기소개서</h2>
+
+          <div className="row">
+            <div className="inputBox 자기소개서내용" id="inputBox 자기소개서내용">
+              <span>자기소개서</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="자기소개서내용" type="text" placeholder="내용기입"></input>
+            </div>
+          </div>
+
+        </div>
+        {/* 포트폴리오 */}
+        <div className="basicInfo 숨김" id="포트폴리오">
+
+          <h2>포트폴리오</h2>
+
+          <span>사이트 주소 : </span>
+          <input placeholder="https://"></input>
+          <button>파일 등록</button>
 
         </div>
         {/* 주소 찾기 팝업 */}

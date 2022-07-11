@@ -17,26 +17,28 @@
   font-size: 20px;
 }
 
-.Rname {
+.siteBanner {
   position: absolute;
   top: 5px;
   left: 20px;
 }
 
-.ToGitLink {
+.siteBanner a {
   text-decoration-line: none;
-  position: absolute;
-  top: 5px;
-  right: 20px;
-  color: rgb(13, 17, 23);
+  color: black;
+}
+
+.siteBanner a:hover {
+  color: #E9967A;
 }
 
 .ResumeList {
+  position: absolute;
+  top: 5px;
+  right: 20px;
   list-style-type: none;
   padding: 0;
   margin: 0 auto;
-  margin-bottom: 40px;
-  width: 1200px;
 }
 
 .ResumeLi {
@@ -46,7 +48,7 @@
   border-radius: 10px;
   margin-left: 16px;
   padding: 0px 2px;
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
   user-select : none;
 }
@@ -140,7 +142,6 @@
   position: relative;
   text-align: left;
   margin-bottom: 10px;
-  height: 80px;
   font-size: 0;
 }
 
@@ -290,7 +291,6 @@ input:-webkit-autofill {
   position: absolute;
   top: 30px;
   right: 20px;
-  height: 35px;
 }
 
 .checkBox {
@@ -305,11 +305,11 @@ input:-webkit-autofill {
   vertical-align: top;
 }
 
-.checkBox span{
+.checkBox span {
   font-size: 20px;
   padding-left: 5px;
-  vertical-align: top;
   line-height: 20px;
+  vertical-align: top;
 }
 
 .학교명 {
@@ -334,4 +334,74 @@ input:-webkit-autofill {
 
 .총점 {
   width: 250px;
+}
+
+.회사명 {
+  width: 250px;
+}
+
+.입사년월 {
+  width: 250px;
+}
+
+.퇴사년월 {
+  width: 250px;
+}
+
+.직급 {
+  width: 250px;
+}
+
+.직무 {
+  width: 250px;
+}
+
+.연봉 {
+  width: 250px;
+}
+
+.자격증명 {
+  width: 250px;
+}
+
+.발행처 {
+  width: 250px;
+}
+
+.취득년월 {
+  width: 250px;
+}
+
+.외국어명 {
+  width: 250px;
+}
+
+.시험명 {
+  width: 250px;
+}
+
+.인턴·대외활동명 {
+  width: 250px;
+}
+
+.소속단체명 {
+  width: 250px;
+}
+
+.시작년월 {
+  width: 250px;
+}
+
+.종료년월 {
+  width: 250px;
+}
+
+.활동내용 {
+  width: 1152px;
+  height: 200px;
+}
+
+.자기소개서내용 {
+  width: 1152px;
+  height: 200px;
 }
