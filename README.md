@@ -35,3 +35,15 @@
 
 </div>
 </details>
+
+<details>
+<summary>22년 7월 11일</summary>
+<div markdown="1">
+
+>1. 페이지 레이아웃 추가 및 수정
+>- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178233644-f516d08d-2069-422b-83ed-a25a36e3a6e1.gif"/>
+>2. 체크박스 이벤트 추가
+>- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178233709-76f98193-93b4-4519-a481-7a35f5cbb67f.gif"/>
+
+</div>
+</details>
