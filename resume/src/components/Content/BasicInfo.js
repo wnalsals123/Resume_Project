@@ -32,7 +32,6 @@ const BasicInfo = () => {
     const pho = phoneRef.current.value.replace(/\D+/g, "");
     const bir = birthRef.current.value.replace(/\D+/g, "");
     const numberLength = e.target.id === "연락처" ? 11 : 8;
-    const test = birthRef.current.value
 
     let result;
     result = "";
