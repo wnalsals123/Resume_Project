@@ -1,0 +1,13 @@
+export { default as Title } from './Top/Title';
+export { default as TopBanner } from './Top/TopBanner';
+export { default as PopupDom } from './Post/PopupDom';
+export { default as PopupPostCode } from './Post/PopupPostCode';
+export { default as BasicInfo } from './Content/BasicInfo';
+export { default as Education } from './Content/Education';
+export { default as Career } from './Content/Career';
+export { default as Certificate } from './Content/Certificate';
+export { default as LanguageStudy } from './Content/LanguageStudy';
+export { default as Internship } from './Content/Internship';
+export { default as EmploymentPre } from './Content/EmploymentPre';
+export { default as Introduction } from './Content/Introduction';
+export { default as Portfolio } from './Content/Portfolio';

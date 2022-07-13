@@ -20,7 +20,7 @@ const PopupPostCode = (props) => {
         props.setPostValue(fullAddress)
         props.setPostBtn(btnHide)
         props.onClose()
-    }
+    };
 
     const postCodeStyle = {
         display: "block",
