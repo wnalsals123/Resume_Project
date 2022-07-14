@@ -1,16 +1,9 @@
-const TopBanner = (props) => {
+const TopBanner = () => {
     // 이력서 항목 관리
     const LibtuClik = (e) => {
-        let elemnet = document.getElementById(e.target.innerText)
+        let element = document.getElementById(e.target.innerText)
         e.target.className = e.target.className === "ResumeLi" ? "ResumeLi Clik" : "ResumeLi"
-        elemnet.className = elemnet.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
-
-        // if (elemnet.id === "학력") {
-        //     let disableBox = checkBox.filter((item) => (item.id !== "checkBox4"))
-        //     disableBox.map((item) => (document.getElementById(item.id).checked = false))
-        //     document.getElementById("checkBox4").checked = true
-        //     setPreCheck("checkBox4")
-        // }
+        element.className = element.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
     }
     // 탑 배너
     return (

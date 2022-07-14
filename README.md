@@ -47,3 +47,15 @@
 
 </div>
 </details>
+
+<details>
+<summary>22년 7월 14일</summary>
+<div markdown="1">
+
+>1. 코드 리팩토링 및 모듈화
+>- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178983022-683e6a07-5ccf-4040-8d0d-583c7bd6dc05.gif"/>
+>2. 학력탭 체크박스 상태에 따른 변화
+>- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178983036-87e64329-328a-485c-bc01-6e04377b79f4.gif"/>
+
+</div>
+</details>
