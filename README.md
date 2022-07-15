@@ -59,3 +59,13 @@
 
 </div>
 </details>
+
+<details>
+<summary>22년 7월 15일</summary>
+<div markdown="1">
+
+>1. 항목 추가 이벤트
+>- <img width="100%" src="https://user-images.githubusercontent.com/44563747/179213348-f75f8631-64ac-41c9-96c2-baccb55a3248.gif"/>
+
+</div>
+</details>
