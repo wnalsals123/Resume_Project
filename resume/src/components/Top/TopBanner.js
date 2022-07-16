@@ -1,40 +1,58 @@
+import { useState } from "react"
+
 const TopBanner = () => {
-    // 이력서 항목 관리
-    const LibtuClik = (e) => {
-        let element = document.getElementById(e.target.innerText)
-        e.target.className = e.target.className === "ResumeLi" ? "ResumeLi Clik" : "ResumeLi"
-        element.className = element.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
+  // 이력서 항목
+  const [resumeLists, setResumeLists] = useState([
+    { id: 0, class: "ResumeLi", name: "학력", active: false },
+    { id: 1, class: "ResumeLi", name: "경력", active: false },
+    { id: 2, class: "ResumeLi", name: "자격증", active: false },
+    { id: 3, class: "ResumeLi", name: "어학", active: false },
+    { id: 4, class: "ResumeLi", name: "인턴·대외활동", oactiven: false },
+    { id: 5, class: "ResumeLi", name: "병역·취업우대", active: false },
+    { id: 6, class: "ResumeLi", name: "자기소개서", active: false },
+    { id: 7, class: "ResumeLi", name: "포트폴리오", active: false }
+  ])
+  // // 이력서 항목 이벤트
+  const LibtuClik = (key) => {
+    if(resumeLists[key].active){
+      setResumeLists(resumeLists.map((item) => (
+        item.id === key ? {id: item.id, class: "ResumeLi", name: item.name, active: !item.active} : item
+      )))
+    } else {
+      setResumeLists(resumeLists.map((item) => (
+        item.id === key ? {id: item.id, class: "ResumeLi Clik", name: item.name, active: !item.active} : item
+      )))
     }
-    // 탑 배너
-    return (
-        <div className='ResumeTopHeader'>
-            <div className="ResumeTop">
-                {/* 사이트 배너 */}
-                <div className="siteBanner">
-                    <b style={{ paddingRight: "10px", borderRight: "2px solid black" }}>간단 이력서</b>
-                    <a className="ToGitLink"
-                        href="https://github.com/wnalsals123/Resume_Project"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        <b style={{ paddingLeft: "10px" }}>Github</b>
-                    </a>
-                </div>
+    const element = document.getElementById(resumeLists[key].name)
+    element.className = element.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
+  }
 
-                {/* 이력서 리스트 */}
-                <ul className="ResumeList">
-                    <li className="ResumeLi" onClick={LibtuClik}>학력</li>
-                    <li className="ResumeLi" onClick={LibtuClik}>경력</li>
-                    <li className="ResumeLi" onClick={LibtuClik}>자격증</li>
-                    <li className="ResumeLi" onClick={LibtuClik}>어학</li>
-                    <li className="ResumeLi" onClick={LibtuClik}>인턴·대외활동</li>
-                    <li className="ResumeLi" onClick={LibtuClik}>병역·취업우대</li>
-                    <li className="ResumeLi" onClick={LibtuClik}>자기소개서</li>
-                    <li className="ResumeLi" onClick={LibtuClik}>포트폴리오</li>
-                </ul>
-
-            </div>
+  const ResumeListCreate = resumeLists.map((item) => (
+    <li className={item.class} onClick={() => LibtuClik(item.id)} key={item.id}>{item.name}</li>
+  ))
+  // 탑 배너
+  return (
+    <div className='ResumeTopHeader'>
+      <div className="ResumeTop">
+        {/* 사이트 배너 */}
+        <div className="siteBanner">
+          <b style={{ paddingRight: "10px", borderRight: "2px solid black" }}>간단 이력서</b>
+          <a className="ToGitLink"
+            href="https://github.com/wnalsals123/Resume_Project"
+            target="_blank"
+            rel="noopener noreferrer">
+            <b style={{ paddingLeft: "10px" }}>Github</b>
+          </a>
         </div>
-    )
+
+        {/* 이력서 리스트 */}
+        <ul className="ResumeList">
+          {ResumeListCreate}
+        </ul>
+
+      </div>
+    </div>
+  )
 }
 
 export default TopBanner;

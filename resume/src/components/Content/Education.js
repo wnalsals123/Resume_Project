@@ -61,7 +61,7 @@ const Edu2 = () => {
           <span>합격년월</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="합격년월" type="text" placeholder="2006.02"></input>
         </div>
-        <div className='checkBox'>
+        <div className='checkBox' style={{ margin: "0" }}>
           <input onChange={GedChk} type="checkbox" id="GED"></input>
           <span>검정고시</span>
         </div>
@@ -163,11 +163,35 @@ const Education = () => {
     setEduEvent(true)
   }
 
-  const checkBox = [
-    { id: "checkBox1", name: "고졸 미만" },
-    { id: "checkBox2", name: "고졸" },
-    { id: "checkBox3", name: "대졸(2,3년)" },
-    { id: "checkBox4", name: "대졸(4년)" },
+  const addEduCreate = () => {
+    if (eduEvent) return (
+      addEdu.map((item) => (
+        <div className="addDiv" key={item.id}>
+          <div className="row">
+            <div className="inputBox 학교명" id={"inputBox 학교명" + item.id}>
+              <span>학교명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"학교명" + item.id} type="text" placeholder="OO대학교"></input>
+            </div>
+            <div className="inputBox 입학년월" id={"inputBox 입학년월" + item.id}>
+              <span>입학년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"입학년월" + item.id} type="text" placeholder="2002.03"></input>
+            </div>
+            <div className="inputBox 졸업년월" id={"inputBox 졸업년월" + item.id}>
+              <span>졸업년월</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"졸업년월" + item.id} type="text" placeholder="2006.02"></input>
+            </div>
+            <button onClick={deleteEdu} id={item.id}>삭제</button>
+          </div>
+        </div>
+      ))
+    )
+  }
+
+  const EducheckBox = [
+    { id: "EducheckBox1", name: "고졸 미만" },
+    { id: "EducheckBox2", name: "고졸" },
+    { id: "EducheckBox3", name: "대졸(2,3년)" },
+    { id: "EducheckBox4", name: "대졸(4년)" },
   ]
 
   const [preCheck, setPreCheck] = useState("")
@@ -179,13 +203,13 @@ const Education = () => {
       e.target.checked = true
       console.log(e.target.checked)
     } else {
-      let disableBox = checkBox.filter((item) => (item.id !== e.target.id))
+      let disableBox = EducheckBox.filter((item) => (item.id !== e.target.id))
       disableBox.map((item) => (document.getElementById(item.id).checked = false))
       setPreCheck(e.target.id)
     }
   }
 
-  const checkBoxList = checkBox.map((item) => (
+  const EducheckBoxList = EducheckBox.map((item) => (
     <div key={item.id} className='checkBox'>
       <input onChange={checkBoxChange} type="checkbox" id={item.id}></input>
       <span>{item.name}</span>
@@ -194,38 +218,16 @@ const Education = () => {
 
   const selectEdu = () => {
     switch (preCheck) {
-      case 'checkBox1': return <Edu1 />
-      case 'checkBox2': return <Edu2 />
-      case 'checkBox3': return <Edu3 />
-      case 'checkBox4': return <Edu4 />
+      case 'EducheckBox1': return <Edu1 />
+      case 'EducheckBox2': return <Edu2 />
+      case 'EducheckBox3': return <Edu3 />
+      case 'EducheckBox4': return <Edu4 />
       default: return <Edu1 />
     }
   }
 
-  const addEduCreate = () => {
-    if (eduEvent) return (
-      addEdu.map((item) => (
-        <div className="row" key={item.id}>
-          <div className="inputBox 학교명" id={"inputBox 학교명" + item.id}>
-            <span>학교명</span>
-            <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"학교명" + item.id} type="text" placeholder="OO대학교"></input>
-          </div>
-          <div className="inputBox 입학년월" id={"inputBox 입학년월" + item.id}>
-            <span>입학년월</span>
-            <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"입학년월" + item.id} type="text" placeholder="2002.03"></input>
-          </div>
-          <div className="inputBox 졸업년월" id={"inputBox 졸업년월" + item.id}>
-            <span>졸업년월</span>
-            <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"졸업년월" + item.id} type="text" placeholder="2006.02"></input>
-          </div>
-          <button onClick={deleteEdu} id={item.id}>삭제</button>
-        </div>
-      ))
-    )
-  }
-
   useEffect(() => {
-    const element = document.getElementById("checkBox1")
+    const element = document.getElementById("EducheckBox1")
     element.checked = true
   }, [])
 
@@ -235,7 +237,7 @@ const Education = () => {
       <h2>학력
         <button onClick={addEduEvent} className='addButton'>+</button>
         <div className='checkBoxWrap'>
-          {checkBoxList}
+          {EducheckBoxList}
         </div>
       </h2>
 
