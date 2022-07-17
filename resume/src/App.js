@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="ResumePage">
       {/* 탑 배너 */}
-      <TopBanner />
+      <TopBanner />x
       {/* 이력서 제목 */}
       <Title />
       <div className="contentBox" id="contentBox">

@@ -58,7 +58,7 @@ const EmploymentPre = () => {
         </div>
       </div>
 
-      <div className='row' style={{ display: milVisible}}>
+      <div className='row' style={{ display: disAbility}}>
         <div className="inputBox 장애" id="inputBox 장애" >
           <span>장애</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="장애" type="text" placeholder="1급"></input>
@@ -66,7 +66,7 @@ const EmploymentPre = () => {
         </div>
       </div>
 
-      <div className='row' style={{ display: disAbility}}>
+      <div className='row' style={{ display: milVisible}}>
         <div className="inputBox 병역" id="inputBox 병역" >
           <span>병역</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="병역" type="text" placeholder="군필"></input>
