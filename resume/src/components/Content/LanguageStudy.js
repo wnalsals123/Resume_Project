@@ -22,7 +22,7 @@ const LanguageStudy = () => {
     setLanEvent(true)
   }
 
-  const addLanCreate = () => {
+  const AddLanCreate = () => {
     if (lanEvent) return (
       addLan.map((item) => (
         <div className="addDiv" key={item.id}>
@@ -68,7 +68,7 @@ const LanguageStudy = () => {
         </div>
       </div>
 
-      {addLanCreate()}
+      <AddLanCreate/>
 
     </div>
   )

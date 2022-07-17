@@ -22,6 +22,15 @@ const BasicInfo = () => {
     성별값바꾸기(e.target.name)
     성별상태바꾸기("inputBox 성별 성별선택 숨김")
   }
+
+  const DropBox = () => {
+    return (
+      <ul>
+        <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="남자">남자</button></li>
+        <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="여자">여자</button></li>
+      </ul>
+    )
+  }
   // 생년월일, 연락처 구분자
   const [numTel, setNumTel] = useState('');
   const phoneRef = useRef();
@@ -158,10 +167,7 @@ const BasicInfo = () => {
             <span style={{ fontSize: "20px", color: 색상, height: "45px" }}>{성별값}</span>
           </button>
           <div className={성별상태}>
-            <ul>
-              <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="남자">남자</button></li>
-              <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="여자">여자</button></li>
-            </ul>
+            <DropBox/>
           </div>
         </div>
         <div className="inputBox 생년월일" id="inputBox 생년월일">

@@ -41,7 +41,7 @@ const Career = () => {
     }
   }
 
-  const addCarCreate = () => {
+  const AddCarCreate = () => {
     if (carEvent) return (
       addCar.map((item) => (
         <div className="addDiv" key={item.id}>
@@ -125,7 +125,7 @@ const Career = () => {
         </div>
       </div>
 
-      {addCarCreate()}
+      <AddCarCreate/>
 
     </div>
   )

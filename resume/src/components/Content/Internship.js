@@ -22,7 +22,7 @@ const Internship = () => {
     setInterEvent(true)
   }
 
-  const addInterCreate = () => {
+  const AddInterCreate = () => {
     if (interEvent) return (
       addInter.map((item) => (
         <div className="addDiv" key={item.id}>
@@ -91,7 +91,7 @@ const Internship = () => {
         </div>
       </div>
 
-      {addInterCreate()}
+      <AddInterCreate/>
 
     </div>
   )

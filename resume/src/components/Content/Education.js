@@ -163,7 +163,7 @@ const Education = () => {
     setEduEvent(true)
   }
 
-  const addEduCreate = () => {
+  const AddEduCreate = () => {
     if (eduEvent) return (
       addEdu.map((item) => (
         <div className="addDiv" key={item.id}>
@@ -203,7 +203,7 @@ const Education = () => {
       e.target.checked = true
       console.log(e.target.checked)
     } else {
-      let disableBox = EducheckBox.filter((item) => (item.id !== e.target.id))
+      const disableBox = EducheckBox.filter((item) => (item.id !== e.target.id))
       disableBox.map((item) => (document.getElementById(item.id).checked = false))
       setPreCheck(e.target.id)
     }
@@ -216,7 +216,7 @@ const Education = () => {
     </div>
   ))
 
-  const selectEdu = () => {
+  const SelectEdu = () => {
     switch (preCheck) {
       case 'EducheckBox1': return <Edu1 />
       case 'EducheckBox2': return <Edu2 />
@@ -241,8 +241,8 @@ const Education = () => {
         </div>
       </h2>
 
-      {selectEdu()}
-      {addEduCreate()}
+      <SelectEdu/>
+      <AddEduCreate/>
 
     </div>
   )

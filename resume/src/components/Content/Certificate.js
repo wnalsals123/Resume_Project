@@ -22,7 +22,7 @@ const Certificate = () => {
     setCerEvent(true)
   }
 
-  const addCerCreate = () => {
+  const AddCerCreate = () => {
     if (cerEvent) return (
       addCer.map((item) => (
         <div className="addDiv" key={item.id}>
@@ -68,7 +68,7 @@ const Certificate = () => {
         </div>
       </div>
 
-      {addCerCreate()}
+      <AddCerCreate/>
 
     </div>
   )
