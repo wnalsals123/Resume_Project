@@ -47,7 +47,7 @@ const LanguageStudy = () => {
   }
 
   return (
-    <div className="basicInfo 숨김" id="어학">
+    <div className="basicInfo 숨김" id="어학" style={{zIndex: 60}}>
 
       <h2>어학
         <button onClick={addLanEvent} className='addButton'>+</button>

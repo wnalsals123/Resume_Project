@@ -229,10 +229,11 @@ const Education = () => {
   useEffect(() => {
     const element = document.getElementById("EducheckBox1")
     element.checked = true
+    setPreCheck(element.id)
   }, [])
 
   return (
-    <div className="basicInfo 숨김" id="학력">
+    <div className="basicInfo 숨김" id="학력" style={{zIndex: 90}}>
 
       <h2>학력
         <button onClick={addEduEvent} className='addButton'>+</button>

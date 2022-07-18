@@ -47,7 +47,7 @@ const Certificate = () => {
   }
 
   return (
-    <div className="basicInfo 숨김" id="자격증">
+    <div className="basicInfo 숨김" id="자격증" style={{zIndex: 70}}>
 
       <h2>자격증
         <button onClick={addCerEvent} className='addButton'>+</button>

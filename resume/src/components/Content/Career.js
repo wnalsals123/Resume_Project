@@ -85,7 +85,7 @@ const Career = () => {
   }
 
   return (
-    <div className="basicInfo 숨김" id="경력">
+    <div className="basicInfo 숨김" id="경력" style={{zIndex: 80}}>
 
       <h2>경력
         <button onClick={addCarEvent} className='addButton'>+</button>

@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="ResumePage">
       {/* 탑 배너 */}
-      <TopBanner />x
+      <TopBanner />
       {/* 이력서 제목 */}
       <Title />
-      <div className="contentBox" id="contentBox">
+      <div className="contentBox">
         {/* 기본정보 */}
         <BasicInfo />
         {/* 학력 */}
@@ -28,11 +28,11 @@ function App() {
         <Introduction />
         {/* 포트폴리오 */}
         <Portfolio />
+        {/* 이력서 설명 */}
+        <ResumeBottom />
+        {/* 이력서 저장 */}
+        <ResumeCompleted />
       </div>
-      {/* 이력서 설명 */}
-      <ResumeBottom/>
-      {/* 이력서 저장 */}
-      <ResumeCompleted/>
     </div>
   );
 }

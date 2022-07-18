@@ -2,7 +2,7 @@ import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
 
 const Introduction = () => {
   return (
-    <div className="basicInfo 숨김" id="자기소개서">
+    <div className="basicInfo 숨김" id="자기소개서" style={{zIndex: 30}}>
 
       <h2>자기소개서</h2>
 

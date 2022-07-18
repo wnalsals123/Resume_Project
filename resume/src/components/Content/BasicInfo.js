@@ -4,30 +4,30 @@ import { PopupDom, PopupPostCode } from 'components'
 
 const BasicInfo = () => {
   // 성별 선택
-  const [성별상태, 성별상태바꾸기] = useState("inputBox 성별 성별선택 숨김")
+  const [sexVisble, setSexVisble] = useState("none")
+  const [sexValue, setSexValue] = useState("남자")
+  const [색상, 색상값바꾸기] = useState("gray")
 
   const ShowDrop = () => {
-    성별상태바꾸기("inputBox 성별 성별선택 표시 Clik")
+    setSexVisble("block")
   }
 
   const HideDrop = () => {
-    성별상태바꾸기("inputBox 성별 성별선택 숨김")
+    setSexVisble("none")
   }
-
-  const [성별값, 성별값바꾸기] = useState("남자")
-  const [색상, 색상값바꾸기] = useState("gray")
 
   const SelectValue = (e) => {
+    console.log(e)
     색상값바꾸기("black")
-    성별값바꾸기(e.target.name)
-    성별상태바꾸기("inputBox 성별 성별선택 숨김")
+    setSexValue(e.target.innerText)
+    HideDrop()
   }
 
-  const DropBox = () => {
+  const SexBox = () => {
     return (
       <ul>
-        <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="남자">남자</button></li>
-        <li><button onMouseDown={SelectValue} onBlur={HideDrop} name="여자">여자</button></li>
+        <li><button onMouseDown={(e)=>{SelectValue(e)}} onBlur={() => {HideDrop()}}>남자</button></li>
+        <li><button onMouseDown={(e)=>{SelectValue(e)}} onBlur={() => {HideDrop()}}>여자</button></li>
       </ul>
     )
   }
@@ -148,7 +148,7 @@ const BasicInfo = () => {
   }
   // 기본 정보 렌더링
   return (
-    <div className="basicInfo" id="기본정보">
+    <div className="basicInfo" id="기본정보" style={{zIndex: 100}}>
 
       <h2>기본 정보</h2>
 
@@ -161,13 +161,13 @@ const BasicInfo = () => {
           <span>영문</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="영문" type="text" placeholder="HONG GILDONG"></input>
         </div>
-        <div className="inputBox 성별" id="inputBox 성별">
+        <div className="inputBox 성별" id="inputBox 성별" style={{zIndex: 100}}>
           <button onClick={ShowDrop} onBlur={HideDrop}>
             <span>성별</span>
-            <span style={{ fontSize: "20px", color: 색상, height: "45px" }}>{성별값}</span>
+            <span style={{ fontSize: "20px", color: 색상, height: "45px" }}>{sexValue}</span>
           </button>
-          <div className={성별상태}>
-            <DropBox/>
+          <div className="dropBox" style={{display: sexVisble}}>
+            <SexBox/>
           </div>
         </div>
         <div className="inputBox 생년월일" id="inputBox 생년월일">
@@ -190,6 +190,13 @@ const BasicInfo = () => {
             <span>주소</span>
             <input onChange={setPostInput} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="주소" type="text" placeholder="서울특별시 강남구" value={postValue} ref={postRef}></input>
           </button>
+          <div>
+            {isPopupOpen && (
+              <PopupDom>
+                <PopupPostCode onClose={closePostCode} setPostValue={setPostValue} setPostBtn={setPostBtn} />
+              </PopupDom>
+            )}
+          </div>
         </div>
       </div>
 
@@ -202,14 +209,6 @@ const BasicInfo = () => {
           <img src={imgSrc} alt="preview-img"></img>
           <button onClick={imgDelete}>삭제</button>
         </div>
-      </div>
-
-      <div>
-        {isPopupOpen && (
-          <PopupDom>
-            <PopupPostCode onClose={closePostCode} setPostValue={setPostValue} setPostBtn={setPostBtn} />
-          </PopupDom>
-        )}
       </div>
 
     </div>

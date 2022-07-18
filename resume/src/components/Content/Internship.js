@@ -59,7 +59,7 @@ const Internship = () => {
 
 
   return (
-    <div className="basicInfo 숨김" id="인턴·대외활동">
+    <div className="basicInfo 숨김" id="인턴·대외활동" style={{zIndex: 50}}>
 
       <h2>인턴·대외활동
         <button onClick={addInterEvent} className='addButton'>+</button>

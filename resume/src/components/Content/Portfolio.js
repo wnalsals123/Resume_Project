@@ -1,6 +1,6 @@
 const Portfolio = () => {
   return (
-    <div className="basicInfo 숨김" id="포트폴리오">
+    <div className="basicInfo 숨김" id="포트폴리오" style={{zIndex: 20}}>
 
     <h2>포트폴리오</h2>
 
