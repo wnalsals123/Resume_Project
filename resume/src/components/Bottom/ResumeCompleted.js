@@ -1,7 +1,7 @@
 
 const ResumeCompleted = () => {
   const opnePreview = () => {
-    window.open("preview", "preview", "width=800, height=900")
+    window.open("preview", "preview", "width=1000, height=1200")
   }
 
   const saveResume = () => {
