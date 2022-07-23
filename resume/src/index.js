@@ -5,16 +5,19 @@ import './index.css';
 import App from './App';
 import { Preview } from 'components';
 import reportWebVitals from './testing/reportWebVitals';
+import { UserProvider } from 'components/Data/UserData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="preview" element={<Preview />} />
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="preview" element={<Preview />} />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );
 

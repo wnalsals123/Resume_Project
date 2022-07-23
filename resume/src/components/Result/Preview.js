@@ -1,6 +1,11 @@
+import { UserContext } from 'components/Data/UserData';
+import { useContext } from 'react';
 import './Preview.css';
 
 const Preview = () => {
+  const {userValue} = useContext(UserContext)
+  console.log(userValue)
+
   const spanStyle = {
     display: "inline-block",
     width: "90px",
@@ -28,19 +33,19 @@ const Preview = () => {
           <div className="previewBaiscInfoImg"></div>
           <div className="previewBaiscInfo">
             <div className="previewBaiscInfoFlex">
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>이름</span><span>홍길동</span></div>
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>영문</span><span><span>Hong GilDong</span></span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>이름</span><span>{userValue[0].value}</span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>영문</span><span><span>{userValue[1].value}</span></span></div>
             </div>
             <div className="previewBaiscInfoFlex">
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>성별</span><span>남자</span></div>
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>생년월일</span><span>1234.12.12</span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>성별</span><span>{userValue[2].value}</span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>생년월일</span><span>{userValue[3].value}</span></div>
             </div>
             <div className="previewBaiscInfoFlex">
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>연락처</span><span>010-1234-1234</span></div>
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>이메일</span><span>wnalsals12@naver.com</span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>연락처</span><span>{userValue[4].value}</span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>이메일</span><span>{userValue[5].value}</span></div>
             </div>
             <div className="previewBaiscInfoFlex">
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>주소</span><span>서울특별시 강남구 가로수길</span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>주소</span><span>{userValue[6].value}</span></div>
             </div>
           </div>
         </div>
@@ -87,7 +92,7 @@ const Preview = () => {
       <div className="previewBox">
         <h2>자격증</h2>
         <div className="previewCertificateWrap">
-          <div className="previewCertificateTitle">정보처리기사</div>
+          <div className="previewCertificateTitle">컴퓨터그래픽스운용기능사</div>
           <div className="previewCertificate">
             <div className="previewCertificateFlex">
               <div className="previewCertificateFlexItem"><span style={spanStyle}>발행처</span><span>한국산업인력공단</span></div>

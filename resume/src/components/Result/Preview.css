@@ -306,13 +306,13 @@
 }
 
 .previewPreFlexItem {
-  border-left: 2px solid #E9967A;
+  border-right: 2px solid #E9967A;
   flex-basis: 0;
   flex-grow: 1;
 }
 
 .previewPreFlexItem:nth-child(5) {
-  border-right: 2px solid #E9967A;
+  border-right: 0;
 }
 /* 자기소개서 */
 .previewIntroWrap {

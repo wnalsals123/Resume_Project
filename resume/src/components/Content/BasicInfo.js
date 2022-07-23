@@ -3,20 +3,6 @@ import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
 import { PopupDom, PopupPostCode } from 'components'
 
 const BasicInfo = () => {
-  const [basicInfoValue, setBasicInfoValue] = useState([
-    { key: 0, id: 0, name: "이름", value: "none"},
-    { key: 1, id: 0, name: "영문", value: "none"},
-    { key: 2, id: 0, name: "성별", value: "none"},
-    { key: 3, id: 0, name: "생년월일", value: "none"},
-    { key: 4, id: 0, name: "연락처", value: "none"},
-    { key: 5, id: 0, name: "이메일", value: "none"},
-    { key: 6, id: 0, name: "주소", value: "none"},
-    { key: 7, id: 0, name: "사진", value: "none"}
-  ])
-
-  const changeValue = (e, name) => {
-    setBasicInfoValue(basicInfoValue.map(item => name === item.name ? {key: item.key, id: item.id, name: item.name, value: e.target.value} : item))
-  }
   // 성별 선택
   const [sexVisble, setSexVisble] = useState("none")
   const [sexValue, setSexValue] = useState("남자")
@@ -163,13 +149,12 @@ const BasicInfo = () => {
   // 기본 정보 렌더링
   return (
     <div className="basicInfo" id="기본정보" style={{zIndex: 100}}>
-
       <h2>기본 정보</h2>
 
       <div className="row">
         <div className="inputBox 이름" id="inputBox 이름">
           <span>이름</span>
-          <input onChange={(e)=>{changeValue(e, '이름')}} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="이름" type="text" placeholder="홍길동"></input>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="이름" type="text" placeholder="홍길동"></input>
         </div>
         <div className="inputBox 영문" id="inputBox 영문">
           <span>영문</span>
@@ -178,7 +163,7 @@ const BasicInfo = () => {
         <div className="inputBox 성별" id="inputBox 성별" style={{zIndex: 100}}>
           <button onClick={ShowDrop} onBlur={HideDrop}>
             <span>성별</span>
-            <span style={{ fontSize: "20px", color: 색상, height: "45px" }}>{sexValue}</span>
+            <span id="성별" style={{ fontSize: "20px", color: 색상, height: "45px" }}>{sexValue}</span>
           </button>
           <div className="dropBox" style={{display: sexVisble}}>
             <SexBox/>
