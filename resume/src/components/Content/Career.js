@@ -105,7 +105,7 @@ const Career = () => {
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="퇴사년월" type="text" placeholder="2006.02"></input>
         </div>
         <div className='checkBox' style={{ margin: "0" }}>
-          <input onChange={inService} type="checkbox"></input>
+          <input onChange={inService} type="checkbox" id="재직중"></input>
           <span>재직중</span>
         </div>
       </div>

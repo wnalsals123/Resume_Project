@@ -54,13 +54,13 @@ const LanguageStudy = () => {
       </h2>
 
       <div className="row">
-        <div className="inputBox 외국어명" id="inputBox 외국어명">
-          <span>외국어명</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="외국어명" type="text" placeholder="영어"></input>
+        <div className="inputBox 어학명" id="inputBox 어학명">
+          <span>어학명</span>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="어학명" type="text" placeholder="TOEIC"></input>
         </div>
-        <div className="inputBox 시험명" id="inputBox 시험명">
-          <span>시험명</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="시험명" type="text" placeholder="TOEIC"></input>
+        <div className="inputBox 급수점수" id="inputBox 급수점수">
+          <span>급수/점수</span>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="급수점수" type="text" placeholder="1급/990"></input>
         </div>
         <div className="inputBox 취득년월-어학" id="inputBox 취득년월-어학">
           <span>취득년월</span>

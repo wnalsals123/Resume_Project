@@ -1,26 +1,18 @@
-import { useState } from "react"
+import { UserContext } from "components/Data/UserData"
+import { useContext } from "react"
 
 const TopBanner = () => {
-  // 이력서 항목
-  const [resumeLists, setResumeLists] = useState([
-    { id: 0, class: "ResumeLi", name: "학력", active: false },
-    { id: 1, class: "ResumeLi", name: "경력", active: false },
-    { id: 2, class: "ResumeLi", name: "자격증", active: false },
-    { id: 3, class: "ResumeLi", name: "어학", active: false },
-    { id: 4, class: "ResumeLi", name: "인턴·대외활동", oactiven: false },
-    { id: 5, class: "ResumeLi", name: "병역·취업우대", active: false },
-    { id: 6, class: "ResumeLi", name: "자기소개서", active: false },
-    { id: 7, class: "ResumeLi", name: "포트폴리오", active: false }
-  ])
+  const { resumeLists, setResumeLists } = useContext(UserContext)
+
   // // 이력서 항목 이벤트
   const LibtuClik = (key) => {
     if(resumeLists[key].active){
       setResumeLists(resumeLists.map((item) => (
-        item.id === key ? {id: item.id, class: "ResumeLi", name: item.name, active: !item.active} : item
+        item.id === key ? {...item, class: "ResumeLi", active: !item.active} : item
       )))
     } else {
       setResumeLists(resumeLists.map((item) => (
-        item.id === key ? {id: item.id, class: "ResumeLi Clik", name: item.name, active: !item.active} : item
+        item.id === key ? {...item, class: "ResumeLi Clik", active: !item.active} : item
       )))
     }
     const element = document.getElementById(resumeLists[key].name)
