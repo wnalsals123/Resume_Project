@@ -2,7 +2,8 @@ import { createContext, useState } from 'react';
 
 const UserContext = createContext({
   userValue: [],
-  updateUserValue: () => {}
+  updateUserValue: () => {},
+  test: () => {}
 })
 
 const UserProvider = ({ children }) => {
@@ -21,8 +22,12 @@ const UserProvider = ({ children }) => {
     setUserValue(userValue.map(item => item.key === data[item.key].key ? {...item, value: data[item.key].value} : item))
   }
 
+  const test = (data) => {
+    setUserValue(userValue.map(item => item.key === 0 ? {...item, value: data} : item))
+  }
+
   return (
-    <UserContext.Provider value={{userValue, updateUserValue}}>
+    <UserContext.Provider value={{userValue, updateUserValue, test}}>
       {children}
     </UserContext.Provider>
   )

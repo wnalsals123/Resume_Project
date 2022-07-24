@@ -10,14 +10,12 @@ import { UserProvider } from 'components/Data/UserData';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="preview" element={<Preview />} />
-        </Routes>
-      </BrowserRouter>
-    </UserProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<UserProvider><App /></UserProvider>} />
+        <Route path="preview" element={<Preview />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

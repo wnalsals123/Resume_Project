@@ -1,43 +1,30 @@
-import { UserContext } from "components/Data/UserData"
-import { useContext, useRef, useState } from "react"
-
+import { UserContext } from "components/Data/UserData";
+import { useContext, useRef } from "react"
 const ResumeCompleted = () => {
-  const { userValue, updateUserValue } = useContext(UserContext)
-  const [isopen, setIsopen] = useState(false)
   const preview = useRef();
+  const { userValue, test } = useContext(UserContext)
 
   const opnePreview = () => {
-    const Values = [
-      { key: 0, id: 0, name: "이름", value: document.getElementById("이름").value },
-      { key: 1, id: 0, name: "영문", value: document.getElementById("영문").value },
-      { key: 2, id: 0, name: "성별", value: document.getElementById("성별").innerText },
-      { key: 3, id: 0, name: "생년월일", value: document.getElementById("생년월일").value },
-      { key: 4, id: 0, name: "연락처", value: document.getElementById("연락처").value },
-      { key: 5, id: 0, name: "이메일", value: document.getElementById("이메일").value },
-      { key: 6, id: 0, name: "주소", value: document.getElementById("주소").value },
-      { key: 7, id: 0, name: "사진", value: "none" }
-    ]
-    updateUserValue(Values)
     preview.current = window.open("preview", "preview", "width=1000, height=1200")
-    setIsopen(true)
   }
 
   const saveResume = () => {
+    test("홍길동")
     alert("저장되었습니다!")
+    console.log(userValue)
+    localStorage.setItem('baiscValue', JSON.stringify(userValue))
   }
 
-  const test = () => {
-    preview.current.onload = () => {
-      preview.current.document.getElementById("preview-name").innerText = document.getElementById("이름").value
-      console.log("onload!!")
-    }
+  const deleteResume = () => {
+    alert("삭제되었습니다!")
+    localStorage.removeItem('baiscValue')
   }
 
   return (
     <div className='ResumeCompleted'>
       <button onClick={opnePreview}>미리보기</button>
       <button onClick={saveResume}>이력서 저장하기</button>
-      { isopen && test() }
+      <button onClick={deleteResume}>삭제</button>
     </div>
   )
 }

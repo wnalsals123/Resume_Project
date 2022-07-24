@@ -1,6 +1,8 @@
 import './Preview.css';
 
 const Preview = () => {
+  let basicValue = JSON.parse(localStorage.getItem("baiscValue"))
+  console.log(basicValue)
 
   const spanStyle = {
     display: "inline-block",
@@ -29,7 +31,7 @@ const Preview = () => {
           <div className="previewBaiscInfoImg"></div>
           <div className="previewBaiscInfo">
             <div className="previewBaiscInfoFlex">
-              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>이름</span><span id="preview-name">none</span></div>
+              <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>이름</span><span>none</span></div>
               <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>영문</span><span><span>none</span></span></div>
             </div>
             <div className="previewBaiscInfoFlex">
