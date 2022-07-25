@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { UserContext } from 'components/Data/UserData'
+import { useContext, useState } from 'react'
 
 const EmploymentPre = () => {
   const [milVisible, setMilVisible] = useState("none")
@@ -9,6 +10,7 @@ const EmploymentPre = () => {
   const [disValue, setDisValue] = useState("1급")
   const [milFontColor, setMilFontColor] = useState("gray")
   const [disFontColor, setDisFontColor] = useState("gray")
+  const { employmentPreValue, setEmploymentPreValue } = useContext(UserContext)
 
   const MilitaryBox = () => {
     return (
@@ -64,9 +66,9 @@ const EmploymentPre = () => {
   }
 
   const SelectValue = (e, item) => {
-    console.log(e)
     item === '장애' ? setDisFontColor("black") : setMilFontColor("black")
     item === '장애' ? setDisValue(e.target.innerText) : setMilValue(e.target.innerText)
+    item === '장애' ? setEmploymentPreValue(employmentPreValue.map((item) => (item.name === "장애" ? {...item, value: e.target.innerText} : item))) : setEmploymentPreValue(employmentPreValue.map((item) => (item.name === "병역" ? {...item, value: e.target.innerText} : item)))
     HideDrop(item)
   }
 
@@ -78,23 +80,23 @@ const EmploymentPre = () => {
 
       <div style={{ margin: "20px 0px 20px 0px" }}>
         <div className='checkBox'>
-          <input type="checkbox"></input>
+          <input id="보훈대상" type="checkbox"></input>
           <span>보훈대상</span>
         </div>
         <div className='checkBox'>
-          <input type="checkbox"></input>
+          <input id="취업보호" type="checkbox"></input>
           <span>취업보호 대상</span>
         </div>
         <div className='checkBox'>
-          <input type="checkbox"></input>
+          <input id="고용지원금" type="checkbox"></input>
           <span>고용지원금 대상</span>
         </div>
         <div className='checkBox'>
-          <input onChange={showDisRow} type="checkbox"></input>
+          <input id="장애" onChange={showDisRow} type="checkbox"></input>
           <span>장애</span>
         </div>
         <div className='checkBox'>
-          <input onChange={showMilRow} type="checkbox"></input>
+          <input id="병역" onChange={showMilRow} type="checkbox"></input>
           <span>병역</span>
         </div>
       </div>

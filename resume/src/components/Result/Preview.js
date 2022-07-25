@@ -22,12 +22,12 @@ const ResumeTitleTab = (data) => {
     </div>
   )
 }
-const BasicInfoTab = (data) => {
+const BasicInfoTab = (data, img) => {
   return (
     <div className="previewBox">
       <h2>기본정보</h2>
       <div className="previewBaiscInfoWrap">
-        <div className="previewBaiscInfoImg"></div>
+        <div className="previewBaiscInfoImg"><img src={img} alt="user-img"></img></div>
         <div className="previewBaiscInfo">
           <div className="previewBaiscInfoFlex">
             <div className="previewBaiscInfoFlexItem"><span style={spanStyle}>이름</span><span>{data[1].value}</span></div>
@@ -49,27 +49,84 @@ const BasicInfoTab = (data) => {
     </div>
   )
 }
-const EducationTab = (data) => {
-  return (
-    <div className="previewBox">
-      <h2>학력</h2>
-      <div className="previewEducationWrap">
-        <div className="previewEducationTitle">대졸(4년)</div>
+const EducationTab = (data, checkData) => {
+  let eduTitle
+  for (var i = 0; i < checkData.slice(0, 4).length; i++) {
+    if (checkData.slice(0, 4)[i].check) {
+      eduTitle = checkData.slice(0, 4)[i].value;
+      break;
+    }
+  }
+  const EduTab1 = () => {
+    const GedOn = () => {
+      return (
         <div className="previewEducation">
           <div className="previewEducationFlex">
-            <div className="previewEducationFlexItem"><span style={spanStyle}>학교명</span><span>{data[4].value}</span></div>
-            <div className="previewEducationFlexItem"><span style={spanStyle}>전공명</span><span>{data[7].value}</span></div>
+            <div className="previewEducationFlexItem"><span style={spanStyle}>검정고시</span><span>{data[0].value}</span></div>
           </div>
           <div className="previewEducationFlex">
-            <div className="previewEducationFlexItem"><span style={spanStyle}>입학년월</span><span>{data[5].value}</span></div>
-            <div className="previewEducationFlexItem"><span style={spanStyle}>졸업년월</span><span>{data[6].value}</span></div>
+            <div className="previewEducationFlexItem"><span style={spanStyle}>합격년월</span><span>{data[6].value}</span></div>
+          </div>
+        </div>
+      )
+    }
+    const GedOff = () => {
+      return (
+        <div className="previewEducation">
+          <div className="previewEducationFlex">
+            <div className="previewEducationFlexItem"><span style={spanStyle}>학교명</span><span>{data[0].value}</span></div>
           </div>
           <div className="previewEducationFlex">
-            <div className="previewEducationFlexItem"><span style={spanStyle}>학점</span><span>{data[8].value + " / " + data[9].value}</span></div>
+            <div className="previewEducationFlexItem"><span style={spanStyle}>입학년월</span><span>{data[1].value}</span></div>
+            <div className="previewEducationFlexItem"><span style={spanStyle}>졸업년월</span><span>{data[2].value}</span></div>
+          </div>
+        </div>
+      )
+    }
+    return (
+      <div className="previewBox">
+        <h2>학력</h2>
+        <div className="previewEducationWrap">
+          <div className="previewEducationTitle">{eduTitle}</div>
+          {checkData[4].check ? <GedOn/> : <GedOff/>}
+        </div>
+      </div>
+    )
+  }
+  const EduTab2 = () => {
+    return (
+      <div className="previewBox">
+        <h2>학력</h2>
+        <div className="previewEducationWrap">
+          <div className="previewEducationTitle">{eduTitle}</div>
+          <div className="previewEducation">
+            <div className="previewEducationFlex">
+              <div className="previewEducationFlexItem"><span style={spanStyle}>학교명</span><span>{data[0].value}</span></div>
+              <div className="previewEducationFlexItem"><span style={spanStyle}>전공명</span><span>{data[3].value}</span></div>
+            </div>
+            <div className="previewEducationFlex">
+              <div className="previewEducationFlexItem"><span style={spanStyle}>입학년월</span><span>{data[1].value}</span></div>
+              <div className="previewEducationFlexItem"><span style={spanStyle}>졸업년월</span><span>{data[2].value}</span></div>
+            </div>
+            <div className="previewEducationFlex">
+              <div className="previewEducationFlexItem"><span style={spanStyle}>학점</span><span>{data[4].value + " / " + data[5].value}</span></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )
+  }
+  const SelectEduTab = () => {
+    switch (eduTitle) {
+      case '고졸 미만': return <EduTab1 />
+      case '고졸': return <EduTab1 />
+      case '대졸(2,3년)': return <EduTab2 />
+      case '대졸(4년)': return <EduTab2 />
+      default: return <EduTab1 />
+    }
+  }
+  return (
+    <SelectEduTab />
   )
 }
 const CareerTab = (data) => {
@@ -132,63 +189,56 @@ const LanguageStudyTab = (data) => {
     </div>
   )
 }
-const InternshipTab = () => {
+const InternshipTab = (data) => {
   return (
     <div className="previewBox">
       <h2>인턴·대외활동</h2>
       <div className="previewInternWrap">
-        <div className="previewInternTitle">인턴</div>
+        <div className="previewInternTitle">{data[0].value}</div>
         <div className="previewIntern">
-          <div className="previewInternFlex" style={{ paddingBottom: "5px" }}>
-            <div className="previewInternFlexItem"><span style={spanStyle}>소속단체명</span><span style={{ lineHeight: "150%" }}>머시기협회</span></div>
-            <div className="previewInternFlexItem"><span style={spanStyle}>활동기간</span><span style={{ lineHeight: "150%" }}>2002.03 ~ 2002.03</span></div>
+          <div className="previewInternFlex">
+            <div className="previewInternFlexItem"><span style={spanStyle}>소속단체명</span><span>{data[1].value}</span></div>
+            <div className="previewInternFlexItem"><span style={spanStyle}>활동기간</span><span>{data[2].value + " ~ " + data[3].value}</span></div>
           </div>
-          <div className="previewInternFlex" style={{ paddingTop: "5px" }}>
-            <div className="previewInternFlexItem"><span style={spanStyle}>활동내용</span><span style={{ lineHeight: "150%" }}>탐관오리 숙청</span></div>
+          <div className="previewInternFlex">
+            <div className="previewInternFlexItem">
+              <div className="previewContentFlex">
+                <div className='previewContentFlexItem'><span>활동내용</span></div>
+                <div className='previewContentFlexItem'><span style={{ lineHeight: "150%" }}>{data[4].value}</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   )
 }
-const EmploymentPreTab = () => {
+const EmploymentPreTab = (employmentPreValue) => {
   return (
     <div className="previewBox">
       <h2>병역·취업우대</h2>
       <div className="previewPreWrap">
         <div className="previewPre">
           <div className="previewPreFlex">
-            <div className="previewPreFlexItem"><span style={preSpanStyle}>보훈대상</span><span>-</span></div>
-            <div className="previewPreFlexItem"><span style={preSpanStyle}>취업보호 대상</span><span>-</span></div>
-            <div className="previewPreFlexItem"><span style={preSpanStyle}>고용지원금 대상</span><span>-</span></div>
-            <div className="previewPreFlexItem"><span style={preSpanStyle}>장애</span><span>-</span></div>
-            <div className="previewPreFlexItem"><span style={preSpanStyle}>병역</span><span>군필</span></div>
+            <div className="previewPreFlexItem"><span style={preSpanStyle}>보훈대상</span><span>{employmentPreValue[0].check ? "해당" : "-"}</span></div>
+            <div className="previewPreFlexItem"><span style={preSpanStyle}>취업보호 대상</span><span>{employmentPreValue[1].check ? "해당" : "-"}</span></div>
+            <div className="previewPreFlexItem"><span style={preSpanStyle}>고용지원금 대상</span><span>{employmentPreValue[2].check ? "해당" : "-"}</span></div>
+            <div className="previewPreFlexItem"><span style={preSpanStyle}>장애</span><span>{employmentPreValue[3].check ? employmentPreValue[3].value : "-"}</span></div>
+            <div className="previewPreFlexItem"><span style={preSpanStyle}>병역</span><span>{employmentPreValue[4].check ? employmentPreValue[4].value : "-"}</span></div>
           </div>
         </div>
       </div>
     </div>
   )
 }
-const IntroductionTab = () => {
+const IntroductionTab = (data) => {
+
   return (
     <div className="previewBox">
       <h2>자기소개서</h2>
       <div className="previewIntroWrap">
         <div className="previewIntro">
-          안녕하세요!
-        </div>
-      </div>
-    </div>
-  )
-}
-const PortfolioTab = () => {
-  return (
-    <div className="previewBox">
-      <h2>포트폴리오</h2>
-      <div className="previewPortfolioWrap">
-        <div className="previewPortfolio">
-          <div><span>사이트 주소: </span><span>https://mypage.com</span></div>
-          <div><span>첨부파일: </span><span>파일1</span></div>
+          <pre>{data[0].value}</pre>
         </div>
       </div>
     </div>
@@ -199,22 +249,26 @@ const Preview = () => {
   const resumeLists = JSON.parse(localStorage.getItem("resumeLists"))
   const basicValue = JSON.parse(localStorage.getItem("baiscValue"))
   const educationValue = JSON.parse(localStorage.getItem("educationValue"))
+  const educationCheckValue = JSON.parse(localStorage.getItem("educationCheckValue"))
   const careerValue = JSON.parse(localStorage.getItem("careerValue"))
   const certificateValue = JSON.parse(localStorage.getItem("certificateValue"))
   const languageStudyValue = JSON.parse(localStorage.getItem("languageStudyValue"))
+  const internshipValue = JSON.parse(localStorage.getItem("internshipValue"))
+  const employmentPreValue = JSON.parse(localStorage.getItem("employmentPreValue"))
+  const introductionValue = JSON.parse(localStorage.getItem("introductionValue"))
+  const uesrImg = JSON.parse(localStorage.getItem("uesrImg"))
 
   return (
     <div className="previewPage">
       {ResumeTitleTab(basicValue)}
-      {BasicInfoTab(basicValue)}
-      {resumeLists !== null && resumeLists[0].active && EducationTab(educationValue)}
+      {BasicInfoTab(basicValue, uesrImg)}
+      {resumeLists !== null && resumeLists[0].active && EducationTab(educationValue, educationCheckValue)}
       {resumeLists !== null && resumeLists[1].active && CareerTab(careerValue)}
       {resumeLists !== null && resumeLists[2].active && CertificateTab(certificateValue)}
       {resumeLists !== null && resumeLists[3].active && LanguageStudyTab(languageStudyValue)}
-      {resumeLists !== null && resumeLists[4].active && InternshipTab()}
-      {resumeLists !== null && resumeLists[5].active && EmploymentPreTab()}
-      {resumeLists !== null && resumeLists[6].active && IntroductionTab()}
-      {resumeLists !== null && resumeLists[7].active && PortfolioTab()}
+      {resumeLists !== null && resumeLists[4].active && InternshipTab(internshipValue)}
+      {resumeLists !== null && resumeLists[5].active && EmploymentPreTab(employmentPreValue)}
+      {resumeLists !== null && resumeLists[6].active && IntroductionTab(introductionValue)}
     </div>
   )
 }

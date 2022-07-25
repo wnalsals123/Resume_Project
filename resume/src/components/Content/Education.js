@@ -197,8 +197,6 @@ const Education = () => {
   const [preCheck, setPreCheck] = useState("")
 
   const checkBoxChange = (e) => {
-    console.log("pre: " + preCheck, "curr: " + e.target.id, e.target.checked)
-
     if (e.target.id === preCheck) {
       e.target.checked = true
       console.log(e.target.checked)

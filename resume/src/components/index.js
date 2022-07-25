@@ -10,7 +10,6 @@ export { default as LanguageStudy } from './Content/LanguageStudy';
 export { default as Internship } from './Content/Internship';
 export { default as EmploymentPre } from './Content/EmploymentPre';
 export { default as Introduction } from './Content/Introduction';
-export { default as Portfolio } from './Content/Portfolio';
 export { default as ResumeBottom } from './Bottom/ResumeBottom';
 export { default as ResumeCompleted } from './Bottom/ResumeCompleted';
 export { default as Preview } from './Result/Preview';

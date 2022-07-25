@@ -1,5 +1,8 @@
 import './App.css';
-import { TopBanner, Title, BasicInfo, Education, Career, Certificate, LanguageStudy, Internship, EmploymentPre, Introduction, Portfolio, ResumeBottom, ResumeCompleted } from 'components'
+import {
+  TopBanner, Title, BasicInfo, Education, Career, Certificate, LanguageStudy,
+  Internship, EmploymentPre, Introduction, ResumeBottom, ResumeCompleted
+} from 'components'
 
 function App() {
   // 이력서 웹페이지 렌더링
@@ -27,8 +30,6 @@ function App() {
           <EmploymentPre />
           {/* 자기소개서 */}
           <Introduction />
-          {/* 포트폴리오 */}
-          <Portfolio />
           {/* 이력서 설명 */}
           <ResumeBottom />
           {/* 이력서 저장 */}

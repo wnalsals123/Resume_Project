@@ -17,7 +17,6 @@ const BasicInfo = () => {
   }
 
   const SelectValue = (e) => {
-    console.log(e)
     색상값바꾸기("black")
     setSexValue(e.target.innerText)
     HideDrop()
@@ -106,6 +105,7 @@ const BasicInfo = () => {
       elemnet.className = "imgContent"
       elemnet = document.getElementById("imgNotUse")
       elemnet.className = "imgFlex 숨김"
+      localStorage.setItem('uesrImg', JSON.stringify(reader.result))
     }
 
     e.target.value = ""
@@ -116,6 +116,7 @@ const BasicInfo = () => {
     elemnet.className = "imgFlex"
     elemnet = document.getElementById("imgUse")
     elemnet.className = "imgContent 숨김"
+    localStorage.removeItem('uesrImg')
   }
   // 주소 찾기
   const [isPopupOpen, setIsPopupOpen] = useState(false)

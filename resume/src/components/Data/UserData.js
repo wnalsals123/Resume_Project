@@ -12,7 +12,6 @@ const UserProvider = ({ children }) => {
     { id: 4, class: "ResumeLi", name: "인턴·대외활동", oactiven: false },
     { id: 5, class: "ResumeLi", name: "병역·취업우대", active: false },
     { id: 6, class: "ResumeLi", name: "자기소개서", active: false },
-    { id: 7, class: "ResumeLi", name: "포트폴리오", active: false },
   ])
 
   const [basicValue, setbasicValue] = useState([
@@ -27,17 +26,21 @@ const UserProvider = ({ children }) => {
   ])
 
   const [educationValue, setEducationValue] = useState([
-    { key: 0, name: "EducheckBox1", value: "" },
-    { key: 1, name: "EducheckBox2", value: "" },
-    { key: 2, name: "EducheckBox3", value: "" },
-    { key: 3, name: "EducheckBox4", value: "" },
-    { key: 4, name: "학교명", value: "" },
-    { key: 5, name: "입학년월", value: "" },
-    { key: 6, name: "졸업년월", value: "" },
-    { key: 7, name: "전공명", value: "" },
-    { key: 8, name: "학점", value: "" },
-    { key: 9, name: "총점", value: "" },
-    { key: 10, name: "GED", value: "" },
+    { key: 0, name: "학교명", value: "" },
+    { key: 1, name: "입학년월", value: "" },
+    { key: 2, name: "졸업년월", value: "" },
+    { key: 3, name: "전공명", value: "" },
+    { key: 4, name: "학점", value: "" },
+    { key: 5, name: "총점", value: "" },
+    { key: 6, name: "합격년월", value: "" },
+  ])
+
+  const [educationCheckValue, setEducationCheckValue] = useState([
+    { key: 0, name: "EducheckBox1", check: false, value: "고졸 미만" },
+    { key: 1, name: "EducheckBox2", check: false, value: "고졸" },
+    { key: 2, name: "EducheckBox3", check: false, value: "대졸(2,3년)" },
+    { key: 3, name: "EducheckBox4", check: false, value: "대졸(4년)" },
+    { key: 4, name: "GED", check: false, value: "" },
   ])
 
   const [careerValue, setCareerValue] = useState([
@@ -62,14 +65,38 @@ const UserProvider = ({ children }) => {
     { key: 2, name: "취득년월-어학", value: "" },
   ])
 
+  const [internshipValue, setInternshipValue] = useState([
+    { key: 0, name: "인턴·대외활동명", value: "" },
+    { key: 1, name: "소속단체명", value: "" },
+    { key: 2, name: "시작년월", value: "" },
+    { key: 3, name: "종료년월", value: "" },
+    { key: 4, name: "활동내용", value: "" },
+  ])
+
+  const [employmentPreValue, setEmploymentPreValue] = useState([
+    { key: 0, name: "보훈대상", check: false, value: "" },
+    { key: 1, name: "취업보호", check: false, value: "" },
+    { key: 2, name: "고용지원금", check: false, value: "" },
+    { key: 3, name: "장애", check: false, value: "" },
+    { key: 4, name: "병역", check: false, value: "" },
+  ])
+
+  const [introductionValue, setIntroductionValue] = useState([
+    { key: 0, name: "자기소개서내용", value: "" },
+  ])
+
   return (
     <UserContext.Provider value={{
       resumeLists, setResumeLists,
       basicValue, setbasicValue,
       educationValue, setEducationValue,
+      educationCheckValue, setEducationCheckValue,
       careerValue, setCareerValue,
       certificateValue, setCertificateValue,
-      languageStudyValue, setLanguageStudyValue
+      languageStudyValue, setLanguageStudyValue,
+      internshipValue, setInternshipValue,
+      employmentPreValue, setEmploymentPreValue,
+      introductionValue, setIntroductionValue,
     }}>
       {children}
     </UserContext.Provider>
