@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
+import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Certificate = () => {
   const [addCer, setAddCer] = useState([])
@@ -14,7 +14,6 @@ const Certificate = () => {
     setAddCer(addCer.concat(cer));
     setCerEvent(true)
     nextId.current += 1;
-    console.log(cerEvent)
   }
 
   const deleteCer = (e) => {
@@ -37,7 +36,7 @@ const Certificate = () => {
             </div>
             <div className="inputBox 취득년월-자격증" id={"inputBox 취득년월-자격증" + item.id}>
               <span>취득년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"취득년월-자격증"  + item.id} type="text" placeholder="2006.02"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"취득년월-자격증"  + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <button onClick={deleteCer} id={item.id}>삭제</button>
           </div>
@@ -64,11 +63,11 @@ const Certificate = () => {
         </div>
         <div className="inputBox 취득년월-자격증" id="inputBox 취득년월-자격증">
           <span>취득년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="취득년월-자격증" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="취득년월-자격증" type="text" placeholder="2006.02"></input>
         </div>
       </div>
 
-      <AddCerCreate/>
+      {AddCerCreate()}
 
     </div>
   )

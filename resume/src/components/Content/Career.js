@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
+import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Career = () => {
   const [addCar, setAddCar] = useState([])
@@ -14,7 +14,6 @@ const Career = () => {
     setAddCar(addCar.concat(car));
     setCarEvent(true)
     nextId.current += 1;
-    console.log(carEvent)
   }
 
   const deleteCar = (e) => {
@@ -24,17 +23,16 @@ const Career = () => {
 
   const inService = (e) => {
     const element = document.getElementById("inputBox 퇴사년월")
-    if(e.target.checked) {
+    if (e.target.checked) {
       element.style.display = "none"
     } else {
       element.style.display = "inline-block"
     }
-    console.log(element)
   }
 
   const addInService = (e) => {
     const element = document.getElementById("inputBox 퇴사년월" + e.target.id)
-    if(e.target.checked) {
+    if (e.target.checked) {
       element.style.display = "none"
     } else {
       element.style.display = "inline-block"
@@ -52,11 +50,11 @@ const Career = () => {
             </div>
             <div className="inputBox 입사년월" id={"inputBox 입사년월" + item.id}>
               <span>입사년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"입사년월" + item.id} type="text" placeholder="2002.03"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"입사년월" + item.id} type="text" placeholder="2002.03"></input>
             </div>
             <div className="inputBox 퇴사년월" id={"inputBox 퇴사년월" + item.id}>
               <span>퇴사년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"퇴사년월"  + item.id} type="text" placeholder="2006.02"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"퇴사년월" + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <div className='checkBox' style={{ margin: "0" }}>
               <input onChange={addInService} type="checkbox" id={item.id}></input>
@@ -85,7 +83,7 @@ const Career = () => {
   }
 
   return (
-    <div className="basicInfo 숨김" id="경력" style={{zIndex: 80}}>
+    <div className="basicInfo 숨김" id="경력" style={{ zIndex: 80 }}>
 
       <h2>경력
         <button onClick={addCarEvent} className='addButton'>+</button>
@@ -98,11 +96,11 @@ const Career = () => {
         </div>
         <div className="inputBox 입사년월" id="inputBox 입사년월">
           <span>입사년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입사년월" type="text" placeholder="2002.03"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입사년월" type="text" placeholder="2002.03"></input>
         </div>
         <div className="inputBox 퇴사년월" id="inputBox 퇴사년월">
           <span>퇴사년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="퇴사년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="퇴사년월" type="text" placeholder="2006.02"></input>
         </div>
         <div className='checkBox' style={{ margin: "0" }}>
           <input onChange={inService} type="checkbox" id="재직중"></input>
@@ -125,7 +123,7 @@ const Career = () => {
         </div>
       </div>
 
-      <AddCarCreate/>
+      {AddCarCreate()}
 
     </div>
   )

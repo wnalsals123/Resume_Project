@@ -1,5 +1,4 @@
-import { UserContext } from 'components/Data/UserData'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 
 const EmploymentPre = () => {
   const [milVisible, setMilVisible] = useState("none")
@@ -10,7 +9,7 @@ const EmploymentPre = () => {
   const [disValue, setDisValue] = useState("1급")
   const [milFontColor, setMilFontColor] = useState("gray")
   const [disFontColor, setDisFontColor] = useState("gray")
-  const { employmentPreValue, setEmploymentPreValue } = useContext(UserContext)
+
 
   const MilitaryBox = () => {
     return (
@@ -68,7 +67,6 @@ const EmploymentPre = () => {
   const SelectValue = (e, item) => {
     item === '장애' ? setDisFontColor("black") : setMilFontColor("black")
     item === '장애' ? setDisValue(e.target.innerText) : setMilValue(e.target.innerText)
-    item === '장애' ? setEmploymentPreValue(employmentPreValue.map((item) => (item.name === "장애" ? {...item, value: e.target.innerText} : item))) : setEmploymentPreValue(employmentPreValue.map((item) => (item.name === "병역" ? {...item, value: e.target.innerText} : item)))
     HideDrop(item)
   }
 
@@ -105,7 +103,7 @@ const EmploymentPre = () => {
         <div className="inputBox 장애" id="inputBox 장애" >
           <button onClick={disShowDrop} onBlur={() => {HideDrop('장애')}}>
             <span>장애</span>
-            <span style={{ fontSize: "20px", color: disFontColor, height: "45px" }}>{disValue}</span>
+            <span id='장애값' style={{ fontSize: "20px", color: disFontColor, height: "45px" }}>{disValue}</span>
           </button>
           <div className='dropBox' style={{ display: disShowDropVis }}><DisabilityBox /></div>
         </div>
@@ -115,7 +113,7 @@ const EmploymentPre = () => {
         <div className="inputBox 병역" id="inputBox 병역" >
           <button onClick={milShowDrop} onBlur={() => {HideDrop('병역')}}>
             <span>병역</span>
-            <span style={{ fontSize: "20px", color: milFontColor, height: "45px" }}>{milValue}</span>
+            <span id='병역값' style={{ fontSize: "20px", color: milFontColor, height: "45px" }}>{milValue}</span>
           </button>
           <div className='dropBox' style={{ display: milShowDropVis }}><MilitaryBox /></div>
         </div>

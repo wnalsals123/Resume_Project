@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
+import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Internship = () => {
   const [addInter, setaddInter] = useState([])
@@ -14,7 +14,6 @@ const Internship = () => {
     setaddInter(addInter.concat(inter));
     setInterEvent(true)
     nextId.current += 1;
-    console.log(interEvent)
   }
 
   const deleteInter = (e) => {
@@ -37,11 +36,11 @@ const Internship = () => {
             </div>
             <div className="inputBox 시작년월" id={"inputBox 시작년월" + item.id}>
               <span>시작년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"시작년월" + item.id} type="text" placeholder="2006.02"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"시작년월" + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <div className="inputBox 종료년월" id={"inputBox 종료년월" + item.id}>
               <span>종료년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"종료년월" + item.id} type="text" placeholder="2006.02"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"종료년월" + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <button onClick={deleteInter} id={item.id}>삭제</button>
           </div>
@@ -76,11 +75,11 @@ const Internship = () => {
         </div>
         <div className="inputBox 시작년월" id="inputBox 시작년월">
           <span>시작년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="시작년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="시작년월" type="text" placeholder="2006.02"></input>
         </div>
         <div className="inputBox 종료년월" id="inputBox 종료년월">
           <span>종료년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="종료년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="종료년월" type="text" placeholder="2006.02"></input>
         </div>
       </div>
 
@@ -91,7 +90,7 @@ const Internship = () => {
         </div>
       </div>
 
-      <AddInterCreate/>
+      {AddInterCreate()}
 
     </div>
   )

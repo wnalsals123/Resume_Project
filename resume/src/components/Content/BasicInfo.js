@@ -36,10 +36,10 @@ const BasicInfo = () => {
   const [numBir, setNumBir] = useState('');
   const birthRef = useRef();
 
-  const ChkNum = (e) => {
+  const ChkNum = (e, length) => {
     const pho = phoneRef.current.value.replace(/\D+/g, "");
     const bir = birthRef.current.value.replace(/\D+/g, "");
-    const numberLength = e.target.id === "연락처" ? 11 : 8;
+    const numberLength = length
 
     let result;
     result = "";
@@ -57,10 +57,8 @@ const BasicInfo = () => {
           default:
             break;
         }
-
         result += pho[i];
       }
-
       phoneRef.current.value = result;
       setNumTel(e.target.value);
     } else {
@@ -76,10 +74,8 @@ const BasicInfo = () => {
           default:
             break;
         }
-
         result += bir[i];
       }
-
       birthRef.current.value = result;
       setNumBir(e.target.value);
     }
@@ -172,14 +168,14 @@ const BasicInfo = () => {
         </div>
         <div className="inputBox 생년월일" id="inputBox 생년월일">
           <span>생년월일</span>
-          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="생년월일" type="tel" placeholder="1434.12.18" value={numBir} ref={birthRef}></input>
+          <input onChange={(e)=>{ChkNum(e, 8)}} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="생년월일" type="tel" placeholder="1434.12.18" value={numBir} ref={birthRef}></input>
         </div>
       </div>
 
       <div className="row">
         <div className="inputBox 연락처" id="inputBox 연락처">
           <span>연락처</span>
-          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="연락처" type="tel" placeholder="010-1234-5678" value={numTel} ref={phoneRef}></input>
+          <input onChange={(e)=>{ChkNum(e, 11)}} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="연락처" type="tel" placeholder="010-1234-5678" value={numTel} ref={phoneRef}></input>
         </div>
         <div className="inputBox 이메일" id="inputBox 이메일">
           <span>이메일</span>

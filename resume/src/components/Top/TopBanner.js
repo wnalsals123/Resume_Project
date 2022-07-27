@@ -1,8 +1,15 @@
-import { UserContext } from "components/Data/UserData"
-import { useContext } from "react"
+import { useState } from "react"
 
 const TopBanner = () => {
-  const { resumeLists, setResumeLists } = useContext(UserContext)
+  const [resumeLists, setResumeLists] = useState([
+    { id: 0, class: "ResumeLi", name: "학력", active: false },
+    { id: 1, class: "ResumeLi", name: "경력", active: false },
+    { id: 2, class: "ResumeLi", name: "자격증", active: false },
+    { id: 3, class: "ResumeLi", name: "어학", active: false },
+    { id: 4, class: "ResumeLi", name: "인턴·대외활동", oactiven: false },
+    { id: 5, class: "ResumeLi", name: "병역·취업우대", active: false },
+    { id: 6, class: "ResumeLi", name: "자기소개서", active: false },
+  ])
 
   // // 이력서 항목 이벤트
   const LibtuClik = (key) => {

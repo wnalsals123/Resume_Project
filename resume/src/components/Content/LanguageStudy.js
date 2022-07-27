@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
+import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const LanguageStudy = () => {
   const [addLan, setAddLan] = useState([])
@@ -14,7 +14,6 @@ const LanguageStudy = () => {
     setAddLan(addLan.concat(lan));
     setLanEvent(true)
     nextId.current += 1;
-    console.log(lanEvent)
   }
 
   const deleteLan = (e) => {
@@ -27,17 +26,17 @@ const LanguageStudy = () => {
       addLan.map((item) => (
         <div className="addDiv" key={item.id}>
           <div className="row">
-            <div className="inputBox 외국어명" id={"inputBox 외국어명" + item.id}>
-              <span>외국어명</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"외국어명" + item.id} type="text" placeholder="영어"></input>
+            <div className="inputBox 어학명" id={"inputBox 어학명" + item.id}>
+              <span>어학명</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"어학명" + item.id} type="text" placeholder="TOEIC"></input>
             </div>
-            <div className="inputBox 시험명" id={"inputBox 시험명" + item.id}>
-              <span>시험명</span>
+            <div className="inputBox 급수점수" id={"inputBox 급수점수" + item.id}>
+              <span>급수/점수</span>
               <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"시험명" + item.id} type="text" placeholder="TOEIC"></input>
             </div>
             <div className="inputBox 취득년월-어학" id={"inputBox 취득년월-어학" + item.id}>
               <span>취득년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"취득년월-어학" + item.id} type="text" placeholder="2006.02"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"취득년월-어학" + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <button onClick={deleteLan} id={item.id}>삭제</button>
           </div>
@@ -60,15 +59,15 @@ const LanguageStudy = () => {
         </div>
         <div className="inputBox 급수점수" id="inputBox 급수점수">
           <span>급수/점수</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="급수점수" type="text" placeholder="1급/990"></input>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="급수점수" type="text" placeholder="990"></input>
         </div>
         <div className="inputBox 취득년월-어학" id="inputBox 취득년월-어학">
           <span>취득년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="취득년월-어학" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="취득년월-어학" type="text" placeholder="2006.02"></input>
         </div>
       </div>
 
-      <AddLanCreate/>
+      {AddLanCreate()}
 
     </div>
   )

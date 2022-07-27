@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent';
+import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent';
 
 const Edu1 = () => {
   return (
@@ -11,11 +11,11 @@ const Edu1 = () => {
         </div>
         <div className="inputBox 입학년월" id="inputBox 입학년월">
           <span>입학년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
         </div>
         <div className="inputBox 졸업년월" id="inputBox 졸업년월">
           <span>졸업년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
         </div>
       </div>
     </div>
@@ -51,15 +51,15 @@ const Edu2 = () => {
         </div>
         <div className="inputBox 입학년월" id="inputBox 입학년월" style={{ display: noGed }}>
           <span>입학년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
         </div>
         <div className="inputBox 졸업년월" id="inputBox 졸업년월" style={{ display: noGed }}>
           <span>졸업년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
         </div>
         <div className="inputBox 합격년월" id="inputBox 합격년월" style={{ display: yesGed }}>
           <span>합격년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="합격년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="합격년월" type="text" placeholder="2006.02"></input>
         </div>
         <div className='checkBox' style={{ margin: "0" }}>
           <input onChange={GedChk} type="checkbox" id="GED"></input>
@@ -80,11 +80,11 @@ const Edu3 = () => {
         </div>
         <div className="inputBox 입학년월" id="inputBox 입학년월">
           <span>입학년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
         </div>
         <div className="inputBox 졸업년월" id="inputBox 졸업년월">
           <span>졸업년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
         </div>
       </div>
 
@@ -116,11 +116,11 @@ const Edu4 = () => {
         </div>
         <div className="inputBox 입학년월" id="inputBox 입학년월">
           <span>입학년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
         </div>
         <div className="inputBox 졸업년월" id="inputBox 졸업년월">
           <span>졸업년월</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
+          <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
         </div>
       </div>
 
@@ -155,7 +155,6 @@ const Education = () => {
     setAddEdu(addEdu.concat(edu));
     setEduEvent(true)
     nextId.current += 1;
-    console.log(eduEvent)
   }
 
   const deleteEdu = (e) => {
@@ -174,11 +173,11 @@ const Education = () => {
             </div>
             <div className="inputBox 입학년월" id={"inputBox 입학년월" + item.id}>
               <span>입학년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"입학년월" + item.id} type="text" placeholder="2002.03"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"입학년월" + item.id} type="text" placeholder="2002.03"></input>
             </div>
             <div className="inputBox 졸업년월" id={"inputBox 졸업년월" + item.id}>
               <span>졸업년월</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"졸업년월" + item.id} type="text" placeholder="2006.02"></input>
+              <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"졸업년월" + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <button onClick={deleteEdu} id={item.id}>삭제</button>
           </div>
@@ -240,8 +239,8 @@ const Education = () => {
         </div>
       </h2>
 
-      <SelectEdu/>
-      <AddEduCreate/>
+      {SelectEdu()}
+      {AddEduCreate()}
 
     </div>
   )
