@@ -50,6 +50,24 @@ const BasicInfoTab = (data, img) => {
   )
 }
 const EducationTab = (data) => {
+  const addEduTab = () => {
+    if (data.plus !== []) return (
+      data.plus.map((item) => (
+        <div className="previewEducationWrap">
+          <div className="previewEducationTitle">-</div>
+          <div className="previewEducation">
+            <div className="previewEducationFlex">
+              <div className="previewEducationFlexItem"><span style={spanStyle}>학교명</span><span>{item.학교명}</span></div>
+            </div>
+            <div className="previewEducationFlex">
+              <div className="previewEducationFlexItem"><span style={spanStyle}>입학년월</span><span>{item.입학년월}</span></div>
+              <div className="previewEducationFlexItem"><span style={spanStyle}>졸업년월</span><span>{item.졸업년월}</span></div>
+            </div>
+          </div>
+        </div>
+      ))
+    )
+  }
   const EduTab1 = () => {
     const GedOn = () => {
       return (
@@ -77,33 +95,27 @@ const EducationTab = (data) => {
       )
     }
     return (
-      <div className="previewBox">
-        <h2>학력</h2>
-        <div className="previewEducationWrap">
-          <div className="previewEducationTitle">{data.학력유형}</div>
-          {data.검정고시 ? <GedOn/> : <GedOff/>}
-        </div>
+      <div className="previewEducationWrap">
+        <div className="previewEducationTitle">{data.학력유형}</div>
+        {data.검정고시 ? <GedOn /> : <GedOff />}
       </div>
     )
   }
   const EduTab2 = () => {
     return (
-      <div className="previewBox">
-        <h2>학력</h2>
-        <div className="previewEducationWrap">
-          <div className="previewEducationTitle">{data.학력유형}</div>
-          <div className="previewEducation">
-            <div className="previewEducationFlex">
-              <div className="previewEducationFlexItem"><span style={spanStyle}>학교명</span><span>{data.학교명}</span></div>
-              <div className="previewEducationFlexItem"><span style={spanStyle}>전공명</span><span>{data.전공명}</span></div>
-            </div>
-            <div className="previewEducationFlex">
-              <div className="previewEducationFlexItem"><span style={spanStyle}>입학년월</span><span>{data.입학년월}</span></div>
-              <div className="previewEducationFlexItem"><span style={spanStyle}>졸업년월</span><span>{data.졸업년월}</span></div>
-            </div>
-            <div className="previewEducationFlex">
-              <div className="previewEducationFlexItem"><span style={spanStyle}>학점</span><span>{data.학점 + " / " + data.총점}</span></div>
-            </div>
+      <div className="previewEducationWrap">
+        <div className="previewEducationTitle">{data.학력유형}</div>
+        <div className="previewEducation">
+          <div className="previewEducationFlex">
+            <div className="previewEducationFlexItem"><span style={spanStyle}>학교명</span><span>{data.학교명}</span></div>
+            <div className="previewEducationFlexItem"><span style={spanStyle}>전공명</span><span>{data.전공명}</span></div>
+          </div>
+          <div className="previewEducationFlex">
+            <div className="previewEducationFlexItem"><span style={spanStyle}>입학년월</span><span>{data.입학년월}</span></div>
+            <div className="previewEducationFlexItem"><span style={spanStyle}>졸업년월</span><span>{data.졸업년월}</span></div>
+          </div>
+          <div className="previewEducationFlex">
+            <div className="previewEducationFlexItem"><span style={spanStyle}>학점</span><span>{data.학점 + " / " + data.총점}</span></div>
           </div>
         </div>
       </div>
@@ -119,10 +131,38 @@ const EducationTab = (data) => {
     }
   }
   return (
-    <SelectEduTab />
+    <div className="previewBox">
+      <h2>학력</h2>
+      {SelectEduTab()}
+      {addEduTab()}
+    </div>
+
   )
 }
 const CareerTab = (data) => {
+  const addCareerTab = () => {
+    if (data.plus !== []) return (
+      data.plus.map((item) => (
+        <div className="previewCareerWrap">
+          <div className="previewCareerTitle">경력</div>
+          <div className="previewCareer">
+            <div className="previewCareerFlex">
+              <div className="previewCareerFlexItem"><span style={spanStyle}>회사명</span><span>{item.회사명}</span></div>
+              <div className="previewCareerFlexItem"><span style={spanStyle}>직무</span><span>{item.직무}</span></div>
+            </div>
+            <div className="previewCareerFlex">
+              <div className="previewCareerFlexItem"><span style={spanStyle}>입사년월</span><span>{item.입사년월}</span></div>
+              <div className="previewCareerFlexItem"><span style={spanStyle}>퇴사년월</span><span>{item.재직중 ? "재직중" : item.퇴사년월}</span></div>
+            </div>
+            <div className="previewCareerFlex">
+              <div className="previewCareerFlexItem"><span style={spanStyle}>직급</span><span>{item.직급}</span></div>
+              <div className="previewCareerFlexItem"><span style={spanStyle}>연봉</span><span>{item.연봉}</span></div>
+            </div>
+          </div>
+        </div>
+      ))
+    )
+  }
   return (
     <div className="previewBox">
       <h2>경력</h2>
@@ -143,10 +183,28 @@ const CareerTab = (data) => {
           </div>
         </div>
       </div>
+      {addCareerTab()}
     </div>
   )
 }
 const CertificateTab = (data) => {
+  const addCertificateTab = () => {
+    if (data.plus !== []) return (
+      data.plus.map((item) => (
+        <div className="previewCertificateWrap">
+          <div className="previewCertificateTitle">{item.자격증명}</div>
+          <div className="previewCertificate">
+            <div className="previewCertificateFlex">
+              <div className="previewCertificateFlexItem"><span style={spanStyle}>발행처</span><span>{item.발행처}</span></div>
+            </div>
+            <div className="previewCertificateFlex">
+              <div className="previewCertificateFlexItem"><span style={spanStyle}>취득년월</span><span>{item.취득년월자격증}</span></div>
+            </div>
+          </div>
+        </div>
+      ))
+    )
+  }
   return (
     <div className="previewBox">
       <h2>자격증</h2>
@@ -161,10 +219,28 @@ const CertificateTab = (data) => {
           </div>
         </div>
       </div>
+      {addCertificateTab()}
     </div>
   )
 }
 const LanguageStudyTab = (data) => {
+  const addLanguageStudyTab = () => {
+    if (data.plus !== []) return (
+      data.plus.map((item) => (
+        <div className="previewLanguageWrap">
+          <div className="previewLanguageTitle">{item.어학명}</div>
+          <div className="previewLanguage">
+            <div className="previewLanguageFlex">
+              <div className="previewLanguageFlexItem"><span style={spanStyle}>급수/점수</span><span>{item.급수점수}</span></div>
+            </div>
+            <div className="previewLanguageFlex">
+              <div className="previewLanguageFlexItem"><span style={spanStyle}>취득년월</span><span>{item.취득년월어학}</span></div>
+            </div>
+          </div>
+        </div>
+      ))
+    )
+  }
   return (
     <div className="previewBox">
       <h2>어학</h2>
@@ -179,10 +255,34 @@ const LanguageStudyTab = (data) => {
           </div>
         </div>
       </div>
+      {addLanguageStudyTab()}
     </div>
   )
 }
 const InternshipTab = (data) => {
+  const addInternshipTab = () => {
+    if (data.plus !== []) return (
+      data.plus.map((item) => (
+        <div className="previewInternWrap">
+        <div className="previewInternTitle">{item.인턴대외활동명}</div>
+        <div className="previewIntern">
+          <div className="previewInternFlex">
+            <div className="previewInternFlexItem"><span style={spanStyle}>소속단체명</span><span>{item.소속단체명}</span></div>
+            <div className="previewInternFlexItem"><span style={spanStyle}>활동기간</span><span>{item.시작년월 + " ~ " + item.종료년월}</span></div>
+          </div>
+          <div className="previewInternFlex">
+            <div className="previewInternFlexItem">
+              <div className="previewContentFlex">
+                <div className='previewContentFlexItem'><span>활동내용</span></div>
+                <div className='previewContentFlexItem'><span style={{ lineHeight: "150%" }}>{item.활동내용}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      ))
+    )
+  }
   return (
     <div className="previewBox">
       <h2>인턴·대외활동</h2>
@@ -203,6 +303,7 @@ const InternshipTab = (data) => {
           </div>
         </div>
       </div>
+      {addInternshipTab()}
     </div>
   )
 }

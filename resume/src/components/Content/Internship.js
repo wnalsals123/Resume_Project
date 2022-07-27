@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import { AddContext } from 'components/Data/AddState';
+import React, { useState, useRef, useContext } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Internship = () => {
-  const [addInter, setaddInter] = useState([])
+  const { addInter, setaddInter } = useContext(AddContext)
   const [interEvent, setInterEvent] = useState(false)
   const nextId = useRef(0);
 

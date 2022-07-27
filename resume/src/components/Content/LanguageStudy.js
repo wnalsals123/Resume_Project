@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import { AddContext } from 'components/Data/AddState';
+import React, { useState, useRef, useContext } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const LanguageStudy = () => {
-  const [addLan, setAddLan] = useState([])
+  const { addLan, setAddLan } = useContext(AddContext)
   const [lanEvent, setLanEvent] = useState(false)
   const nextId = useRef(0);
 

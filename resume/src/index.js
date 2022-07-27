@@ -5,13 +5,14 @@ import './index.css';
 import App from './App';
 import { Preview } from 'components';
 import reportWebVitals from './testing/reportWebVitals';
+import { AddProvider } from 'components/Data/AddState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<AddProvider><App /></AddProvider>} />
         <Route path="preview" element={<Preview />} />
       </Routes>
     </BrowserRouter>

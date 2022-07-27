@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import { AddContext } from 'components/Data/AddState';
+import React, { useState, useRef, useContext } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Career = () => {
-  const [addCar, setAddCar] = useState([])
+  const { addCar, setAddCar } = useContext(AddContext)
   const [carEvent, setCarEvent] = useState(false)
   const nextId = useRef(0);
 
@@ -30,8 +31,8 @@ const Career = () => {
     }
   }
 
-  const addInService = (e) => {
-    const element = document.getElementById("inputBox 퇴사년월" + e.target.id)
+  const addInService = (e, id) => {
+    const element = document.getElementById("inputBox 퇴사년월" + id)
     if (e.target.checked) {
       element.style.display = "none"
     } else {
@@ -57,7 +58,7 @@ const Career = () => {
               <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"퇴사년월" + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <div className='checkBox' style={{ margin: "0" }}>
-              <input onChange={addInService} type="checkbox" id={item.id}></input>
+              <input onChange={(e)=>(addInService(e, item.id))} type="checkbox" id={"재직중" + item.id}></input>
               <span>재직중</span>
               <button onClick={deleteCar} id={item.id}>삭제</button>
             </div>

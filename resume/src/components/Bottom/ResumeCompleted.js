@@ -1,12 +1,14 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { getValues, postValues } from "components/Data/UserData";
+import { AddContext } from "components/Data/AddState";
 
 const ResumeCompleted = () => {
+  const { addEdu, addCar, addCer, addLan, addInter } = useContext(AddContext)
   const preview = useRef();
   let UserData
 
   const initPreview = () => {
-    UserData = getValues()
+    UserData = getValues( addEdu, addCar, addCer, addLan, addInter )
   }
 
   const opnePreview = () => {

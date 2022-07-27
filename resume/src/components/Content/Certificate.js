@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import { AddContext } from 'components/Data/AddState';
+import React, { useState, useRef, useContext } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Certificate = () => {
-  const [addCer, setAddCer] = useState([])
+  const { addCer, setAddCer } = useContext(AddContext)
   const [cerEvent, setCerEvent] = useState(false)
   const nextId = useRef(0);
 

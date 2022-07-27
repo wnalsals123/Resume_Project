@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { AddContext } from 'components/Data/AddState';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent';
 
 const Edu1 = () => {
@@ -143,7 +144,7 @@ const Edu4 = () => {
 }
 
 const Education = () => {
-  const [addEdu, setAddEdu] = useState([])
+  const { addEdu, setAddEdu } = useContext(AddContext)
   const [eduEvent, setEduEvent] = useState(false)
   const nextId = useRef(0);
 

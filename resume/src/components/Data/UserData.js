@@ -1,14 +1,69 @@
-const getValues = () => {
+const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
   const getEduTitle = () => {
     let title
-    if(document.getElementById("EducheckBox1").checked) title = "고졸 미만"
-    if(document.getElementById("EducheckBox2").checked) title = "고졸"
-    if(document.getElementById("EducheckBox3").checked) title = "대졸(2,3년)"
-    if(document.getElementById("EducheckBox4").checked) title = "대졸(4년)"
+    if (document.getElementById("EducheckBox1").checked) title = "고졸 미만"
+    if (document.getElementById("EducheckBox2").checked) title = "고졸"
+    if (document.getElementById("EducheckBox3").checked) title = "대졸(2,3년)"
+    if (document.getElementById("EducheckBox4").checked) title = "대졸(4년)"
     return title
   }
-
-  return(
+  const plueEdu = () => {
+    let temp = addEdu.map((item) => (
+      {
+        학교명: document.getElementById("학교명" + item.id) !== null ? document.getElementById("학교명" + item.id).value : "",
+        입학년월: document.getElementById("입학년월" + item.id) !== null ? document.getElementById("입학년월" + item.id).value : "",
+        졸업년월: document.getElementById("졸업년월" + item.id) !== null ? document.getElementById("졸업년월" + item.id).value : "",
+      }
+    ))
+    return temp
+  }
+  const plueCar = () => {
+    let temp = addCar.map((item) => (
+      {
+        회사명: document.getElementById("회사명" + item.id) !== null ? document.getElementById("회사명" + item.id).value : "",
+        입사년월: document.getElementById("입사년월" + item.id) !== null ? document.getElementById("입사년월" + item.id).value : "",
+        퇴사년월: document.getElementById("퇴사년월" + item.id) !== null ? document.getElementById("퇴사년월" + item.id).value : "",
+        직급: document.getElementById("직급" + item.id) !== null ? document.getElementById("직급" + item.id).value : "",
+        직무: document.getElementById("직무" + item.id) !== null ? document.getElementById("직무" + item.id).value : "",
+        연봉: document.getElementById("연봉" + item.id) !== null ? document.getElementById("연봉" + item.id).value : "",
+        재직중: document.getElementById("재직중" + item.id) !== null ? document.getElementById("재직중" + item.id).checked : false,
+      }
+    ))
+    return temp
+  }
+  const plueCer = () => {
+    let temp = addCer.map((item) => (
+      {
+        자격증명: document.getElementById("자격증명" + item.id) !== null ? document.getElementById("자격증명" + item.id).value : "",
+        발행처: document.getElementById("발행처" + item.id) !== null ? document.getElementById("발행처" + item.id).value : "",
+        취득년월자격증: document.getElementById("취득년월-자격증" + item.id) !== null ? document.getElementById("취득년월-자격증" + item.id).value : "",
+      }
+    ))
+    return temp
+  }
+  const plueLan = () => {
+    let temp = addLan.map((item) => (
+      {
+        어학명: document.getElementById("어학명" + item.id) !== null ? document.getElementById("어학명" + item.id).value : "",
+        급수점수: document.getElementById("급수점수" + item.id) !== null ? document.getElementById("급수점수" + item.id).value : "",
+        취득년월어학: document.getElementById("취득년월-어학" + item.id) !== null ? document.getElementById("취득년월-어학" + item.id).value : "",
+      }
+    ))
+    return temp
+  }
+  const plueInter = () => {
+    let temp = addInter.map((item) => (
+      {
+        인턴대외활동명: document.getElementById("인턴·대외활동명" + item.id) !== null ? document.getElementById("인턴·대외활동명" + item.id).value : "",
+        소속단체명: document.getElementById("소속단체명" + item.id) !== null ? document.getElementById("소속단체명" + item.id).value : "",
+        시작년월: document.getElementById("시작년월" + item.id) !== null ? document.getElementById("시작년월" + item.id).value : "",
+        종료년월: document.getElementById("어학명" + item.id) !== null ? document.getElementById("종료년월" + item.id).value : "",
+        활동내용: document.getElementById("어학명" + item.id) !== null ? document.getElementById("활동내용" + item.id).value : "",
+      }
+    ))
+    return temp
+  }
+  return (
     [
       {
         학력: document.getElementById("학력").className === "basicInfo" ? true : false,
@@ -39,6 +94,7 @@ const getValues = () => {
         총점: document.getElementById("총점") !== null ? document.getElementById("총점").value : "",
         합격년월: document.getElementById("합격년월") !== null ? document.getElementById("합격년월").value : "",
         검정고시: document.getElementById("GED") !== null ? document.getElementById("GED").checked : false,
+        plus: plueEdu()
       },
       {
         회사명: document.getElementById("회사명") !== null ? document.getElementById("회사명").value : "",
@@ -48,16 +104,19 @@ const getValues = () => {
         직무: document.getElementById("직무") !== null ? document.getElementById("직무").value : "",
         연봉: document.getElementById("연봉") !== null ? document.getElementById("연봉").value : "",
         재직중: document.getElementById("재직중") !== null ? document.getElementById("재직중").checked : false,
+        plus: plueCar()
       },
       {
         자격증명: document.getElementById("자격증명") !== null ? document.getElementById("자격증명").value : "",
         발행처: document.getElementById("발행처") !== null ? document.getElementById("발행처").value : "",
         취득년월자격증: document.getElementById("취득년월-자격증") !== null ? document.getElementById("취득년월-자격증").value : "",
+        plus: plueCer()
       },
       {
         어학명: document.getElementById("어학명") !== null ? document.getElementById("어학명").value : "",
         급수점수: document.getElementById("급수점수") !== null ? document.getElementById("급수점수").value : "",
         취득년월어학: document.getElementById("취득년월-어학") !== null ? document.getElementById("취득년월-어학").value : "",
+        plus: plueLan()
       },
       {
         인턴대외활동명: document.getElementById("인턴·대외활동명") !== null ? document.getElementById("인턴·대외활동명").value : "",
@@ -65,6 +124,7 @@ const getValues = () => {
         시작년월: document.getElementById("시작년월") !== null ? document.getElementById("시작년월").value : "",
         종료년월: document.getElementById("어학명") !== null ? document.getElementById("종료년월").value : "",
         활동내용: document.getElementById("어학명") !== null ? document.getElementById("활동내용").value : "",
+        plus: plueInter()
       },
       {
         보훈대상: document.getElementById("보훈대상").checked ? true : false,
