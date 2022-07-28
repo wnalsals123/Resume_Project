@@ -90,6 +90,7 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
         입학년월: document.getElementById("입학년월") !== null ? document.getElementById("입학년월").value : "",
         졸업년월: document.getElementById("졸업년월") !== null ? document.getElementById("졸업년월").value : "",
         전공명: document.getElementById("전공명") !== null ? document.getElementById("전공명").value : "",
+        이수학점: document.getElementById("이수학점") !== null ? document.getElementById("이수학점").value : "",
         학점: document.getElementById("학점") !== null ? document.getElementById("학점").value : "",
         총점: document.getElementById("총점") !== null ? document.getElementById("총점").value : "",
         합격년월: document.getElementById("합격년월") !== null ? document.getElementById("합격년월").value : "",

@@ -33,13 +33,13 @@ const LanguageStudy = () => {
             </div>
             <div className="inputBox 급수점수" id={"inputBox 급수점수" + item.id}>
               <span>급수/점수</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"시험명" + item.id} type="text" placeholder="TOEIC"></input>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"급수점수" + item.id} type="text" placeholder="990"></input>
             </div>
             <div className="inputBox 취득년월-어학" id={"inputBox 취득년월-어학" + item.id}>
               <span>취득년월</span>
               <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"취득년월-어학" + item.id} type="text" placeholder="2006.02"></input>
             </div>
-            <button onClick={deleteLan} id={item.id}>삭제</button>
+            <button onClick={deleteLan} id={item.id}></button>
           </div>
         </div>
       ))

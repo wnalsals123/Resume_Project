@@ -31,7 +31,7 @@ const TopBanner = () => {
   ))
   // 탑 배너
   return (
-    <div className='ResumeTopHeader'>
+    <div className='ResumeTopHeader' style={{zIndex: 110}}>
       <div className="ResumeTop">
         {/* 사이트 배너 */}
         <div className="siteBanner">

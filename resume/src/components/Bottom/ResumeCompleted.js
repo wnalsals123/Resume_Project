@@ -24,7 +24,7 @@ const ResumeCompleted = () => {
   return (
     <div className='ResumeCompleted'>
       <button onMouseDown={initPreview} onClick={opnePreview}>미리보기</button>
-      <button onClick={saveResume}>이력서 저장하기</button>
+      <button onClick={saveResume}>이력서<br/>저장하기</button>
     </div>
   )
 }

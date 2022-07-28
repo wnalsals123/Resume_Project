@@ -58,20 +58,20 @@ const Career = () => {
               <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"퇴사년월" + item.id} type="text" placeholder="2006.02"></input>
             </div>
             <div className='checkBox' style={{ margin: "0" }}>
-              <input onChange={(e)=>(addInService(e, item.id))} type="checkbox" id={"재직중" + item.id}></input>
+              <input onChange={(e) => (addInService(e, item.id))} type="checkbox" id={"재직중" + item.id}></input>
               <span>재직중</span>
-              <button onClick={deleteCar} id={item.id}>삭제</button>
+              <button onClick={deleteCar} id={item.id}></button>
             </div>
           </div>
 
           <div className="row">
-            <div className="inputBox 직급" id={"inputBox 직급" + item.id}>
-              <span>직급</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"직급" + item.id} type="text" placeholder="과장"></input>
-            </div>
             <div className="inputBox 직무" id={"inputBox 직무" + item.id}>
               <span>직무</span>
               <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"직무" + item.id} type="text" placeholder="프론트엔드 개발"></input>
+            </div>
+            <div className="inputBox 직급" id={"inputBox 직급" + item.id}>
+              <span>직급</span>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"직급" + item.id} type="text" placeholder="과장"></input>
             </div>
             <div className="inputBox 연봉" id={"inputBox 연봉" + item.id}>
               <span>연봉</span>
@@ -110,13 +110,13 @@ const Career = () => {
       </div>
 
       <div className="row">
-        <div className="inputBox 직급" id="inputBox 직급">
-          <span>직급</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="직급" type="text" placeholder="과장"></input>
-        </div>
         <div className="inputBox 직무" id="inputBox 직무">
           <span>직무</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="직무" type="text" placeholder="프론트엔드 개발"></input>
+        </div>
+        <div className="inputBox 직급" id="inputBox 직급">
+          <span>직급</span>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="직급" type="text" placeholder="과장"></input>
         </div>
         <div className="inputBox 연봉" id="inputBox 연봉">
           <span>연봉</span>

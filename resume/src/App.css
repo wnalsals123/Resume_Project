@@ -6,8 +6,12 @@
 }
 
 .ResumeTopHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: white;
   margin-bottom: 40px;
+  border-bottom: 2px solid black;
 }
 
 .ResumeTop {
@@ -43,27 +47,40 @@
 }
 
 .ResumeCompleted {
-  position: relative;
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  margin-left: 620px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
 }
 
 .ResumeCompleted button {
-  width: 300px;
-  height: 100px;
-  font-size: 30px;
+  box-sizing: content-box;
+  display: block;
+  width: 90px;
+  height: 60px;
+  font-size: 20px;
   margin: 10px;
+  padding: 0;
   background-color: white;
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 0;
   cursor: pointer;
 }
 
 .ResumeCompleted button:hover {
-  border-color: #E9967A;
+  background-color: gainsboro;
 }
 
 .ResumeCompleted button:active {
   background-color: gainsboro;
 }
+
+.ResumeCompleted button:nth-child(1) {
+  border-bottom: 2px solid gainsboro;
+}
+
 
 .siteBanner {
   position: absolute;
@@ -117,6 +134,7 @@
   position: relative;
   width: 1200px;
   margin: 0 auto;
+  margin-top: 80px;
   margin-bottom: 50px;
 }
 
@@ -230,6 +248,19 @@
   font-size: 0;
 }
 
+.row button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  background: url(icon/close.png) no-repeat;
+  background-size: cover;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 .inputBox {
   position: relative;
   display: inline-block;
@@ -285,6 +316,11 @@
   resize: none;
   outline: none;
   font-size: 20px;
+}
+
+.inputBox textarea:focus {
+  height: 500px;
+  border: 1px solid #E9967A;
 }
 
 .dropBox {
@@ -414,95 +450,99 @@ input:-webkit-autofill {
 }
 
 .학교명 {
-  width: 250px;
+  width: 350px;
 }
 
 .입학년월 {
-  width: 250px;
+  width: 300px;
 }
 
 .졸업년월 {
-  width: 250px;
+  width: 300px;
 }
 
 .합격년월 {
-  width: 250px;
+  width: 300px;
 }
 
 .전공명 {
-  width: 250px;
+  width: 350px;
+}
+
+.이수학점 {
+  width: 300px;
 }
 
 .학점 {
-  width: 250px;
+  width: 143px;
 }
 
 .총점 {
-  width: 250px;
+  width: 143px;
 }
 
 .회사명 {
-  width: 250px;
+  width: 350px;
 }
 
 .입사년월 {
-  width: 250px;
+  width: 300px;
 }
 
 .퇴사년월 {
-  width: 250px;
+  width: 300px;
 }
 
 .직급 {
-  width: 250px;
+  width: 300px;
 }
 
 .직무 {
-  width: 250px;
+  width: 350px;
 }
 
 .연봉 {
-  width: 250px;
+  width: 300px;
 }
 
 .자격증명 {
-  width: 250px;
+  width: 350px;
 }
 
 .발행처 {
-  width: 250px;
+  width: 300px;
 }
 
 .취득년월-자격증 {
-  width: 250px;
+  width: 300px;
 }
 
 .어학명 {
-  width: 250px;
+  width: 350px;
 }
 
 .급수점수 {
-  width: 250px;
+  width: 300px;
 }
 
 .취득년월-어학 {
-  width: 250px;
+  width: 300px;
 }
 
 .인턴·대외활동명 {
-  width: 250px;
+  width: 300px;
 }
 
 .소속단체명 {
-  width: 250px;
+  width: 350px;
 }
 
 .시작년월 {
-  width: 250px;
+  width: 143px;
 }
 
 .종료년월 {
-  width: 250px;
+  width: 143px;
 }
 
 .활동내용 {

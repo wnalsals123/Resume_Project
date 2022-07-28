@@ -115,6 +115,7 @@ const EducationTab = (data) => {
             <div className="previewEducationFlexItem"><span style={spanStyle}>졸업년월</span><span>{data.졸업년월}</span></div>
           </div>
           <div className="previewEducationFlex">
+            <div className="previewEducationFlexItem"><span style={spanStyle}>이수학점</span><span>{data.이수학점}</span></div>
             <div className="previewEducationFlexItem"><span style={spanStyle}>학점</span><span>{data.학점 + " / " + data.총점}</span></div>
           </div>
         </div>

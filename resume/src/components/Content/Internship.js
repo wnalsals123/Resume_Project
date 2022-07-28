@@ -43,7 +43,7 @@ const Internship = () => {
               <span>종료년월</span>
               <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"종료년월" + item.id} type="text" placeholder="2006.02"></input>
             </div>
-            <button onClick={deleteInter} id={item.id}>삭제</button>
+            <button onClick={deleteInter} id={item.id}></button>
           </div>
 
           <div className="row">
