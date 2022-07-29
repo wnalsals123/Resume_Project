@@ -72,6 +72,17 @@ const Edu2 = () => {
 }
 
 const Edu3 = () => {
+  const attending = (e) => {
+    const elemet = document.getElementById("inputBox 졸업년월")
+    if (e.target.checked) {
+      elemet.style.display = "none"
+      document.getElementById("졸업년월").value = "재학중"
+    }else{
+      elemet.style.display = "inline-block"
+      document.getElementById("졸업년월").value = ""
+    }
+  }
+
   return (
     <div>
       <div className="row">
@@ -87,12 +98,20 @@ const Edu3 = () => {
           <span>졸업년월</span>
           <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
         </div>
+        <div className='checkBox' style={{ margin: "0" }}>
+          <input onChange={attending} type="checkbox" id="재학중"></input>
+          <span>재학중</span>
+        </div>
       </div>
 
       <div className="row">
         <div className="inputBox 전공명" id="inputBox 전공명">
           <span>전공명</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="전공명" type="text" placeholder="컴퓨터공학과"></input>
+        </div>
+        <div className="inputBox 이수학점" id="inputBox 이수학점">
+          <span>이수학점</span>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="이수학점" type="text" placeholder="140"></input>
         </div>
         <div className="inputBox 학점" id="inputBox 학점">
           <span>학점</span>

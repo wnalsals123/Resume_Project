@@ -1,3 +1,5 @@
+@page { margin: 0; }
+
 .previewPage {
   position: relative;
   margin: 0 auto;
@@ -377,7 +379,55 @@
 }
 
 .previewIntro pre {
-  margin-top: 10px;
+  margin: 0;
   white-space: pre-wrap;
   line-height: 150%;
+}
+
+.PreviewCompleted {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  margin-left: 470px;
+  border: 2px solid #E9967A;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.PreviewCompleted button {
+  box-sizing: content-box;
+  display: block;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  margin: 5px;
+  padding: 0;
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+.PreviewCompleted hr {
+  width: 70%;
+  border: 0;
+  border-top: 2px solid gainsboro
+}
+
+.PreviewCompleted button:hover {
+  filter: invert(89%) sepia(84%) saturate(1383%) hue-rotate(299deg) brightness(89%) contrast(104%);
+}
+
+.PreviewCompleted button:nth-child(1) {
+  background: url(../../icon/printer.png) no-repeat;
+  background-size: cover;
+}
+
+.PreviewCompleted button:nth-child(3) {
+  background: url(../../icon/png.png) no-repeat;
+  background-size: cover;
+}
+
+.PreviewCompleted button:nth-child(5) {
+  background: url(../../icon/pdf.png) no-repeat;
+  background-size: cover;
 }

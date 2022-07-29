@@ -13,13 +13,13 @@ const TopBanner = () => {
 
   // // 이력서 항목 이벤트
   const LibtuClik = (key) => {
-    if(resumeLists[key].active){
+    if (resumeLists[key].active) {
       setResumeLists(resumeLists.map((item) => (
-        item.id === key ? {...item, class: "ResumeLi", active: !item.active} : item
+        item.id === key ? { ...item, class: "ResumeLi", active: !item.active } : item
       )))
     } else {
       setResumeLists(resumeLists.map((item) => (
-        item.id === key ? {...item, class: "ResumeLi Clik", active: !item.active} : item
+        item.id === key ? { ...item, class: "ResumeLi Clik", active: !item.active } : item
       )))
     }
     const element = document.getElementById(resumeLists[key].name)
@@ -31,7 +31,7 @@ const TopBanner = () => {
   ))
   // 탑 배너
   return (
-    <div className='ResumeTopHeader' style={{zIndex: 110}}>
+    <div className='ResumeTopHeader' style={{ zIndex: 110 }}>
       <div className="ResumeTop">
         {/* 사이트 배너 */}
         <div className="siteBanner">

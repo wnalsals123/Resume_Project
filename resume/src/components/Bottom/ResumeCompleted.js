@@ -13,7 +13,7 @@ const ResumeCompleted = () => {
 
   const opnePreview = () => {
     postValues(UserData)
-    preview.current = window.open("preview", "preview", "width=1000, height=1200")
+    preview.current = window.open("preview", "preview", "width=1100, height=1200")
   }
 
   const saveResume = () => {
@@ -24,7 +24,8 @@ const ResumeCompleted = () => {
   return (
     <div className='ResumeCompleted'>
       <button onMouseDown={initPreview} onClick={opnePreview}>미리보기</button>
-      <button onClick={saveResume}>이력서<br/>저장하기</button>
+      <hr/>
+      <button onClick={saveResume}>저장하기</button>
     </div>
   )
 }

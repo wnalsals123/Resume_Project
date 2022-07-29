@@ -1,3 +1,5 @@
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import './Preview.css';
 
 const spanStyle = {
@@ -265,22 +267,22 @@ const InternshipTab = (data) => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
         <div className="previewInternWrap">
-        <div className="previewInternTitle">{item.인턴대외활동명}</div>
-        <div className="previewIntern">
-          <div className="previewInternFlex">
-            <div className="previewInternFlexItem"><span style={spanStyle}>소속단체명</span><span>{item.소속단체명}</span></div>
-            <div className="previewInternFlexItem"><span style={spanStyle}>활동기간</span><span>{item.시작년월 + " ~ " + item.종료년월}</span></div>
-          </div>
-          <div className="previewInternFlex">
-            <div className="previewInternFlexItem">
-              <div className="previewContentFlex">
-                <div className='previewContentFlexItem'><span>활동내용</span></div>
-                <div className='previewContentFlexItem'><span style={{ lineHeight: "150%" }}>{item.활동내용}</span></div>
+          <div className="previewInternTitle">{item.인턴대외활동명}</div>
+          <div className="previewIntern">
+            <div className="previewInternFlex">
+              <div className="previewInternFlexItem"><span style={spanStyle}>소속단체명</span><span>{item.소속단체명}</span></div>
+              <div className="previewInternFlexItem"><span style={spanStyle}>활동기간</span><span>{item.시작년월 + " ~ " + item.종료년월}</span></div>
+            </div>
+            <div className="previewInternFlex">
+              <div className="previewInternFlexItem">
+                <div className="previewContentFlex">
+                  <div className='previewContentFlexItem'><span>활동내용</span></div>
+                  <div className='previewContentFlexItem'><span style={{ lineHeight: "150%" }}>{item.활동내용}</span></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       ))
     )
   }
@@ -327,9 +329,8 @@ const EmploymentPreTab = (data) => {
   )
 }
 const IntroductionTab = (data) => {
-
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{ margin: 0 }}>
       <h2>자기소개서</h2>
       <div className="previewIntroWrap">
         <div className="previewIntro">
@@ -352,9 +353,54 @@ const Preview = () => {
   const employmentPreValue = JSON.parse(localStorage.getItem("employmentPreValue"))
   const introductionValue = JSON.parse(localStorage.getItem("introductionValue"))
   const uesrImg = JSON.parse(localStorage.getItem("uesrImg"))
+  let resumeName = basicValue.이름 === "" ? "이력서" : basicValue.이름 + "-이력서"
+
+  const print = () => {
+    window.print()
+  }
+
+  const onSaveAs = (uri, filename) => {
+    console.log('onSaveAs');
+    var link = document.createElement('a');
+    document.body.appendChild(link);
+    link.href = uri;
+    link.download = filename;
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const toPng = () => {
+    html2canvas(document.getElementById('미리보기'), { scale: 3 }).then(canvas => {
+      onSaveAs(canvas.toDataURL('resume/png'), resumeName)
+    })
+  }
+
+  const toPdf = () => {
+    html2canvas(document.getElementById('미리보기'), { scale: 3 }).then(canvas => {
+      var img = canvas.toDataURL('resume/png')
+      var pdf = new jsPDF('p', 'mm', 'a4', true);
+      var imgWidth = 210;
+      var pageHeight = 297;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+      var position = 0;
+      // 첫 페이지
+      pdf.addImage(img, 'PNG', 0, position, imgWidth, imgHeight)
+      heightLeft -= pageHeight;
+      // 남은 페이지
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(img, 'PNG', 0, position, imgWidth, imgHeight)
+        heightLeft -= pageHeight;
+      }
+      // 파일저장
+      pdf.save(resumeName)
+    })
+  }
 
   return (
-    <div className="previewPage">
+    <div className="previewPage" id='미리보기'>
       {ResumeTitleTab(basicValue)}
       {BasicInfoTab(basicValue, uesrImg)}
       {resumeLists !== null && resumeLists.학력 && EducationTab(educationValue, educationCheckValue)}
@@ -364,6 +410,13 @@ const Preview = () => {
       {resumeLists !== null && resumeLists.인턴 && InternshipTab(internshipValue)}
       {resumeLists !== null && resumeLists.병역 && EmploymentPreTab(employmentPreValue)}
       {resumeLists !== null && resumeLists.자기소개서 && IntroductionTab(introductionValue)}
+      <div className='PreviewCompleted'>
+        <button onClick={print}></button>
+        <hr />
+        <button onClick={toPng}></button>
+        <hr />
+        <button onClick={toPdf}></button>
+      </div>
     </div>
   )
 }
