@@ -1,5 +1,6 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { useState } from 'react';
 import './Preview.css';
 
 const spanStyle = {
@@ -24,9 +25,9 @@ const ResumeTitleTab = (data) => {
     </div>
   )
 }
-const BasicInfoTab = (data, img) => {
+const BasicInfoTab = (data, img, marginValue) => {
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{marginBottom: marginValue}}>
       <h2>기본정보</h2>
       <div className="previewBaiscInfoWrap">
         <div className="previewBaiscInfoImg"><img src={img} alt="user-img"></img></div>
@@ -51,7 +52,7 @@ const BasicInfoTab = (data, img) => {
     </div>
   )
 }
-const EducationTab = (data) => {
+const EducationTab = (data, marginValue) => {
   const addEduTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -134,7 +135,7 @@ const EducationTab = (data) => {
     }
   }
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{marginBottom: marginValue}}>
       <h2>학력</h2>
       {SelectEduTab()}
       {addEduTab()}
@@ -142,7 +143,7 @@ const EducationTab = (data) => {
 
   )
 }
-const CareerTab = (data) => {
+const CareerTab = (data, marginValue) => {
   const addCareerTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -167,7 +168,7 @@ const CareerTab = (data) => {
     )
   }
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{marginBottom: marginValue}}>
       <h2>경력</h2>
       <div className="previewCareerWrap">
         <div className="previewCareerTitle">경력</div>
@@ -190,7 +191,7 @@ const CareerTab = (data) => {
     </div>
   )
 }
-const CertificateTab = (data) => {
+const CertificateTab = (data, marginValue) => {
   const addCertificateTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -209,7 +210,7 @@ const CertificateTab = (data) => {
     )
   }
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{marginBottom: marginValue}}>
       <h2>자격증</h2>
       <div className="previewCertificateWrap">
         <div className="previewCertificateTitle">{data.자격증명}</div>
@@ -226,7 +227,7 @@ const CertificateTab = (data) => {
     </div>
   )
 }
-const LanguageStudyTab = (data) => {
+const LanguageStudyTab = (data, marginValue) => {
   const addLanguageStudyTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -245,7 +246,7 @@ const LanguageStudyTab = (data) => {
     )
   }
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{marginBottom: marginValue}}>
       <h2>어학</h2>
       <div className="previewLanguageWrap">
         <div className="previewLanguageTitle">{data.어학명}</div>
@@ -262,7 +263,7 @@ const LanguageStudyTab = (data) => {
     </div>
   )
 }
-const InternshipTab = (data) => {
+const InternshipTab = (data, marginValue) => {
   const addInternshipTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -287,7 +288,7 @@ const InternshipTab = (data) => {
     )
   }
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{marginBottom: marginValue}}>
       <h2>인턴·대외활동</h2>
       <div className="previewInternWrap">
         <div className="previewInternTitle">{data.인턴대외활동명}</div>
@@ -310,9 +311,9 @@ const InternshipTab = (data) => {
     </div>
   )
 }
-const EmploymentPreTab = (data) => {
+const EmploymentPreTab = (data, marginValue) => {
   return (
-    <div className="previewBox">
+    <div className="previewBox" style={{marginBottom: marginValue}}>
       <h2>병역·취업우대</h2>
       <div className="previewPreWrap">
         <div className="previewPre">
@@ -345,7 +346,6 @@ const Preview = () => {
   const resumeLists = JSON.parse(localStorage.getItem("resumeLists"))
   const basicValue = JSON.parse(localStorage.getItem("baiscValue"))
   const educationValue = JSON.parse(localStorage.getItem("educationValue"))
-  const educationCheckValue = JSON.parse(localStorage.getItem("educationCheckValue"))
   const careerValue = JSON.parse(localStorage.getItem("careerValue"))
   const certificateValue = JSON.parse(localStorage.getItem("certificateValue"))
   const languageStudyValue = JSON.parse(localStorage.getItem("languageStudyValue"))
@@ -399,16 +399,27 @@ const Preview = () => {
     })
   }
 
+  const [marginValue, setMarginValue] = useState(20)
+
+  const marginUp = () => {
+    setMarginValue(marginValue + 5)
+
+  }
+  
+  const marginDown = () => {
+    setMarginValue(marginValue - 5)
+  }
+
   return (
     <div className="previewPage" id='미리보기'>
       {ResumeTitleTab(basicValue)}
-      {BasicInfoTab(basicValue, uesrImg)}
-      {resumeLists !== null && resumeLists.학력 && EducationTab(educationValue, educationCheckValue)}
-      {resumeLists !== null && resumeLists.경력 && CareerTab(careerValue)}
-      {resumeLists !== null && resumeLists.자격증 && CertificateTab(certificateValue)}
-      {resumeLists !== null && resumeLists.어학 && LanguageStudyTab(languageStudyValue)}
-      {resumeLists !== null && resumeLists.인턴 && InternshipTab(internshipValue)}
-      {resumeLists !== null && resumeLists.병역 && EmploymentPreTab(employmentPreValue)}
+      {BasicInfoTab(basicValue, uesrImg, marginValue)}
+      {resumeLists !== null && resumeLists.학력 && EducationTab(educationValue, marginValue)}
+      {resumeLists !== null && resumeLists.경력 && CareerTab(careerValue, marginValue)}
+      {resumeLists !== null && resumeLists.자격증 && CertificateTab(certificateValue, marginValue)}
+      {resumeLists !== null && resumeLists.어학 && LanguageStudyTab(languageStudyValue, marginValue)}
+      {resumeLists !== null && resumeLists.인턴 && InternshipTab(internshipValue, marginValue)}
+      {resumeLists !== null && resumeLists.병역 && EmploymentPreTab(employmentPreValue, marginValue)}
       {resumeLists !== null && resumeLists.자기소개서 && IntroductionTab(introductionValue)}
       <div className='PreviewCompleted'>
         <button onClick={print}></button>
@@ -416,6 +427,10 @@ const Preview = () => {
         <button onClick={toPng}></button>
         <hr />
         <button onClick={toPdf}></button>
+        <hr />
+        <button onClick={marginUp}>증</button>
+        <hr />
+        <button onClick={marginDown}>감</button>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 # Resume_Project
 ### Demo page : <a href="https://jmj-resume-page.netlify.app/" target="_blank">JMJ-ResumePage-Demo</a>[![Netlify Status](https://api.netlify.com/api/v1/badges/5fd08a12-3d02-4be8-9cee-760bbf7d8a83/deploy-status)](https://app.netlify.com/sites/jmj-resume-page/deploys)
 
-## 이력서 작성 인쇄 저장 웹페이지
+## 간단한 이력서 작성 및 편집 웹페이지
 1. 개발도구 : VSCode, React, Git
 2. API : DaumPostcode, html2canvas, jsPDF
 3. 웹 호스팅 : Netlify
