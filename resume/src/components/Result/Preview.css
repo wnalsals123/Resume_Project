@@ -1,7 +1,13 @@
-@page { margin: 0; }
+@page {
+  margin: 0;
+}
+
+.previewWrap {
+  position: relative;
+  margin: 0 auto;
+}
 
 .previewPage {
-  position: relative;
   margin: 0 auto;
   padding: 0;
   width: 21cm;
@@ -25,6 +31,7 @@
   padding-bottom: 5px;
   border-bottom: 2px solid #E9967A;
 }
+
 /* 기본정보 */
 .previewBaiscInfoWrap {
   display: block;
@@ -50,7 +57,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-around;
-  width: calc( 100% - 124px );
+  width: calc(100% - 124px);
   height: 100%;
   vertical-align: top;
   line-height: 1;
@@ -72,6 +79,7 @@
 .previewBaiscInfoFlexItem:nth-child(2) {
   flex-grow: 1.3;
 }
+
 /* 학력 */
 .previewEducationWrap {
   display: flex;
@@ -96,7 +104,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-around;
-  width: calc( 100% - 186px );
+  width: calc(100% - 186px);
   vertical-align: top;
   line-height: 1;
   font-size: 18px;
@@ -122,6 +130,7 @@
 .previewEducationFlexItem:nth-child(2) {
   flex-grow: 1
 }
+
 /* 경력 */
 .previewCareerWrap {
   display: flex;
@@ -146,7 +155,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-around;
-  width: calc( 100% - 186px );
+  width: calc(100% - 186px);
   vertical-align: top;
   line-height: 1;
   font-size: 18px;
@@ -172,6 +181,7 @@
 .previewCareerFlexItem:nth-child(2) {
   flex-grow: 1
 }
+
 /* 자격증 */
 .previewCertificateWrap {
   display: flex;
@@ -196,7 +206,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-around;
-  width: calc( 100% - 286px );
+  width: calc(100% - 286px);
   vertical-align: top;
   line-height: 1;
   font-size: 18px;
@@ -218,6 +228,7 @@
 .previewCertificateFlexItem:nth-child(1) {
   flex-grow: 1
 }
+
 /* 어학 */
 .previewLanguageWrap {
   display: flex;
@@ -242,7 +253,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-around;
-  width: calc( 100% - 286px );
+  width: calc(100% - 286px);
   vertical-align: top;
   line-height: 1;
   font-size: 18px;
@@ -264,6 +275,7 @@
 .previewLanguageFlexItem:nth-child(1) {
   flex-grow: 1
 }
+
 /* 인턴 */
 .previewInternWrap {
   display: flex;
@@ -289,7 +301,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-around;
-  width: calc( 100% - 186px );
+  width: calc(100% - 186px);
   vertical-align: top;
   line-height: 1;
   font-size: 18px;
@@ -332,6 +344,7 @@
 .previewContentFlexItem:nth-child(2) {
   flex: 1
 }
+
 /* 병역취업우대 */
 .previewPreWrap {
   display: flex;
@@ -365,6 +378,7 @@
 .previewPreFlexItem:nth-child(5) {
   border-right: 0;
 }
+
 /* 자기소개서 */
 .previewIntroWrap {
   display: block;
@@ -430,4 +444,31 @@
 .PreviewCompleted button:nth-child(5) {
   background: url(../../icon/pdf.png) no-repeat;
   background-size: cover;
+}
+
+.pageLine {
+  position: absolute;
+  top: 31.2cm;
+  left: 50%;
+  margin-left: 453px;
+  width: 60px;
+  text-align: right;
+  line-height: 1;
+}
+
+.lineItem {
+  position: absolute;
+  border-top: 2px solid #E9967A;
+  width: 60px;
+  height: 18px;
+}
+
+.lineItem:nth-child(1) {
+  top: 0;
+  right: 0;
+}
+
+.lineItem:nth-child(2) {
+  top: 3cm;
+  right: 0;
 }
