@@ -1,6 +1,6 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Preview.css';
 
 const spanStyle = {
@@ -21,13 +21,13 @@ const preSpanStyle = {
 const ResumeTitleTab = (data) => {
   return (
     <div>
-      <h1>{data.이력서제목}</h1>
+      <h1>{data.이력서제목 === "" ? "이력서" : data.이력서제목}</h1>
     </div>
   )
 }
-const BasicInfoTab = (data, img, marginValue) => {
+const BasicInfoTab = (data, img, marginValue, marginChange, layoutView) => {
   return (
-    <div className="previewBox" style={{ marginBottom: marginValue }}>
+    <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>기본정보</h2>
       <div className="previewBaiscInfoWrap">
         <div className="previewBaiscInfoImg"><img src={img} alt="user-img"></img></div>
@@ -49,10 +49,15 @@ const BasicInfoTab = (data, img, marginValue) => {
           </div>
         </div>
       </div>
+      <div className='marginBox no-print' style={{display: layoutView}}>
+        <span>{marginValue}px</span>
+        <button onClick={() => { marginChange(true) }}>↑</button>
+        <button onClick={() => { marginChange(false) }}>↓</button>
+      </div>
     </div>
   )
 }
-const EducationTab = (data, marginValue) => {
+const EducationTab = (data, marginValue, marginChange, layoutView) => {
   const addEduTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -135,15 +140,19 @@ const EducationTab = (data, marginValue) => {
     }
   }
   return (
-    <div className="previewBox" style={{ marginBottom: marginValue }}>
+    <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>학력</h2>
       {SelectEduTab()}
       {addEduTab()}
+      <div className='marginBox no-print' style={{display: layoutView}}>
+        <span>{marginValue}px</span>
+        <button onClick={() => { marginChange(true) }}>↑</button>
+        <button onClick={() => { marginChange(false) }}>↓</button>
+      </div>
     </div>
-
   )
 }
-const CareerTab = (data, marginValue) => {
+const CareerTab = (data, marginValue, marginChange, layoutView) => {
   const addCareerTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -168,7 +177,7 @@ const CareerTab = (data, marginValue) => {
     )
   }
   return (
-    <div className="previewBox" style={{ marginBottom: marginValue }}>
+    <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>경력</h2>
       <div className="previewCareerWrap">
         <div className="previewCareerTitle">경력</div>
@@ -188,10 +197,15 @@ const CareerTab = (data, marginValue) => {
         </div>
       </div>
       {addCareerTab()}
+      <div className='marginBox no-print' style={{display: layoutView}}>
+        <span>{marginValue}px</span>
+        <button onClick={() => { marginChange(true) }}>↑</button>
+        <button onClick={() => { marginChange(false) }}>↓</button>
+      </div>
     </div>
   )
 }
-const CertificateTab = (data, marginValue) => {
+const CertificateTab = (data, marginValue, marginChange, layoutView) => {
   const addCertificateTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -210,7 +224,7 @@ const CertificateTab = (data, marginValue) => {
     )
   }
   return (
-    <div className="previewBox" style={{ marginBottom: marginValue }}>
+    <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>자격증</h2>
       <div className="previewCertificateWrap">
         <div className="previewCertificateTitle">{data.자격증명}</div>
@@ -224,10 +238,15 @@ const CertificateTab = (data, marginValue) => {
         </div>
       </div>
       {addCertificateTab()}
+      <div className='marginBox no-print' style={{display: layoutView}}>
+        <span>{marginValue}px</span>
+        <button onClick={() => { marginChange(true) }}>↑</button>
+        <button onClick={() => { marginChange(false) }}>↓</button>
+      </div>
     </div>
   )
 }
-const LanguageStudyTab = (data, marginValue) => {
+const LanguageStudyTab = (data, marginValue, marginChange, layoutView) => {
   const addLanguageStudyTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -246,7 +265,7 @@ const LanguageStudyTab = (data, marginValue) => {
     )
   }
   return (
-    <div className="previewBox" style={{ marginBottom: marginValue }}>
+    <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>어학</h2>
       <div className="previewLanguageWrap">
         <div className="previewLanguageTitle">{data.어학명}</div>
@@ -260,10 +279,15 @@ const LanguageStudyTab = (data, marginValue) => {
         </div>
       </div>
       {addLanguageStudyTab()}
+      <div className='marginBox no-print' style={{display: layoutView}}>
+        <span>{marginValue}px</span>
+        <button onClick={() => { marginChange(true) }}>↑</button>
+        <button onClick={() => { marginChange(false) }}>↓</button>
+      </div>
     </div>
   )
 }
-const InternshipTab = (data, marginValue) => {
+const InternshipTab = (data, marginValue, marginChange, layoutView) => {
   const addInternshipTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -288,7 +312,7 @@ const InternshipTab = (data, marginValue) => {
     )
   }
   return (
-    <div className="previewBox" style={{ marginBottom: marginValue }}>
+    <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>인턴·대외활동</h2>
       <div className="previewInternWrap">
         <div className="previewInternTitle">{data.인턴대외활동명}</div>
@@ -308,12 +332,17 @@ const InternshipTab = (data, marginValue) => {
         </div>
       </div>
       {addInternshipTab()}
+      <div className='marginBox no-print' style={{display: layoutView}}>
+        <span>{marginValue}px</span>
+        <button onClick={() => { marginChange(true) }}>↑</button>
+        <button onClick={() => { marginChange(false) }}>↓</button>
+      </div>
     </div>
   )
 }
-const EmploymentPreTab = (data, marginValue) => {
+const EmploymentPreTab = (data, marginValue, marginChange, layoutView) => {
   return (
-    <div className="previewBox" style={{ marginBottom: marginValue }}>
+    <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>병역·취업우대</h2>
       <div className="previewPreWrap">
         <div className="previewPre">
@@ -325,6 +354,11 @@ const EmploymentPreTab = (data, marginValue) => {
             <div className="previewPreFlexItem"><span style={preSpanStyle}>병역</span><span>{data.병역 !== false ? data.병역 : "-"}</span></div>
           </div>
         </div>
+      </div>
+      <div className='marginBox no-print' style={{display: layoutView}}>
+        <span>{marginValue}px</span>
+        <button onClick={() => { marginChange(true) }}>↑</button>
+        <button onClick={() => { marginChange(false) }}>↓</button>
       </div>
     </div>
   )
@@ -343,6 +377,7 @@ const IntroductionTab = (data) => {
 }
 
 const Preview = () => {
+  // 사용자 정보 불러오기
   const resumeLists = JSON.parse(localStorage.getItem("resumeLists"))
   const basicValue = JSON.parse(localStorage.getItem("baiscValue"))
   const educationValue = JSON.parse(localStorage.getItem("educationValue"))
@@ -354,13 +389,37 @@ const Preview = () => {
   const introductionValue = JSON.parse(localStorage.getItem("introductionValue"))
   const uesrImg = JSON.parse(localStorage.getItem("uesrImg"))
   let resumeName = basicValue.이름 === "" ? "이력서" : basicValue.이름 + "-이력서"
+  // 페이지에 표시
+  const [previewHeight, setPreviewHeight] = useState(0)
+  const [heightEvent, setHeightEvent] = useState(false)
+  const [pageLineView, setPageLineView] = useState("block")
+  const [layoutView, setLayoutView] = useState("none")
+  const [layoutViewText, setLayoutViewText] = useState("표시")
 
+  useEffect(() => {
+    setPreviewHeight(document.getElementById('미리보기').clientHeight)
+  }, [heightEvent])
+
+  const setNone = () => {
+    setPageLineView("none")
+    setLayoutView("none")
+  }
+
+  const layoutViewVisible = () => {
+    if(layoutView === 'block'){
+      setLayoutView("none")
+      setLayoutViewText("표시")
+    } else{
+      setLayoutView("block")
+      setLayoutViewText("숨김")
+    }
+  }
+  // 이미지 변환
   const print = () => {
     window.print()
   }
 
   const onSaveAs = (uri, filename) => {
-    console.log('onSaveAs');
     var link = document.createElement('a');
     document.body.appendChild(link);
     link.href = uri;
@@ -372,15 +431,17 @@ const Preview = () => {
   const toPng = () => {
     html2canvas(document.getElementById('미리보기'), { scale: 3 }).then(canvas => {
       onSaveAs(canvas.toDataURL('resume/png'), resumeName)
+      setPageLineView("block")
+      setLayoutViewText("표시")
     })
   }
-
+  // pdf 변환
   const toPdf = () => {
     html2canvas(document.getElementById('미리보기'), { scale: 3 }).then(canvas => {
       var img = canvas.toDataURL('resume/png')
-      var pdf = new jsPDF('p', 'mm', 'a4', true);
-      var imgWidth = 210;
-      var pageHeight = 297;
+      var pdf = new jsPDF('p', 'cm', 'a4', true);
+      var imgWidth = 21;
+      var pageHeight = 29.7;
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
       var position = 0;
@@ -396,47 +457,134 @@ const Preview = () => {
       }
       // 파일저장
       pdf.save(resumeName)
+      setPageLineView("block")
+      setLayoutViewText("표시")
     })
   }
+  // 이력서 간격 설정
+  const [basicMargin, setBasicMargin] = useState(0)
+  const [eduMargin, setEduMargin] = useState(0)
+  const [carMargin, setCarMargin] = useState(0)
+  const [cerMargin, setCerMargin] = useState(0)
+  const [lanMargin, setLanMargin] = useState(0)
+  const [interMargin, setInterMargin] = useState(0)
+  const [preMargin, setPreMargin] = useState(0)
 
-  const [marginValue, setMarginValue] = useState(20)
-
-  const marginUp = () => {
-    setMarginValue(marginValue + 5)
+  const allMarginChange = (chageState) => {
+    if (chageState === 'add') {
+      setBasicMargin(basicMargin + 5)
+      setEduMargin(eduMargin + 5)
+      setCarMargin(carMargin + 5)
+      setCerMargin(cerMargin + 5)
+      setLanMargin(lanMargin + 5)
+      setInterMargin(interMargin + 5)
+      setPreMargin(preMargin + 5)
+    } else if(chageState === 'subtract') {
+      setBasicMargin(basicMargin - 5)
+      setEduMargin(eduMargin - 5)
+      setCarMargin(carMargin - 5)
+      setCerMargin(cerMargin - 5)
+      setLanMargin(lanMargin - 5)
+      setInterMargin(interMargin - 5)
+      setPreMargin(preMargin - 5)
+    } else{
+      setBasicMargin(0)
+      setEduMargin(0)
+      setCarMargin(0)
+      setCerMargin(0)
+      setLanMargin(0)
+      setInterMargin(0)
+      setPreMargin(0)
+    }
+    setHeightEvent(!heightEvent)
   }
 
-  const marginDown = () => {
-    setMarginValue(marginValue - 5)
+  const baiscMarginChange = (chageState) => {
+    if (chageState) setBasicMargin(basicMargin + 5)
+    else setBasicMargin(basicMargin - 5)
+    setHeightEvent(!heightEvent)
   }
 
+  const eduMarginChange = (chageState) => {
+    if (chageState) setEduMargin(eduMargin + 5)
+    else setEduMargin(eduMargin - 5)
+    setHeightEvent(!heightEvent)
+  }
+
+  const carMarginChange = (chageState) => {
+    if (chageState) setCarMargin(carMargin + 5)
+    else setCarMargin(carMargin - 5)
+    setHeightEvent(!heightEvent)
+  }
+
+  const cerMarginChange = (chageState) => {
+    if (chageState) setCerMargin(cerMargin + 5)
+    else setCerMargin(cerMargin - 5)
+    setHeightEvent(!heightEvent)
+  }
+
+  const lanMarginChange = (chageState) => {
+    if (chageState) setLanMargin(lanMargin + 5)
+    else setLanMargin(lanMargin - 5)
+    setHeightEvent(!heightEvent)
+  }
+
+  const interMarginChange = (chageState) => {
+    if (chageState) setInterMargin(interMargin + 5)
+    else setInterMargin(interMargin - 5)
+    setHeightEvent(!heightEvent)
+  }
+
+  const preMarginChange = (chageState) => {
+    if (chageState) setPreMargin(preMargin + 5)
+    else setPreMargin(preMargin - 5)
+    setHeightEvent(!heightEvent)
+  }
+  // 미리보기 페이지 렌더링
   return (
-    <div className='previewWrap'>
-      <div className="previewPage" id='미리보기'>
-        {ResumeTitleTab(basicValue)}
-        {BasicInfoTab(basicValue, uesrImg, marginValue)}
-        {resumeLists !== null && resumeLists.학력 && EducationTab(educationValue, marginValue)}
-        {resumeLists !== null && resumeLists.경력 && CareerTab(careerValue, marginValue)}
-        {resumeLists !== null && resumeLists.자격증 && CertificateTab(certificateValue, marginValue)}
-        {resumeLists !== null && resumeLists.어학 && LanguageStudyTab(languageStudyValue, marginValue)}
-        {resumeLists !== null && resumeLists.인턴 && InternshipTab(internshipValue, marginValue)}
-        {resumeLists !== null && resumeLists.병역 && EmploymentPreTab(employmentPreValue, marginValue)}
-        {resumeLists !== null && resumeLists.자기소개서 && IntroductionTab(introductionValue)}
-        <div className='PreviewCompleted'>
-          <button onClick={print}></button>
-          <hr />
-          <button onClick={toPng}></button>
-          <hr />
-          <button onClick={toPdf}></button>
-          <hr />
-          <button onClick={marginUp}>증</button>
-          <hr />
-          <button onClick={marginDown}>감</button>
-        </div>
+    <div className="previewPage" id='미리보기'>
+      {ResumeTitleTab(basicValue)}
+      {BasicInfoTab(basicValue, uesrImg, basicMargin, baiscMarginChange, layoutView)}
+      {resumeLists !== null && resumeLists.학력 && EducationTab(educationValue, eduMargin, eduMarginChange, layoutView)}
+      {resumeLists !== null && resumeLists.경력 && CareerTab(careerValue, carMargin, carMarginChange, layoutView)}
+      {resumeLists !== null && resumeLists.자격증 && CertificateTab(certificateValue, cerMargin, cerMarginChange, layoutView)}
+      {resumeLists !== null && resumeLists.어학 && LanguageStudyTab(languageStudyValue, lanMargin, lanMarginChange, layoutView)}
+      {resumeLists !== null && resumeLists.인턴 && InternshipTab(internshipValue, interMargin, interMarginChange, layoutView)}
+      {resumeLists !== null && resumeLists.병역 && EmploymentPreTab(employmentPreValue, preMargin, preMarginChange, layoutView)}
+      {resumeLists !== null && resumeLists.자기소개서 && IntroductionTab(introductionValue)}
+
+      <div className='pageLine no-print' style={{ display: pageLineView }}>
+        <div className='pageNumber'>page1</div>
+        {previewHeight > 1285 && <div className='pageNumber'>page2</div>}
+        {previewHeight > (1285 * 2) && <div className='pageNumber'>page3</div>}
+        {previewHeight > (1285 * 3) && <div className='pageNumber'>page4</div>}
+        {previewHeight > (1285 * 4) && <div className='pageNumber'>page5</div>}
+        {previewHeight > (1285 * 5) && <div className='pageNumber'>page6</div>}
+        {previewHeight > (1285 * 6) && <div className='pageNumber'>page7</div>}
+        {previewHeight > (1285 * 7) && <div className='pageNumber'>page8</div>}
+        {previewHeight > (1285 * 8) && <div className='pageNumber'>page9</div>}
+        {previewHeight > (1285 * 9) && <div className='pageNumber'>page10</div>}
       </div>
-      {/* <div className='pageLine'>
-        <div className='lineItem'>page1</div>
-        <div className='lineItem'>page2</div>
-      </div> */}
+
+      <div className='PreviewCompleted no-print'>
+        <button onClick={print}></button>
+        <hr />
+        <button onMouseDown={setNone} onClick={toPng}></button>
+        <hr />
+        <button onMouseDown={setNone} onClick={toPdf}></button>
+      </div>
+
+      <div className='PreviewLayout no-print'>
+        <span>간격</span>
+        <hr />
+        <button onClick={layoutViewVisible} style={{fontSize: "14px"}}>{layoutViewText}</button>
+        <hr />
+        <button onClick={() => { allMarginChange('add') }}>↑</button>
+        <hr />
+        <button onClick={() => { allMarginChange('subtract') }}>↓</button>
+        <hr />
+        <button onClick={() => { allMarginChange("init") }}>↻</button>
+      </div>
     </div>
   )
 }

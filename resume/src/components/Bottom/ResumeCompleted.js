@@ -13,7 +13,7 @@ const ResumeCompleted = () => {
 
   const opnePreview = () => {
     postValues(UserData)
-    preview.current = window.open("preview", "preview", "width=1100, height=1200")
+    preview.current = window.open("preview", "preview", "width=1100, height=1100")
   }
 
   const saveResume = () => {

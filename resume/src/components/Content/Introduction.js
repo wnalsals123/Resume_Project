@@ -13,7 +13,6 @@ const Introduction = () => {
 
       <div className="row">
         <div className="inputBox 자기소개서내용" id="inputBox 자기소개서내용">
-          <span>자기소개서</span>
           <textarea onKeyDown={autoResizeTextarea} onKeyUp={autoResizeTextarea} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="자기소개서내용" type="text" placeholder="내용기입"></textarea>
         </div>
       </div>
