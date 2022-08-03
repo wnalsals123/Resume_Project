@@ -441,7 +441,6 @@
   font-size: 18px;
   margin: 5px;
   padding: 0;
-  background-color: white;
   border: 0;
   cursor: pointer;
 }
@@ -452,23 +451,23 @@
   border-top: 2px solid gainsboro
 }
 
-.PreviewCompleted button:hover {
-  filter: invert(89%) sepia(84%) saturate(1383%) hue-rotate(299deg) brightness(89%) contrast(104%);
-}
-
-.PreviewCompleted button:nth-child(1) {
+.printBtn button {
   background: url(../../icon/printer.png) no-repeat;
   background-size: cover;
 }
 
-.PreviewCompleted button:nth-child(3) {
+.toPngBtn button {
   background: url(../../icon/png.png) no-repeat;
   background-size: cover;
 }
 
-.PreviewCompleted button:nth-child(5) {
+.toPdfBtn button {
   background: url(../../icon/pdf.png) no-repeat;
   background-size: cover;
+}
+
+.buttonFilter button:hover {
+  filter: invert(89%) sepia(84%) saturate(1383%) hue-rotate(299deg) brightness(89%) contrast(104%);
 }
 
 [data-tooltip-text]:hover {
@@ -479,17 +478,28 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 
-  width: 100px;
+  width: 48px;
   border-radius: 5px;
   font-size: 16px;
   text-align: center;
 
   content: attr(data-tooltip-text);
 
+  right: -2px;
   position: absolute;
-  top: 5px;
-  right: calc(100% + 5px);
   z-index: 9999;
+}
+
+.printBtn::after {
+  top: 150px;
+}
+
+.toPngBtn::after {
+  top: 97px;
+}
+
+.toPdfBtn::after {
+  top: 44px;
 }
 
 .PreviewLayout {

@@ -1,33 +1,60 @@
-import { useState } from "react"
+import { useEffect } from "react"
 
 const TopBanner = () => {
-  const [resumeLists, setResumeLists] = useState([
-    { id: 0, class: "ResumeLi", name: "학력", active: false },
-    { id: 1, class: "ResumeLi", name: "경력", active: false },
-    { id: 2, class: "ResumeLi", name: "자격증", active: false },
-    { id: 3, class: "ResumeLi", name: "어학", active: false },
-    { id: 4, class: "ResumeLi", name: "인턴·대외활동", oactiven: false },
-    { id: 5, class: "ResumeLi", name: "병역·취업우대", active: false },
-    { id: 6, class: "ResumeLi", name: "자기소개서", active: false },
-  ])
+  useEffect(()=>{
+    const loadData = JSON.parse(localStorage.getItem("resumeLists"))
+    if(loadData !== null){
+      if(loadData.학력) {
+        document.getElementById("학력").className = 'basicInfo'
+        document.getElementById("listBtn0").className = 'ResumeLi Clik'
+      }
+      if(loadData.경력) {
+        document.getElementById("경력").className = 'basicInfo'
+        document.getElementById("listBtn1").className = 'ResumeLi Clik'
+      }
+      if(loadData.자격증) {
+        document.getElementById("자격증").className = 'basicInfo'
+        document.getElementById("listBtn2").className = 'ResumeLi Clik'
+      }
+      if(loadData.어학) {
+        document.getElementById("어학").className = 'basicInfo'
+        document.getElementById("listBtn3").className = 'ResumeLi Clik'
+      }
+      if(loadData.인턴) {
+        document.getElementById("인턴·대외활동").className = 'basicInfo'
+        document.getElementById("listBtn4").className = 'ResumeLi Clik'
+      }
+      if(loadData.병역) {
+        document.getElementById("병역·취업우대").className = 'basicInfo'
+        document.getElementById("listBtn5").className = 'ResumeLi Clik'
+      }
+      if(loadData.자기소개서) {
+        document.getElementById("자기소개서").className = 'basicInfo'
+        document.getElementById("listBtn6").className = 'ResumeLi Clik'
+      }
+    }
+  }, [])
+
+  const resumeLists = [
+    { id: 0, class: "ResumeLi", name: "학력" },
+    { id: 1, class: "ResumeLi", name: "경력" },
+    { id: 2, class: "ResumeLi", name: "자격증" },
+    { id: 3, class: "ResumeLi", name: "어학" },
+    { id: 4, class: "ResumeLi", name: "인턴·대외활동" },
+    { id: 5, class: "ResumeLi", name: "병역·취업우대" },
+    { id: 6, class: "ResumeLi", name: "자기소개서" },
+  ]
 
   // // 이력서 항목 이벤트
   const LibtuClik = (key) => {
-    if (resumeLists[key].active) {
-      setResumeLists(resumeLists.map((item) => (
-        item.id === key ? { ...item, class: "ResumeLi", active: !item.active } : item
-      )))
-    } else {
-      setResumeLists(resumeLists.map((item) => (
-        item.id === key ? { ...item, class: "ResumeLi Clik", active: !item.active } : item
-      )))
-    }
-    const element = document.getElementById(resumeLists[key].name)
+    let element = document.getElementById("listBtn" + key)
+    element.className = element.className === "ResumeLi" ? "ResumeLi Clik" : "ResumeLi"
+    element = document.getElementById(resumeLists[key].name)
     element.className = element.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
   }
 
   const ResumeListCreate = resumeLists.map((item) => (
-    <li className={item.class} onClick={() => LibtuClik(item.id)} key={item.id}>{item.name}</li>
+    <li className={item.class} onClick={() => LibtuClik(item.id)} key={item.id} id={"listBtn" + item.id}>{item.name}</li>
   ))
   // 탑 배너
   return (

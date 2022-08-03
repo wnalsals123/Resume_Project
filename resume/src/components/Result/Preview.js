@@ -154,35 +154,35 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
 }
 const CareerTab = (data, marginValue, marginChange, layoutView) => {
   let today = new Date();
-  let inService = today.getFullYear() + '.' + ((today.getMonth() + 1) < 10 ?'0' + (today.getMonth() + 1) : (today.getMonth() + 1) + 1)
+  let inService = today.getFullYear() + '.' + ((today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1) + 1)
   // 경력 계산 
   const getCareerPeriod = (start, end) => {
-    if(start === '' || end === '' || start.length < 7 || end.length < 7) return '연월확인'
-    else{
+    if (start === '' || end === '' || start.length < 7 || end.length < 7) return '연월확인'
+    else {
       let strDate = start.split('.')
       let endDate = end.split('.')
       let period, year, month
 
-      if(Number(strDate[1]) > 12 || Number(endDate[1]) > 12) return '연월확인'
-      
+      if (Number(strDate[1]) > 12 || Number(endDate[1]) > 12) return '연월확인'
+
       year = endDate[0] - strDate[0]
       month = Number(endDate[1]) - Number(strDate[1])
 
-      if(month < 0) {
+      if (month < 0) {
         year = year - 1
         month = (12 - Number(strDate[1])) + Number(endDate[1])
       }
-      
-      if(year > 0){
+
+      if (year > 0) {
         month === 0 ? period = year + '년' : period = year + '년' + month + '개월'
-      } else if(year === 0) {
-        if(month < 0) period = '연월확인'
-        else{
+      } else if (year === 0) {
+        if (month < 0) period = '연월확인'
+        else {
 
           period = month + '개월'
         }
       } else {
-        period = '연월확인' 
+        period = '연월확인'
       }
       return period
     }
@@ -463,12 +463,30 @@ const Preview = () => {
     document.body.removeChild(link);
   };
 
-  const toPng = () => {
+  const convertPng = () => {
     html2canvas(document.getElementById('미리보기'), { scale: 3 }).then(canvas => {
       onSaveAs(canvas.toDataURL('resume/png'), resumeName)
       setPageLineView("block")
       setLayoutViewText("표시")
     })
+  }
+
+  const cancelConfirm = () => console.log("cancel");
+
+  const pngConfirm = (message = null) => {
+    if (window.confirm(message)) {
+      convertPng()
+    } else {
+      cancelConfirm();
+    }
+  };
+
+  const toPng = () => {
+    if (previewHeight > 1285) {
+      pngConfirm("2페이지가 넘어가면 PDF 저장을 권장합니다.\n그래도 저장하시겠습니까?");
+    } else {
+      convertPng()
+    }
   }
   // pdf 변환
   const toPdf = () => {
@@ -603,16 +621,16 @@ const Preview = () => {
 
       <div className='PreviewCompleted no-print'>
         <span>옵션</span>
-        <dvi data-tooltip-text="인쇄하기"><button onClick={print}></button></dvi>
+        <div className='printBtn buttonFilter' data-tooltip-text="인쇄"><button onClick={print}></button></div>
         <hr />
-        <dvi data-tooltip-text="이미지로 저장"><button onMouseDown={setNone} onClick={toPng}></button></dvi>
+        <div className='toPngBtn buttonFilter' data-tooltip-text="이미지 저장"><button onMouseDown={setNone} onClick={toPng}></button></div>
         <hr />
-        <dvi data-tooltip-text="PDF로 저장"><button onMouseDown={setNone} onClick={toPdf}></button></dvi>
+        <div className='toPdfBtn buttonFilter' data-tooltip-text="PDF 저장"><button onMouseDown={setNone} onClick={toPdf}></button></div>
       </div>
 
       <div className='PreviewLayout no-print'>
         <span>간격</span>
-        <button onClick={layoutViewVisible} style={{ fontSize: "14px", border: "1px solid #E9967A", borderRadius: "5px", boxSizing: "border-box"}}>{layoutViewText}</button>
+        <button onClick={layoutViewVisible} style={{ fontSize: "14px", border: "1px solid #E9967A", borderRadius: "5px", boxSizing: "border-box" }}>{layoutViewText}</button>
         <hr />
         <button onClick={() => { allMarginChange('add') }}>↑</button>
         <hr />

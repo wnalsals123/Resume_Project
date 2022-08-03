@@ -17,7 +17,7 @@ const ResumeCompleted = () => {
   }
 
   const saveResume = () => {
-    localStorage.setItem('save', 'true')
+    postValues(UserData)
     alert("이력서가 저장되었습니다!")
   }
 
@@ -25,7 +25,7 @@ const ResumeCompleted = () => {
     <div className='ResumeCompleted'>
       <button onMouseDown={initPreview} onClick={opnePreview}>미리보기</button>
       <hr/>
-      <button onClick={saveResume}>저장하기</button>
+      <button onMouseDown={initPreview} onClick={saveResume}>저장하기</button>
     </div>
   )
 }

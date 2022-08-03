@@ -1,8 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
 import { PopupDom, PopupPostCode } from 'components'
 
 const BasicInfo = () => {
+  useEffect(()=>{
+    const loadData = JSON.parse(localStorage.getItem("baiscValue"))
+    if(loadData !== null){
+      document.getElementById("이력서제목").value = loadData.이력서제목
+      document.getElementById("이름").value = loadData.이름
+      document.getElementById("영문").value = loadData.영문
+      document.getElementById("성별").innerText = loadData.성별
+      document.getElementById("생년월일").value = loadData.생년월일
+      document.getElementById("연락처").value = loadData.연락처
+      document.getElementById("이메일").value = loadData.이메일
+      document.getElementById("주소").value = loadData.주소
+    }
+  }, [])
   // 성별 선택
   const [sexVisble, setSexVisble] = useState("none")
   const [sexValue, setSexValue] = useState("남자")
