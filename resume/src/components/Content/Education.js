@@ -8,7 +8,7 @@ const Edu1 = () => {
       <div className="row">
         <div className="inputBox 학교명" id="inputBox 학교명">
           <span>학교명</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="학교명" type="text" placeholder="OO대학교"></input>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="학교명" type="text" placeholder="OO중학교"></input>
         </div>
         <div className="inputBox 입학년월" id="inputBox 입학년월">
           <span>입학년월</span>
@@ -48,7 +48,7 @@ const Edu2 = () => {
       <div className="row">
         <div className="inputBox 학교명" id="inputBox 학교명">
           <span>{학교명}</span>
-          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="학교명" type="text" placeholder="OO대학교"></input>
+          <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="학교명" type="text" placeholder="OO고등학교"></input>
         </div>
         <div className="inputBox 입학년월" id="inputBox 입학년월" style={{ display: noGed }}>
           <span>입학년월</span>
@@ -77,7 +77,7 @@ const Edu3 = () => {
     if (e.target.checked) {
       elemet.style.display = "none"
       document.getElementById("졸업년월").value = "재학중"
-    }else{
+    } else {
       elemet.style.display = "inline-block"
       document.getElementById("졸업년월").value = ""
     }
@@ -132,7 +132,7 @@ const Edu4 = () => {
     if (e.target.checked) {
       elemet.style.display = "none"
       document.getElementById("졸업년월").value = "재학중"
-    }else{
+    } else {
       elemet.style.display = "inline-block"
       document.getElementById("졸업년월").value = ""
     }
@@ -201,15 +201,45 @@ const Education = () => {
     setAddEdu(addEdu.filter((item) => (item.id !== e.target.id)))
     setEduEvent(true)
   }
+  // 학력유형 드롭박스
+  const ShowDrop = (id) => {
+    document.getElementById("학력유형드롭박스" + id).style.display = 'block'
+  }
+
+  const HideDrop = (id) => {
+    document.getElementById("학력유형드롭박스" + id).style.display = 'none'
+  }
+
+  const SelectValue = (id, item) => {
+    document.getElementById("학력유형" + id).value = item
+    HideDrop(id)
+  }
+
+  const eduTypeBox = (id) => {
+    return (
+      <ul>
+        <li><button onMouseDown={() => { SelectValue(id, '고등학교') }}>고등학교</button></li>
+        <li><button onMouseDown={() => { SelectValue(id, '중학교') }}>중학교</button></li>
+        <li><button onMouseDown={() => { SelectValue(id, '초등학교') }}>초등학교</button></li>
+        <li><button onMouseDown={() => { SelectValue(id, '') }}>직접입력</button></li>
+      </ul>
+    )
+  }
 
   const AddEduCreate = () => {
+    var dropboxZindex = 90
     if (eduEvent) return (
       addEdu.map((item) => (
         <div className="addDiv" key={item.id}>
-          <div className="row">
-            <div className="inputBox 학교명" id={"inputBox 학교명" + item.id}>
+          <div className="row" style={{ zIndex: dropboxZindex-- }}>
+            <div onClick={() => { ShowDrop(item.id) }} className="inputBox 학력유형" id={"inputBox 학력유형" + item.id}>
+              <span>학력유형</span>
+              <input onFocus={inputBoxFocus} onBlur={(e) => { inputBoxBlur(e); HideDrop(item.id) }} id={"학력유형" + item.id} type="text" placeholder="고등학교"></input>
+              <div className='dropBox' id={"학력유형드롭박스" + item.id} style={{ display: 'none' }}>{eduTypeBox(item.id)}</div>
+            </div>
+            <div className="inputBox 학교명" id={"inputBox 학교명" + item.id} style={{width: '236px'}}>
               <span>학교명</span>
-              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"학교명" + item.id} type="text" placeholder="OO대학교"></input>
+              <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"학교명" + item.id} type="text" placeholder="OO고등학교"></input>
             </div>
             <div className="inputBox 입학년월" id={"inputBox 입학년월" + item.id}>
               <span>입학년월</span>
@@ -270,7 +300,7 @@ const Education = () => {
   }, [])
 
   return (
-    <div className="basicInfo 숨김" id="학력" style={{zIndex: 90}}>
+    <div className="basicInfo 숨김" id="학력" style={{ zIndex: 90 }}>
 
       <h2>학력
         <button onClick={addEduEvent} className='addButton'>+</button>

@@ -10,6 +10,7 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
   const plueEdu = () => {
     let temp = addEdu.map((item) => (
       {
+        학력유형: document.getElementById("학력유형" + item.id) !== null ? document.getElementById("학력유형" + item.id).value : "",
         학교명: document.getElementById("학교명" + item.id) !== null ? document.getElementById("학교명" + item.id).value : "",
         입학년월: document.getElementById("입학년월" + item.id) !== null ? document.getElementById("입학년월" + item.id).value : "",
         졸업년월: document.getElementById("졸업년월" + item.id) !== null ? document.getElementById("졸업년월" + item.id).value : "",

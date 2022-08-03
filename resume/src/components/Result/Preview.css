@@ -419,6 +419,20 @@
   background-color: white;
 }
 
+.PreviewCompleted span {
+  box-sizing: content-box;
+  display: block;
+  background-color: #E9967A;
+  color: white;
+  line-height: 1;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+  padding: 4px 0;
+  border: 0;
+}
+
 .PreviewCompleted button {
   box-sizing: content-box;
   display: block;
@@ -457,6 +471,27 @@
   background-size: cover;
 }
 
+[data-tooltip-text]:hover {
+  position: relative;
+}
+
+[data-tooltip-text]:hover::after {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  width: 100px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+
+  content: attr(data-tooltip-text);
+
+  position: absolute;
+  top: 5px;
+  right: calc(100% + 5px);
+  z-index: 9999;
+}
+
 .PreviewLayout {
   position: fixed;
   top: 1cm;
@@ -470,16 +505,15 @@
 .PreviewLayout span {
   box-sizing: content-box;
   display: block;
+  background-color: #E9967A;
+  color: white;
   line-height: 1;
-  width: 35px;
-  height: 18px;
+  width: 100%;
   text-align: center;
-  font-size: 16px;
-  margin: 5px;
-  padding: 0;
-  background-color: gainsboro;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+  padding: 4px 0;
   border: 0;
-  border-radius: 5px;
 }
 
 .PreviewLayout button {

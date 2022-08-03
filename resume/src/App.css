@@ -446,6 +446,10 @@ input:-webkit-autofill {
   vertical-align: top;
 }
 
+.학력유형 {
+  width: 100px;
+}
+
 .학교명 {
   width: 350px;
 }
@@ -558,4 +562,29 @@ input:-webkit-autofill {
 
 .장애 {
   width: 120px;
+}
+
+@media ( max-width: 1240px ) {
+  .ResumeCompleted {
+    top: 1px;
+    left: 290px;
+    margin: 0;
+    z-index: 9999;
+  }
+
+  .ResumeCompleted button {
+    display: inline-block;
+    height: 34px;
+    margin: 0 5px;
+  }
+
+  .ResumeCompleted button:nth-child(1) {
+    border-right: 2px solid black;
+    padding-right: 5px;
+    margin-right: 0;
+  }
+
+  .ResumeCompleted hr {
+    display: none;
+  }
 }

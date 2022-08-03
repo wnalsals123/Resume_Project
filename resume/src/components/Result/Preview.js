@@ -2,7 +2,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { useEffect, useState } from 'react';
 import './Preview.css';
-
+// span 스타일
 const spanStyle = {
   display: "inline-block",
   width: "90px",
@@ -49,7 +49,7 @@ const BasicInfoTab = (data, img, marginValue, marginChange, layoutView) => {
           </div>
         </div>
       </div>
-      <div className='marginBox no-print' style={{display: layoutView}}>
+      <div className='marginBox no-print' style={{ display: layoutView }}>
         <span>{marginValue}px</span>
         <button onClick={() => { marginChange(true) }}>↑</button>
         <button onClick={() => { marginChange(false) }}>↓</button>
@@ -62,7 +62,7 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
         <div className="previewEducationWrap">
-          <div className="previewEducationTitle">-</div>
+          <div className="previewEducationTitle">{item.학력유형 === '' ? '-' : item.학력유형}</div>
           <div className="previewEducation">
             <div className="previewEducationFlex">
               <div className="previewEducationFlexItem"><span style={spanStyle}>학교명</span><span>{item.학교명}</span></div>
@@ -144,7 +144,7 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
       <h2>학력</h2>
       {SelectEduTab()}
       {addEduTab()}
-      <div className='marginBox no-print' style={{display: layoutView}}>
+      <div className='marginBox no-print' style={{ display: layoutView }}>
         <span>{marginValue}px</span>
         <button onClick={() => { marginChange(true) }}>↑</button>
         <button onClick={() => { marginChange(false) }}>↓</button>
@@ -153,11 +153,46 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
   )
 }
 const CareerTab = (data, marginValue, marginChange, layoutView) => {
+  let today = new Date();
+  let inService = today.getFullYear() + '.' + ((today.getMonth() + 1) < 10 ?'0' + (today.getMonth() + 1) : (today.getMonth() + 1) + 1)
+  // 경력 계산 
+  const getCareerPeriod = (start, end) => {
+    if(start === '' || end === '' || start.length < 7 || end.length < 7) return '연월확인'
+    else{
+      let strDate = start.split('.')
+      let endDate = end.split('.')
+      let period, year, month
+
+      if(Number(strDate[1]) > 12 || Number(endDate[1]) > 12) return '연월확인'
+      
+      year = endDate[0] - strDate[0]
+      month = Number(endDate[1]) - Number(strDate[1])
+
+      if(month < 0) {
+        year = year - 1
+        month = (12 - Number(strDate[1])) + Number(endDate[1])
+      }
+      
+      if(year > 0){
+        month === 0 ? period = year + '년' : period = year + '년' + month + '개월'
+      } else if(year === 0) {
+        if(month < 0) period = '연월확인'
+        else{
+
+          period = month + '개월'
+        }
+      } else {
+        period = '연월확인' 
+      }
+      return period
+    }
+  }
+
   const addCareerTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
         <div className="previewCareerWrap">
-          <div className="previewCareerTitle">경력</div>
+          <div className="previewCareerTitle" style={{ textAlign: 'center' }}>경력<br />({getCareerPeriod(item.입사년월, item.재직중 ? inService : item.퇴사년월)})</div>
           <div className="previewCareer">
             <div className="previewCareerFlex">
               <div className="previewCareerFlexItem"><span style={spanStyle}>회사명</span><span>{item.회사명}</span></div>
@@ -180,7 +215,7 @@ const CareerTab = (data, marginValue, marginChange, layoutView) => {
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>경력</h2>
       <div className="previewCareerWrap">
-        <div className="previewCareerTitle">경력</div>
+        <div className="previewCareerTitle" style={{ textAlign: 'center' }}>경력<br />({getCareerPeriod(data.입사년월, data.재직중 ? inService : data.퇴사년월)})</div>
         <div className="previewCareer">
           <div className="previewCareerFlex">
             <div className="previewCareerFlexItem"><span style={spanStyle}>회사명</span><span>{data.회사명}</span></div>
@@ -197,7 +232,7 @@ const CareerTab = (data, marginValue, marginChange, layoutView) => {
         </div>
       </div>
       {addCareerTab()}
-      <div className='marginBox no-print' style={{display: layoutView}}>
+      <div className='marginBox no-print' style={{ display: layoutView }}>
         <span>{marginValue}px</span>
         <button onClick={() => { marginChange(true) }}>↑</button>
         <button onClick={() => { marginChange(false) }}>↓</button>
@@ -238,7 +273,7 @@ const CertificateTab = (data, marginValue, marginChange, layoutView) => {
         </div>
       </div>
       {addCertificateTab()}
-      <div className='marginBox no-print' style={{display: layoutView}}>
+      <div className='marginBox no-print' style={{ display: layoutView }}>
         <span>{marginValue}px</span>
         <button onClick={() => { marginChange(true) }}>↑</button>
         <button onClick={() => { marginChange(false) }}>↓</button>
@@ -279,7 +314,7 @@ const LanguageStudyTab = (data, marginValue, marginChange, layoutView) => {
         </div>
       </div>
       {addLanguageStudyTab()}
-      <div className='marginBox no-print' style={{display: layoutView}}>
+      <div className='marginBox no-print' style={{ display: layoutView }}>
         <span>{marginValue}px</span>
         <button onClick={() => { marginChange(true) }}>↑</button>
         <button onClick={() => { marginChange(false) }}>↓</button>
@@ -332,7 +367,7 @@ const InternshipTab = (data, marginValue, marginChange, layoutView) => {
         </div>
       </div>
       {addInternshipTab()}
-      <div className='marginBox no-print' style={{display: layoutView}}>
+      <div className='marginBox no-print' style={{ display: layoutView }}>
         <span>{marginValue}px</span>
         <button onClick={() => { marginChange(true) }}>↑</button>
         <button onClick={() => { marginChange(false) }}>↓</button>
@@ -355,7 +390,7 @@ const EmploymentPreTab = (data, marginValue, marginChange, layoutView) => {
           </div>
         </div>
       </div>
-      <div className='marginBox no-print' style={{display: layoutView}}>
+      <div className='marginBox no-print' style={{ display: layoutView }}>
         <span>{marginValue}px</span>
         <button onClick={() => { marginChange(true) }}>↑</button>
         <button onClick={() => { marginChange(false) }}>↓</button>
@@ -406,10 +441,10 @@ const Preview = () => {
   }
 
   const layoutViewVisible = () => {
-    if(layoutView === 'block'){
+    if (layoutView === 'block') {
       setLayoutView("none")
       setLayoutViewText("표시")
-    } else{
+    } else {
       setLayoutView("block")
       setLayoutViewText("숨김")
     }
@@ -479,7 +514,7 @@ const Preview = () => {
       setLanMargin(lanMargin + 5)
       setInterMargin(interMargin + 5)
       setPreMargin(preMargin + 5)
-    } else if(chageState === 'subtract') {
+    } else if (chageState === 'subtract') {
       setBasicMargin(basicMargin - 5)
       setEduMargin(eduMargin - 5)
       setCarMargin(carMargin - 5)
@@ -487,7 +522,7 @@ const Preview = () => {
       setLanMargin(lanMargin - 5)
       setInterMargin(interMargin - 5)
       setPreMargin(preMargin - 5)
-    } else{
+    } else {
       setBasicMargin(0)
       setEduMargin(0)
       setCarMargin(0)
@@ -567,17 +602,17 @@ const Preview = () => {
       </div>
 
       <div className='PreviewCompleted no-print'>
-        <button onClick={print}></button>
+        <span>옵션</span>
+        <dvi data-tooltip-text="인쇄하기"><button onClick={print}></button></dvi>
         <hr />
-        <button onMouseDown={setNone} onClick={toPng}></button>
+        <dvi data-tooltip-text="이미지로 저장"><button onMouseDown={setNone} onClick={toPng}></button></dvi>
         <hr />
-        <button onMouseDown={setNone} onClick={toPdf}></button>
+        <dvi data-tooltip-text="PDF로 저장"><button onMouseDown={setNone} onClick={toPdf}></button></dvi>
       </div>
 
       <div className='PreviewLayout no-print'>
         <span>간격</span>
-        <hr />
-        <button onClick={layoutViewVisible} style={{fontSize: "14px"}}>{layoutViewText}</button>
+        <button onClick={layoutViewVisible} style={{ fontSize: "14px", border: "1px solid #E9967A", borderRadius: "5px", boxSizing: "border-box"}}>{layoutViewText}</button>
         <hr />
         <button onClick={() => { allMarginChange('add') }}>↑</button>
         <hr />
