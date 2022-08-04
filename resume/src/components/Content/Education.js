@@ -24,22 +24,21 @@ const Edu1 = () => {
 }
 
 const Edu2 = () => {
-  const [noGed, setNoGed] = useState("inline-block")
-  const [yesGed, setYesGed] = useState("none")
-  const [학교명, 셋학교명] = useState("학교명")
+  const [schoolName, setSchoolName] = useState("학교명")
 
   const GedChk = (e) => {
-    const elemet = document.getElementById("학교명")
     if (e.target.checked) {
-      setNoGed("none")
-      setYesGed("inline-block")
-      셋학교명("검정고시")
-      elemet.value = "검정고시"
+      document.getElementById("inputBox 입학년월").style.display = "none"
+      document.getElementById("inputBox 졸업년월").style.display = "none"
+      document.getElementById("inputBox 합격년월").style.display = "inline-block"
+      document.getElementById("학교명").value = "검정고시"
+      setSchoolName("검정고시")
     } else {
-      setNoGed("inline-block")
-      setYesGed("none")
-      셋학교명("학교명")
-      elemet.value = ""
+      document.getElementById("inputBox 입학년월").style.display = "inline-block"
+      document.getElementById("inputBox 졸업년월").style.display = "inline-block"
+      document.getElementById("inputBox 합격년월").style.display = "none"
+      document.getElementById("학교명").value = ""
+      setSchoolName("학교명")
     }
   }
 
@@ -47,18 +46,18 @@ const Edu2 = () => {
     <div>
       <div className="row">
         <div className="inputBox 학교명" id="inputBox 학교명">
-          <span>{학교명}</span>
+          <span>{schoolName}</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="학교명" type="text" placeholder="OO고등학교"></input>
         </div>
-        <div className="inputBox 입학년월" id="inputBox 입학년월" style={{ display: noGed }}>
+        <div className="inputBox 입학년월" id="inputBox 입학년월" style={{ display: "inline-block" }}>
           <span>입학년월</span>
           <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="입학년월" type="text" placeholder="2002.03"></input>
         </div>
-        <div className="inputBox 졸업년월" id="inputBox 졸업년월" style={{ display: noGed }}>
+        <div className="inputBox 졸업년월" id="inputBox 졸업년월" style={{ display: "inline-block" }}>
           <span>졸업년월</span>
           <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="졸업년월" type="text" placeholder="2006.02"></input>
         </div>
-        <div className="inputBox 합격년월" id="inputBox 합격년월" style={{ display: yesGed }}>
+        <div className="inputBox 합격년월" id="inputBox 합격년월" style={{ display: "none" }}>
           <span>합격년월</span>
           <input onChange={ChkNum} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="합격년월" type="text" placeholder="2006.02"></input>
         </div>
@@ -187,6 +186,54 @@ const Education = () => {
   const [eduEvent, setEduEvent] = useState(false)
   const nextId = useRef(0);
 
+  const [onLoad, setOnLoad] = useState(false)
+
+  useEffect(() => {
+    const loadData = JSON.parse(localStorage.getItem("educationValue"))
+    const element = loadData === null ? document.getElementById("EducheckBox1") : document.getElementById(loadData.학력ID)
+    element.checked = true
+    setPreCheck(element.id)
+    setOnLoad(true)
+  }, [])
+
+  useEffect(() => {
+    const loadData = JSON.parse(localStorage.getItem("educationValue"))
+    if (loadData !== null) {
+      document.getElementById("학교명").value = loadData.학교명
+      document.getElementById("입학년월").value = loadData.입학년월
+      document.getElementById("졸업년월").value = loadData.졸업년월
+      if(document.getElementById("전공명") !== null) document.getElementById("전공명").value = loadData.전공명
+      if(document.getElementById("이수학점") !== null) document.getElementById("이수학점").value = loadData.이수학점
+      if(document.getElementById("학점") !== null) document.getElementById("학점").value = loadData.학점
+      if(document.getElementById("총점") !== null) document.getElementById("총점").checked = loadData.총점
+      if(document.getElementById("합격년월") !== null) document.getElementById("합격년월").checked = loadData.합격년월
+      if(document.getElementById("GED") !== null) document.getElementById("GED").checked = loadData.검정고시
+      if (loadData.졸업년월 === "재학중") {
+        if(document.getElementById("재학중") !== null) document.getElementById("재학중").checked = true
+        document.getElementById("inputBox 졸업년월").style.display = "none"
+      }
+      if (loadData.검정고시) {
+        if(document.getElementById("입학년월") !== null) document.getElementById("inputBox 입학년월").style.display = "none"
+        if(document.getElementById("합격년월") !== null) document.getElementById("inputBox 합격년월").style.display = "inline-block"
+        document.getElementById("inputBox 졸업년월").style.display = "none"
+      }
+    }
+  }, [onLoad])
+
+  const addPlus = () => {
+    const loadData = JSON.parse(localStorage.getItem("educationValue"))
+    if (loadData !== null) {
+      const plus = loadData.plus
+      for(let i = 0; i < addEdu.length; i++){
+        if(plus[i] === undefined) break;
+        document.getElementById("학력유형" + addEdu[i].id).value = plus[i].학력유형
+        document.getElementById("학교명" + addEdu[i].id).value = plus[i].학교명
+        document.getElementById("입학년월" + addEdu[i].id).value = plus[i].입학년월
+        document.getElementById("졸업년월" + addEdu[i].id).value = plus[i].졸업년월
+      }
+    }
+  }
+
   const addEduEvent = () => {
     const edu = {
       id: "edu" + nextId.current
@@ -293,17 +340,11 @@ const Education = () => {
     }
   }
 
-  useEffect(() => {
-    const element = document.getElementById("EducheckBox1")
-    element.checked = true
-    setPreCheck(element.id)
-  }, [])
-
   return (
     <div className="basicInfo 숨김" id="학력" style={{ zIndex: 90 }}>
 
       <h2>학력
-        <button onClick={addEduEvent} className='addButton'>+</button>
+        <button onMouseDown={addEduEvent} onClick={addPlus} className='addButton'>+</button>
         <div className='checkBoxWrap'>
           {EducheckBoxList}
         </div>

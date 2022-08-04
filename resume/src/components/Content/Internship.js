@@ -1,11 +1,37 @@
 import { AddContext } from 'components/Data/AddState';
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Internship = () => {
   const { addInter, setaddInter } = useContext(AddContext)
   const [interEvent, setInterEvent] = useState(false)
   const nextId = useRef(0);
+
+  useEffect(() => {
+    const loadData = JSON.parse(localStorage.getItem("internshipValue"))
+    if (loadData !== null) {
+      document.getElementById("인턴·대외활동명").value = loadData.인턴대외활동명
+      document.getElementById("소속단체명").value = loadData.소속단체명
+      document.getElementById("시작년월").value = loadData.시작년월
+      document.getElementById("종료년월").value = loadData.종료년월
+      document.getElementById("활동내용").value = loadData.활동내용
+    }
+  }, [])
+
+  const addPlus = () => {
+    const loadData = JSON.parse(localStorage.getItem("internshipValue"))
+    if (loadData !== null) {
+      const plus = loadData.plus
+      for(let i = 0; i < addInter.length; i++){
+        if(plus[i] === undefined) break;
+        document.getElementById("인턴·대외활동명" + addInter[i].id).value = plus[i].인턴대외활동명
+        document.getElementById("소속단체명" + addInter[i].id).value = plus[i].소속단체명
+        document.getElementById("시작년월" + addInter[i].id).value = plus[i].시작년월
+        document.getElementById("종료년월" + addInter[i].id).value = plus[i].종료년월
+        document.getElementById("활동내용" + addInter[i].id).value = plus[i].활동내용
+      }
+    }
+  }
 
   const addInterEvent = () => {
     const inter = {
@@ -62,7 +88,7 @@ const Internship = () => {
     <div className="basicInfo 숨김" id="인턴·대외활동" style={{zIndex: 50}}>
 
       <h2>인턴·대외활동
-        <button onClick={addInterEvent} className='addButton'>+</button>
+        <button onMouseDown={addInterEvent} onClick={addPlus} className='addButton'>+</button>
       </h2>
 
       <div className="row">

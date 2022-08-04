@@ -483,7 +483,8 @@ const Preview = () => {
 
   const toPng = () => {
     if (previewHeight > 1285) {
-      pngConfirm("2페이지가 넘어가면 PDF 저장을 권장합니다.\n그래도 저장하시겠습니까?");
+      pngConfirm("페이지를 초과하면 PDF 저장을 권장합니다.\n그래도 저장하시겠습니까?");
+      setPageLineView("block")
     } else {
       convertPng()
     }

@@ -1,11 +1,33 @@
 import { AddContext } from 'components/Data/AddState';
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const LanguageStudy = () => {
   const { addLan, setAddLan } = useContext(AddContext)
   const [lanEvent, setLanEvent] = useState(false)
   const nextId = useRef(0);
+
+  useEffect(() => {
+    const loadData = JSON.parse(localStorage.getItem("languageStudyValue"))
+    if (loadData !== null) {
+      document.getElementById("어학명").value = loadData.어학명
+      document.getElementById("급수점수").value = loadData.급수점수
+      document.getElementById("취득년월-어학").value = loadData.취득년월어학
+    }
+  }, [])
+
+  const addPlus = () => {
+    const loadData = JSON.parse(localStorage.getItem("languageStudyValue"))
+    if (loadData !== null) {
+      const plus = loadData.plus
+      for(let i = 0; i < addLan.length; i++){
+        if(plus[i] === undefined) break;
+        document.getElementById("어학명" + addLan[i].id).value = plus[i].어학명
+        document.getElementById("급수점수" + addLan[i].id).value = plus[i].급수점수
+        document.getElementById("취득년월-어학" + addLan[i].id).value = plus[i].취득년월어학
+      }
+    }
+  }
 
   const addLanEvent = () => {
     const lan = {
@@ -50,7 +72,7 @@ const LanguageStudy = () => {
     <div className="basicInfo 숨김" id="어학" style={{zIndex: 60}}>
 
       <h2>어학
-        <button onClick={addLanEvent} className='addButton'>+</button>
+        <button onMouseDown={addLanEvent} onClick={addPlus} className='addButton'>+</button>
       </h2>
 
       <div className="row">

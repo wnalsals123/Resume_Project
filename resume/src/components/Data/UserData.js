@@ -7,6 +7,14 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     if (document.getElementById("EducheckBox4").checked) title = "대졸(4년)"
     return title
   }
+  const getEduId = () => {
+    let id
+    if (document.getElementById("EducheckBox1").checked) id = "EducheckBox1"
+    if (document.getElementById("EducheckBox2").checked) id = "EducheckBox2"
+    if (document.getElementById("EducheckBox3").checked) id = "EducheckBox3"
+    if (document.getElementById("EducheckBox4").checked) id = "EducheckBox4"
+    return id
+  }
   const plueEdu = () => {
     let temp = addEdu.map((item) => (
       {
@@ -58,8 +66,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
         인턴대외활동명: document.getElementById("인턴·대외활동명" + item.id) !== null ? document.getElementById("인턴·대외활동명" + item.id).value : "",
         소속단체명: document.getElementById("소속단체명" + item.id) !== null ? document.getElementById("소속단체명" + item.id).value : "",
         시작년월: document.getElementById("시작년월" + item.id) !== null ? document.getElementById("시작년월" + item.id).value : "",
-        종료년월: document.getElementById("어학명" + item.id) !== null ? document.getElementById("종료년월" + item.id).value : "",
-        활동내용: document.getElementById("어학명" + item.id) !== null ? document.getElementById("활동내용" + item.id).value : "",
+        종료년월: document.getElementById("종료년월" + item.id) !== null ? document.getElementById("종료년월" + item.id).value : "",
+        활동내용: document.getElementById("활동내용" + item.id) !== null ? document.getElementById("활동내용" + item.id).value : "",
       }
     ))
     return temp
@@ -86,6 +94,7 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
         주소: document.getElementById("주소") !== null ? document.getElementById("주소").value : "",
       },
       {
+        학력ID: getEduId(),
         학력유형: getEduTitle(),
         학교명: document.getElementById("학교명") !== null ? document.getElementById("학교명").value : "",
         입학년월: document.getElementById("입학년월") !== null ? document.getElementById("입학년월").value : "",
@@ -124,8 +133,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
         인턴대외활동명: document.getElementById("인턴·대외활동명") !== null ? document.getElementById("인턴·대외활동명").value : "",
         소속단체명: document.getElementById("소속단체명") !== null ? document.getElementById("소속단체명").value : "",
         시작년월: document.getElementById("시작년월") !== null ? document.getElementById("시작년월").value : "",
-        종료년월: document.getElementById("어학명") !== null ? document.getElementById("종료년월").value : "",
-        활동내용: document.getElementById("어학명") !== null ? document.getElementById("활동내용").value : "",
+        종료년월: document.getElementById("종료년월") !== null ? document.getElementById("종료년월").value : "",
+        활동내용: document.getElementById("활동내용") !== null ? document.getElementById("활동내용").value : "",
         plus: plueInter()
       },
       {

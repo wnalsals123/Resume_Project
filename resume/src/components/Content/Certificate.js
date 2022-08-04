@@ -1,11 +1,33 @@
 import { AddContext } from 'components/Data/AddState';
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
 const Certificate = () => {
   const { addCer, setAddCer } = useContext(AddContext)
   const [cerEvent, setCerEvent] = useState(false)
   const nextId = useRef(0);
+
+  useEffect(() => {
+    const loadData = JSON.parse(localStorage.getItem("certificateValue"))
+    if (loadData !== null) {
+      document.getElementById("자격증명").value = loadData.자격증명
+      document.getElementById("발행처").value = loadData.발행처
+      document.getElementById("취득년월-자격증").value = loadData.취득년월자격증
+    }
+  }, [])
+
+  const addPlus = () => {
+    const loadData = JSON.parse(localStorage.getItem("certificateValue"))
+    if (loadData !== null) {
+      const plus = loadData.plus
+      for(let i = 0; i < addCer.length; i++){
+        if(plus[i] === undefined) break;
+        document.getElementById("자격증명" + addCer[i].id).value = plus[i].자격증명
+        document.getElementById("발행처" + addCer[i].id).value = plus[i].발행처
+        document.getElementById("취득년월-자격증" + addCer[i].id).value = plus[i].취득년월자격증
+      }
+    }
+  }
 
   const addCerEvent = () => {
     const cer = {
@@ -50,7 +72,7 @@ const Certificate = () => {
     <div className="basicInfo 숨김" id="자격증" style={{zIndex: 70}}>
 
       <h2>자격증
-        <button onClick={addCerEvent} className='addButton'>+</button>
+        <button onMouseDown={addCerEvent} onClick={addPlus} className='addButton'>+</button>
       </h2>
 
       <div className="row">
