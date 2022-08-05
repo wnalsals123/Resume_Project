@@ -7,6 +7,20 @@ const ResumeCompleted = () => {
   const preview = useRef();
   let UserData
 
+  const initConfirm = (message = null) => {
+    if (window.confirm(message)) {
+      console.log("초기화")
+      localStorage.clear()
+      window.location.replace("/")
+    } else {
+      console.log("초기화 취소")
+    }
+  };
+
+  const initialization = () => {
+    initConfirm("이력서가 저장된 데이터가 삭제됩니다.\n정말로 초기화하시겠습니까?");
+  }
+
   const initPreview = () => {
     UserData = getValues( addEdu, addCar, addCer, addLan, addInter )
   }
@@ -26,6 +40,8 @@ const ResumeCompleted = () => {
       <button onMouseDown={initPreview} onClick={opnePreview}>미리보기</button>
       <hr/>
       <button onMouseDown={initPreview} onClick={saveResume}>저장하기</button>
+      <hr/>
+      <button onClick={initialization}>초기화</button>
     </div>
   )
 }

@@ -647,3 +647,29 @@
 .marginBox button:active {
   background-color: gainsboro;
 }
+
+@media ( max-width: 1050px ) {
+  .PreviewLayout {
+    top: 1cm;
+    left: 0;
+    right: initial;
+    margin-right: 0;
+  }
+
+  .PreviewCompleted {
+    top: 1cm;
+    left: initial;
+    right: 0;
+    margin: 0;
+  }
+
+  .pageLine {
+    right: 0;
+    z-index: 9999;
+  }
+
+  .marginBox {
+    width: 57px;
+    left: -57px;
+  }
+}

@@ -34,7 +34,7 @@ const TopBanner = () => {
       }
     }
   }, [])
-
+  // 이력서 항목 이벤트
   const resumeLists = [
     { id: 0, class: "ResumeLi", name: "학력" },
     { id: 1, class: "ResumeLi", name: "경력" },
@@ -44,8 +44,7 @@ const TopBanner = () => {
     { id: 5, class: "ResumeLi", name: "병역·취업우대" },
     { id: 6, class: "ResumeLi", name: "자기소개서" },
   ]
-
-  // // 이력서 항목 이벤트
+  
   const LibtuClik = (key) => {
     let element = document.getElementById("listBtn" + key)
     element.className = element.className === "ResumeLi" ? "ResumeLi Clik" : "ResumeLi"
@@ -56,13 +55,17 @@ const TopBanner = () => {
   const ResumeListCreate = resumeLists.map((item) => (
     <li className={item.class} onClick={() => LibtuClik(item.id)} key={item.id} id={"listBtn" + item.id}>{item.name}</li>
   ))
+  // 페이지 새로고침
+  const refresh = () => {
+    window.location.replace("/")
+  }
   // 탑 배너
   return (
     <div className='ResumeTopHeader' style={{ zIndex: 110 }}>
       <div className="ResumeTop">
         {/* 사이트 배너 */}
         <div className="siteBanner">
-          <b style={{ paddingRight: "10px", borderRight: "2px solid black" }}>간단 이력서</b>
+          <b onClick={refresh} style={{ paddingRight: "10px", borderRight: "2px solid black" }}>간단 이력서</b>
           <a className="ToGitLink"
             href="https://github.com/wnalsals123/Resume_Project"
             target="_blank"

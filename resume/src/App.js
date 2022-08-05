@@ -3,8 +3,21 @@ import {
   TopBanner, Title, BasicInfo, Education, Career, Certificate, LanguageStudy,
   Internship, EmploymentPre, Introduction, ResumeBottom, ResumeCompleted
 } from 'components'
+import { useEffect } from 'react';
 
 function App() {
+  // 유저 데이터 유효성 확인
+  useEffect(()=>{
+    const validation = localStorage.getItem("dataValidation")
+    if(localStorage.length === 0) return;
+    else if(validation === "v1") return;
+    else {
+      alert("유효하지 않은 데이터로 이력서를 초기화합니다!")
+      localStorage.clear()
+      localStorage.setItem('dataValidation', 'v1')
+      window.location.replace("/")
+    }
+  }, [])
   // 이력서 웹페이지 렌더링
   return (
     <div>

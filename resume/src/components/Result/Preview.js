@@ -449,11 +449,11 @@ const Preview = () => {
       setLayoutViewText("숨김")
     }
   }
-  // 이미지 변환
+  // 출력
   const print = () => {
     window.print()
   }
-
+  // 이미지 변환
   const onSaveAs = (uri, filename) => {
     var link = document.createElement('a');
     document.body.appendChild(link);
@@ -596,49 +596,50 @@ const Preview = () => {
   }
   // 미리보기 페이지 렌더링
   return (
-    <div className="previewPage" id='미리보기'>
-      {ResumeTitleTab(basicValue)}
-      {BasicInfoTab(basicValue, uesrImg, basicMargin, baiscMarginChange, layoutView)}
-      {resumeLists !== null && resumeLists.학력 && EducationTab(educationValue, eduMargin, eduMarginChange, layoutView)}
-      {resumeLists !== null && resumeLists.경력 && CareerTab(careerValue, carMargin, carMarginChange, layoutView)}
-      {resumeLists !== null && resumeLists.자격증 && CertificateTab(certificateValue, cerMargin, cerMarginChange, layoutView)}
-      {resumeLists !== null && resumeLists.어학 && LanguageStudyTab(languageStudyValue, lanMargin, lanMarginChange, layoutView)}
-      {resumeLists !== null && resumeLists.인턴 && InternshipTab(internshipValue, interMargin, interMarginChange, layoutView)}
-      {resumeLists !== null && resumeLists.병역 && EmploymentPreTab(employmentPreValue, preMargin, preMarginChange, layoutView)}
-      {resumeLists !== null && resumeLists.자기소개서 && IntroductionTab(introductionValue)}
+    <div>
+      <div className="previewPage" id='미리보기'>
+        {ResumeTitleTab(basicValue)}
+        {BasicInfoTab(basicValue, uesrImg, basicMargin, baiscMarginChange, layoutView)}
+        {resumeLists !== null && resumeLists.학력 && EducationTab(educationValue, eduMargin, eduMarginChange, layoutView)}
+        {resumeLists !== null && resumeLists.경력 && CareerTab(careerValue, carMargin, carMarginChange, layoutView)}
+        {resumeLists !== null && resumeLists.자격증 && CertificateTab(certificateValue, cerMargin, cerMarginChange, layoutView)}
+        {resumeLists !== null && resumeLists.어학 && LanguageStudyTab(languageStudyValue, lanMargin, lanMarginChange, layoutView)}
+        {resumeLists !== null && resumeLists.인턴 && InternshipTab(internshipValue, interMargin, interMarginChange, layoutView)}
+        {resumeLists !== null && resumeLists.병역 && EmploymentPreTab(employmentPreValue, preMargin, preMarginChange, layoutView)}
+        {resumeLists !== null && resumeLists.자기소개서 && IntroductionTab(introductionValue)}
 
-      <div className='pageLine no-print' style={{ display: pageLineView }}>
-        <div className='pageNumber'>page1</div>
-        {previewHeight > 1285 && <div className='pageNumber'>page2</div>}
-        {previewHeight > (1285 * 2) && <div className='pageNumber'>page3</div>}
-        {previewHeight > (1285 * 3) && <div className='pageNumber'>page4</div>}
-        {previewHeight > (1285 * 4) && <div className='pageNumber'>page5</div>}
-        {previewHeight > (1285 * 5) && <div className='pageNumber'>page6</div>}
-        {previewHeight > (1285 * 6) && <div className='pageNumber'>page7</div>}
-        {previewHeight > (1285 * 7) && <div className='pageNumber'>page8</div>}
-        {previewHeight > (1285 * 8) && <div className='pageNumber'>page9</div>}
-        {previewHeight > (1285 * 9) && <div className='pageNumber'>page10</div>}
+        <div className='pageLine no-print' style={{ display: pageLineView }}>
+          <div className='pageNumber'>page1</div>
+          {previewHeight > 1285 && <div className='pageNumber'>page2</div>}
+          {previewHeight > (1285 * 2) && <div className='pageNumber'>page3</div>}
+          {previewHeight > (1285 * 3) && <div className='pageNumber'>page4</div>}
+          {previewHeight > (1285 * 4) && <div className='pageNumber'>page5</div>}
+          {previewHeight > (1285 * 5) && <div className='pageNumber'>page6</div>}
+          {previewHeight > (1285 * 6) && <div className='pageNumber'>page7</div>}
+          {previewHeight > (1285 * 7) && <div className='pageNumber'>page8</div>}
+          {previewHeight > (1285 * 8) && <div className='pageNumber'>page9</div>}
+          {previewHeight > (1285 * 9) && <div className='pageNumber'>page10</div>}
+        </div>
       </div>
+      <div className='PreviewCompleted no-print' >
+          <span>옵션</span>
+          <div className='printBtn buttonFilter' data-tooltip-text="인쇄"><button onClick={print}></button></div>
+          <hr />
+          <div className='toPngBtn buttonFilter' data-tooltip-text="이미지 저장"><button onMouseDown={setNone} onClick={toPng}></button></div>
+          <hr />
+          <div className='toPdfBtn buttonFilter' data-tooltip-text="PDF 저장"><button onMouseDown={setNone} onClick={toPdf}></button></div>
+        </div>
 
-      <div className='PreviewCompleted no-print'>
-        <span>옵션</span>
-        <div className='printBtn buttonFilter' data-tooltip-text="인쇄"><button onClick={print}></button></div>
-        <hr />
-        <div className='toPngBtn buttonFilter' data-tooltip-text="이미지 저장"><button onMouseDown={setNone} onClick={toPng}></button></div>
-        <hr />
-        <div className='toPdfBtn buttonFilter' data-tooltip-text="PDF 저장"><button onMouseDown={setNone} onClick={toPdf}></button></div>
-      </div>
-
-      <div className='PreviewLayout no-print'>
-        <span>간격</span>
-        <button onClick={layoutViewVisible} style={{ fontSize: "14px", border: "1px solid #E9967A", borderRadius: "5px", boxSizing: "border-box" }}>{layoutViewText}</button>
-        <hr />
-        <button onClick={() => { allMarginChange('add') }}>↑</button>
-        <hr />
-        <button onClick={() => { allMarginChange('subtract') }}>↓</button>
-        <hr />
-        <button onClick={() => { allMarginChange("init") }}>↻</button>
-      </div>
+        <div className='PreviewLayout no-print'>
+          <span>간격</span>
+          <button onClick={layoutViewVisible} style={{ fontSize: "14px", border: "1px solid #E9967A", borderRadius: "5px", boxSizing: "border-box" }}>{layoutViewText}</button>
+          <hr />
+          <button onClick={() => { allMarginChange('add') }}>↑</button>
+          <hr />
+          <button onClick={() => { allMarginChange('subtract') }}>↓</button>
+          <hr />
+          <button onClick={() => { allMarginChange("init") }}>↻</button>
+        </div>
     </div>
   )
 }
