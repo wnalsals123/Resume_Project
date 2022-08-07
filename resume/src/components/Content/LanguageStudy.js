@@ -72,7 +72,7 @@ const LanguageStudy = () => {
     <div className="basicInfo 숨김" id="어학" style={{zIndex: 60}}>
 
       <h2>어학
-        <button onMouseDown={addLanEvent} onClick={addPlus} className='addButton'>+</button>
+        <button onMouseDown={addLanEvent} onClick={addPlus} className='addButton'>추가하기+</button>
       </h2>
 
       <div className="row">

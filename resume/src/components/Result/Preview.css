@@ -654,6 +654,7 @@
     left: 0;
     right: initial;
     margin-right: 0;
+    z-index: 120;
   }
 
   .PreviewCompleted {
@@ -661,15 +662,17 @@
     left: initial;
     right: 0;
     margin: 0;
-  }
-
-  .pageLine {
-    right: 0;
-    z-index: 9999;
+    z-index: 120;
   }
 
   .marginBox {
     width: 57px;
     left: -57px;
+    z-index: 110;
+  }
+
+  .pageLine {
+    right: 0;
+    z-index: 100;
   }
 }

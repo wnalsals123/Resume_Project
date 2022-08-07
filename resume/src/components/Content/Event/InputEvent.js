@@ -30,4 +30,52 @@ const ChkNum = (e) => {
   e.target.value = result;
 }
 
-export { inputBoxFocus, inputBoxBlur, ChkNum }
+const ChkNumBirth = (e) => {
+  console.log("chk2")
+  const pho = e.target.value.replace(/\D+/g, "");
+  const numberLength = 8;
+
+  let result;
+  result = "";
+
+  for (let i = 0; i < pho.length && i < numberLength; i++) {
+    switch (i) {
+      case 4:
+        result += ".";
+        break;
+      case 6:
+        result += ".";
+        break;
+      default:
+        break;
+    }
+    result += pho[i];
+  }
+  e.target.value = result;
+}
+
+const ChkNumPhone = (e) => {
+  console.log("chk2")
+  const pho = e.target.value.replace(/\D+/g, "");
+  const numberLength = 11;
+
+  let result;
+  result = "";
+
+  for (let i = 0; i < pho.length && i < numberLength; i++) {
+    switch (i) {
+      case 3:
+        result += "-";
+        break;
+      case 7:
+        result += "-";
+        break;
+      default:
+        break;
+    }
+    result += pho[i];
+  }
+  e.target.value = result;
+}
+
+export { inputBoxFocus, inputBoxBlur, ChkNum, ChkNumBirth, ChkNumPhone }

@@ -121,7 +121,7 @@ const Career = () => {
     <div className="basicInfo 숨김" id="경력" style={{ zIndex: 80 }}>
 
       <h2>경력
-        <button onMouseDown={addCarEvent} onClick={addPlus} className='addButton'>+</button>
+        <button onMouseDown={addCarEvent} onClick={addPlus} className='addButton'>추가하기+</button>
       </h2>
 
       <div className="row">

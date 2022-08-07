@@ -48,6 +48,11 @@ const Internship = () => {
     setInterEvent(true)
   }
 
+  const autoResizeTextarea = (e) => {
+    e.target.style.height = '144px'
+    e.target.style.height = (e.target.scrollHeight + 25) + "px"
+  };
+
   const AddInterCreate = () => {
     if (interEvent) return (
       addInter.map((item) => (
@@ -75,7 +80,7 @@ const Internship = () => {
           <div className="row">
             <div className="inputBox 활동내용" id={"inputBox 활동내용" + item.id}>
               <span>활동내용</span>
-              <textarea onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"활동내용" + item.id} type="text" placeholder="내용기입"></textarea>
+              <textarea onClick={autoResizeTextarea} onKeyDown={autoResizeTextarea} onKeyUp={autoResizeTextarea} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id={"활동내용" + item.id} type="text" placeholder="내용기입"></textarea>
             </div>
           </div>
         </div>
@@ -88,7 +93,7 @@ const Internship = () => {
     <div className="basicInfo 숨김" id="인턴·대외활동" style={{zIndex: 50}}>
 
       <h2>인턴·대외활동
-        <button onMouseDown={addInterEvent} onClick={addPlus} className='addButton'>+</button>
+        <button onMouseDown={addInterEvent} onClick={addPlus} className='addButton'>추가하기+</button>
       </h2>
 
       <div className="row">
@@ -113,7 +118,7 @@ const Internship = () => {
       <div className="row">
         <div className="inputBox 활동내용" id="inputBox 활동내용">
           <span>활동내용</span>
-          <textarea onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="활동내용" type="text" placeholder="내용기입"></textarea>
+          <textarea onClick={autoResizeTextarea} onKeyDown={autoResizeTextarea} onKeyUp={autoResizeTextarea} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="활동내용" type="text" placeholder="내용기입"></textarea>
         </div>
       </div>
 

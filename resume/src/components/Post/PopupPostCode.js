@@ -6,7 +6,6 @@ const PopupPostCode = (props) => {
   const handlePostCode = (data) => {
     let fullAddress = data.address;
     let extraAddress = '';
-    let btnHide = true
 
     if (data.addressType === 'R') {
       if (data.buildingName !== '') {
@@ -18,7 +17,7 @@ const PopupPostCode = (props) => {
     console.log(fullAddress)
     console.log(data.zonecode)
     props.setPostValue(fullAddress)
-    props.setPostBtn(btnHide)
+    props.setPostBtn('flex')
     props.onClose()
   };
 

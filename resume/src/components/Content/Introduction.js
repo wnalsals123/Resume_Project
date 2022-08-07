@@ -11,7 +11,7 @@ const Introduction = () => {
   }, [])
 
   const autoResizeTextarea = (e) => {
-    e.target.style.height = '169px'
+    e.target.style.height = '144px'
     e.target.style.height = (e.target.scrollHeight + 25) + "px"
   };
 

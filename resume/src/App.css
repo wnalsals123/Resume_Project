@@ -41,9 +41,50 @@
   text-align: center;
 }
 
-.ResumeBottom h2 {
+.manualWrap {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+}
+
+.manualWrap h2 {
   border-left: 2px solid #E9967A;
   padding-left: 20px;
+  cursor: pointer;
+}
+
+.manualWrap h2:hover {
+  color: #E9967A;
+}
+
+.manualWrap h2:nth-child(1) {
+  margin-top: 0;
+}
+
+.manualWrap span {
+  position: absolute;
+  top: 210px;
+  right: 110px;
+  font-size: 20px;
+  border: 2px solid #E9967A;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.manualImgWrap {
+  display: inline-flex;
+  vertical-align: top;
+  justify-content: center;
+  align-items: center;
+  width: calc(1156px - 737.39px);
+  height: 309.52px;
+}
+
+.manualImgWrap img {
+  height: 100%;
+  border: 2px solid #E9967A;
+  border-radius: 10px;
+  z-index: 9999;
 }
 
 .ResumeCompleted {
@@ -188,15 +229,13 @@
 }
 
 .addButton {
-  width: 28px;
-  height: 28px;
-  line-height: 0;
-  vertical-align: baseline;
-  padding: 0;
+  line-height: 1;
+  padding: 4px;
   margin-left: 5px;
-  font-size: 20px;
+  font-size: 18px;
   background-color: white;
-  border-bottom: 2px solid black;
+  border: 2px solid black;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -222,6 +261,15 @@
   justify-content: center;
   align-items: center;
   height: 166px;
+}
+
+.imgFlex span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 14px;
+  text-align: left;
+  color: gray;
 }
 
 .imgFlex button {
@@ -261,10 +309,15 @@
   width: 35px;
   height: 35px;
   padding: 0;
+  border-radius: 5px;
   background: url(icon/close.png) no-repeat;
   background-size: cover;
   border: 1px solid black;
   cursor: pointer;
+}
+
+.row button:hover {
+  border-color: #E9967A;
 }
 
 .inputBox {
@@ -288,7 +341,7 @@
 
 .inputBox input {
   box-sizing: border-box;
-  display: block;
+  display: inline-block;
   width: 100%;
   height: 45px;
   line-height: 40px;
@@ -316,13 +369,38 @@
 .inputBox textarea {
   box-sizing: border-box;
   width: 100%;
-  min-height: 169px;
+  min-height: 144px;
   padding: 5px 10px 5px 10px;
   border: none;
   resize: none;
   outline: none;
   overflow: hidden;
   font-size: 20px;
+}
+
+.deletePost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: 8px;
+  right: 8px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.deletePost:hover {
+  border-color: #E9967A;
+}
+
+.deletePost button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: url(icon/close.png) no-repeat;
+  background-size: cover;
 }
 
 .dropBox {
@@ -420,8 +498,13 @@ input:-webkit-autofill {
   padding: 0px;
   border: 0;
   background-color: #E9967A;
+  opacity: 0.8;
   color: white;
   cursor: pointer;
+}
+
+.imgContent button:hover {
+  opacity: 1;
 }
 
 .checkBoxWrap {
@@ -553,7 +636,7 @@ input:-webkit-autofill {
 
 .활동내용 {
   width: 1152px;
-  height: 200px;
+  min-height: 200px;
 }
 
 .자기소개서내용 {

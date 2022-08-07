@@ -72,7 +72,7 @@ const Certificate = () => {
     <div className="basicInfo 숨김" id="자격증" style={{zIndex: 70}}>
 
       <h2>자격증
-        <button onMouseDown={addCerEvent} onClick={addPlus} className='addButton'>+</button>
+        <button onMouseDown={addCerEvent} onClick={addPlus} className='addButton'>추가하기+</button>
       </h2>
 
       <div className="row">

@@ -344,7 +344,7 @@ const Education = () => {
     <div className="basicInfo 숨김" id="학력" style={{ zIndex: 90 }}>
 
       <h2>학력
-        <button onMouseDown={addEduEvent} onClick={addPlus} className='addButton'>+</button>
+        <button onMouseDown={addEduEvent} onClick={addPlus} className='addButton'>추가하기+</button>
         <div className='checkBoxWrap'>
           {EducheckBoxList}
         </div>

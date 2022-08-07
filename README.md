@@ -3,69 +3,137 @@
 
 ## 간단한 이력서 작성 및 편집 웹페이지
 1. 개발도구 : VSCode, React, Git
-2. API : DaumPostcode, html2canvas, jsPDF
-3. 웹 호스팅 : Netlify
+2. 라이브러리 : React-Router-v6
+3. API : Context, DaumPostcode, html2canvas, jsPDF
+4. 웹 호스팅 : Netlify
 
-### <개발 일지>
+***
+
+### <코드 구조>
+
+#### 1. resume\src
+* \index.js   
+: 리액트 라우터, Context 설정
+* \App.js   
+: 이력서 작성 페이지 렌더링
+
+#### 2. resume\src\components
+* \Bottom   
+: 이력서 간단 사용 설명서, 이력서 미리보기, 저장하기, 초기화
+* \Content   
+: 이력서 각 항목(학력, 경력 등) 관리
+  * \Content\Event   
+  : 이력서 항목 컴포넌트 각종 이벤트 관리
+* \Data   
+: 추가 항목 관리 Context, 유저 데이터 저장
+* \Post   
+: 주소 검색 DaumPostcode API
+* \Result   
+: 이력서 미리보기 페이지 렌더링
+* \Top   
+: 이력서 각 항목 표시/숨김 관리
+
+***
+
+### <기능 구현>
+#### 1. 이력서 작성 페이지
 
 <details>
-<summary>22년 7월 5일</summary>
+<summary>이력서 작성 항목 관리</summary>
 <div markdown="1">
-
->1. 이력서 항목 버튼으로 추가
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177324978-ddd49e8f-4f25-4e84-8e0b-d77cde0091e9.gif"/>
->2. 성별 선택 드롭다운 메뉴
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177326978-6ce755fd-d211-4492-9b61-32a279b9dcb7.gif"/>
->3. 생년월일, 연락처 구분자
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177326787-68aa2a7e-e98d-40dd-8d48-3d917334d423.gif"/>
->4. 로컬 사진 등록
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177326882-726eaad0-7b51-4adb-95de-ef3a5e0efb2e.gif"/>
->5. DaumPostcode API 이용 주소 등록
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177327059-8d4d22ca-aceb-4683-a7b0-a79691f53ff4.gif"/>
-
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281541-37909728-e6e6-4abc-b746-c8017615e83a.gif"/>
 </div>
 </details>
 
 <details>
-<summary>22년 7월 6일</summary>
+<summary>항목별 추가 항목 관리(Context API)</summary>
 <div markdown="1">
-
->1. 항목 포커스 이벤트 추가
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/177549633-cb750ed7-a518-47f0-b614-5631fb0c9608.gif"/>
-
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281540-fefce378-c0aa-48a0-82af-37f05713ef27.gif"/>
 </div>
 </details>
 
 <details>
-<summary>22년 7월 11일</summary>
+<summary>Input 포커스 이벤트</summary>
 <div markdown="1">
-
->1. 페이지 레이아웃 추가 및 수정
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178233644-f516d08d-2069-422b-83ed-a25a36e3a6e1.gif"/>
->2. 체크박스 이벤트 추가
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178233928-a41b4dfd-dfae-4f69-9f63-a2ab35955e1a.gif"/>
-
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281539-22071aa7-b845-47b1-a71d-22a0bf11736a.gif"/>
 </div>
 </details>
 
 <details>
-<summary>22년 7월 14일</summary>
+<summary>사진 등록</summary>
 <div markdown="1">
-
->1. 코드 리팩토링 및 모듈화
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178983022-683e6a07-5ccf-4040-8d0d-583c7bd6dc05.gif"/>
->2. 학력탭 체크박스 상태에 따른 변화
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/178983036-87e64329-328a-485c-bc01-6e04377b79f4.gif"/>
-
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281538-df29fe71-7e85-48c4-b4c0-08e541ef9367.gif"/>
 </div>
 </details>
 
 <details>
-<summary>22년 7월 15일</summary>
+<summary>주소 등록(DaumPostcode API)</summary>
 <div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281537-953fdf10-2089-410a-a421-ef899af8a86f.gif"/>
+</div>
+</details>
 
->1. 항목 추가 이벤트
->- <img width="100%" src="https://user-images.githubusercontent.com/44563747/179213348-f75f8631-64ac-41c9-96c2-baccb55a3248.gif"/>
+<details>
+<summary>체크 박스 및 드롭 박스 관리</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281536-9f33ebc2-dcc3-441b-a191-4ebd994b7fbf.gif"/>
+</div>
+</details>
 
+<details>
+<summary>간단 사용 설명서 GIF 이벤트</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281534-1608929b-d2f0-478c-a18c-eacbb2592f40.gif"/>
+</div>
+</details>
+
+<details>
+<summary>이력서 저장 및 초기화 관리</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281535-c6bc5cd9-af2c-4162-aaf4-e1f72205797c.gif"/>
+</div>
+</details>   
+
+#### 2. 이력서 미리보기 페이지
+
+<details>
+<summary>CSS Flex</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281533-a4f80f7d-61bd-431a-b61d-bd980167b04a.gif"/>
+</div>
+</details>
+
+<details>
+<summary>경력 계산</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281531-fc21e6c9-1b8c-446f-9ae0-77c8a8777116.gif"/>
+</div>
+</details>
+
+<details>
+<summary>이력서 출력</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281529-3979b10d-9cee-4fd7-9ce5-7bd4020ac04b.gif"/>
+</div>
+</details>
+
+<details>
+<summary>이미지로 저장(html2canvas)</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281528-c74879f7-3c32-470b-97ff-5cf9a778bc60.gif"/>
+</div>
+</details>
+
+<details>
+<summary>PDF로 저장(html2canvas, jsPDF)</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281527-690cde75-f08c-4b96-bfd0-05359a483fd5.gif"/>
+</div>
+</details>
+
+<details>
+<summary>페이지 표시 및 간격 조정</summary>
+<div markdown="1">
+<img width="100%" src="https://user-images.githubusercontent.com/44563747/183281525-e1f7df75-aa05-498c-8ca5-9e9eee37f731.gif"/>
 </div>
 </details>

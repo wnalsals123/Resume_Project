@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
 import { PopupDom, PopupPostCode } from 'components'
+import { ChkNumBirth, ChkNumPhone } from './Event/InputEvent';
 
 const BasicInfo = () => {
   useEffect(()=>{
     const loadData = JSON.parse(localStorage.getItem("baiscValue"))
+    const loadImgData = JSON.parse(localStorage.getItem("uesrImg"))
     if(loadData !== null){
       document.getElementById("이력서제목").value = loadData.이력서제목
       document.getElementById("이름").value = loadData.이름
@@ -13,8 +15,14 @@ const BasicInfo = () => {
       document.getElementById("생년월일").value = loadData.생년월일
       document.getElementById("연락처").value = loadData.연락처
       document.getElementById("이메일").value = loadData.이메일
-      document.getElementById("주소").value = loadData.주소
+      setPostValue(loadData.주소)
+      setPostBtn('flex')
     }
+    if(loadImgData !== null){
+      document.getElementById("imgUse").className = "imgContent"
+      document.getElementById("imgNotUse").className = "imgFlex 숨김"
+      setImgSrc(loadImgData);
+    } 
   }, [])
   // 성별 선택
   const [sexVisble, setSexVisble] = useState("none")
@@ -43,56 +51,6 @@ const BasicInfo = () => {
       </ul>
     )
   }
-  // 생년월일, 연락처 구분자
-  const [numTel, setNumTel] = useState('');
-  const phoneRef = useRef();
-  const [numBir, setNumBir] = useState('');
-  const birthRef = useRef();
-
-  const ChkNum = (e, length) => {
-    const pho = phoneRef.current.value.replace(/\D+/g, "");
-    const bir = birthRef.current.value.replace(/\D+/g, "");
-    const numberLength = length
-
-    let result;
-    result = "";
-
-    if (numberLength === 11) {
-      for (let i = 0; i < pho.length && i < numberLength; i++) {
-        switch (i) {
-          case 3:
-            result += "-";
-            break;
-          case 7:
-            result += "-";
-            break;
-
-          default:
-            break;
-        }
-        result += pho[i];
-      }
-      phoneRef.current.value = result;
-      setNumTel(e.target.value);
-    } else {
-      for (let i = 0; i < bir.length && i < numberLength; i++) {
-        switch (i) {
-          case 4:
-            result += ".";
-            break;
-          case 6:
-            result += ".";
-            break;
-
-          default:
-            break;
-        }
-        result += bir[i];
-      }
-      birthRef.current.value = result;
-      setNumBir(e.target.value);
-    }
-  }
   // 이력서 증명사진 업로드
   const imageInput = useRef();
   const [imgSrc, setImgSrc] = useState("");
@@ -107,6 +65,14 @@ const BasicInfo = () => {
     let elemnet = document.getElementById("imgUse")
 
     if (file === undefined) return;
+
+    var maxSize = 5 * 1024 * 1024;
+		var fileSize = file.size;
+
+		if(fileSize > maxSize){
+			alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+			return;
+		}
 
     reader.readAsDataURL(file)
     reader.onloadend = () => {
@@ -131,10 +97,10 @@ const BasicInfo = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [postValue, setPostValue] = useState("")
   const postRef = useRef();
-  const [postBtn, setPostBtn] = useState(false)
+  const [postBtn, setPostBtn] = useState('none')
 
   const openPostCode = () => {
-    setIsPopupOpen(true)
+    if(postBtn === 'none') setIsPopupOpen(true)
   }
 
   const closePostCode = () => {
@@ -151,10 +117,16 @@ const BasicInfo = () => {
         result += post[i];
       }
     } else {
-      setPostBtn(false)
+      setPostBtn('none')
       alert("주소를 검색하세요")
     }
     setPostValue(result)
+  }
+
+  const deletePostCode = () => {
+    setPostValue('')
+    setPostBtn('none')
+    setIsPopupOpen(true)
   }
   // 기본 정보 렌더링
   return (
@@ -181,24 +153,23 @@ const BasicInfo = () => {
         </div>
         <div className="inputBox 생년월일" id="inputBox 생년월일">
           <span>생년월일</span>
-          <input onChange={(e)=>{ChkNum(e, 8)}} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="생년월일" type="tel" placeholder="1434.12.18" value={numBir} ref={birthRef}></input>
+          <input onChange={ChkNumBirth} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="생년월일" type="tel" placeholder="1434.12.18"></input>
         </div>
       </div>
 
       <div className="row">
         <div className="inputBox 연락처" id="inputBox 연락처">
           <span>연락처</span>
-          <input onChange={(e)=>{ChkNum(e, 11)}} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="연락처" type="tel" placeholder="010-1234-5678" value={numTel} ref={phoneRef}></input>
+          <input onChange={ChkNumPhone} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="연락처" type="tel" placeholder="010-1234-5678"></input>
         </div>
         <div className="inputBox 이메일" id="inputBox 이메일">
           <span>이메일</span>
           <input onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="이메일" type="text" placeholder="hong@naeinom.com"></input>
         </div>
         <div className="inputBox 주소" id="inputBox 주소">
-          <button type='button' onClick={openPostCode} disabled={postBtn} style={{ cursor: "default" }}>
-            <span>주소</span>
-            <input onChange={setPostInput} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="주소" type="text" placeholder="서울특별시 강남구" value={postValue} ref={postRef}></input>
-          </button>
+          <span>주소</span>
+          <input onClick={openPostCode} onChange={setPostInput} onFocus={inputBoxFocus} onBlur={inputBoxBlur} id="주소" type="text" placeholder="서울특별시 강남구" value={postValue} ref={postRef} style={{ width: '400px' }}></input>
+          <div className='deletePost' style={{ display: postBtn }}><button onClick={deletePostCode}></button></div>
           <div>
             {isPopupOpen && (
               <PopupDom>
@@ -211,8 +182,9 @@ const BasicInfo = () => {
 
       <div className="imgBox">
         <div className="imgFlex" id="imgNotUse">
-          <input onChange={loadImg} type="file" accept="image/jpg,impge/png,image/jpeg,image/gif" style={{ display: "none" }} ref={imageInput}></input>
+          <input onChange={loadImg} type="file" accept="image/*" style={{ display: "none" }} ref={imageInput}></input>
           <button onClick={inputClk}>사진 등록</button>
+          <span>* 4:5비율 권장<br/>* 5mb 이하 업로드</span>
         </div>
         <div className="imgContent 숨김" id="imgUse">
           <img src={imgSrc} alt="preview-img"></img>
