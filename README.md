@@ -1,11 +1,10 @@
-# Resume_Project
+# 간단한 이력서 작성 및 편집 웹페이지
 ### Demo page : <a href="https://jmj-resume-page.netlify.app/" target="_blank">JMJ-ResumePage-Demo</a>[![Netlify Status](https://api.netlify.com/api/v1/badges/5fd08a12-3d02-4be8-9cee-760bbf7d8a83/deploy-status)](https://app.netlify.com/sites/jmj-resume-page/deploys)
 
-## 간단한 이력서 작성 및 편집 웹페이지
-1. 개발도구 : VSCode, React, Git
-2. 라이브러리 : React-Router-v6
-3. API : Context, DaumPostcode, html2canvas, jsPDF
-4. 웹 호스팅 : Netlify
+#### 1. 개발도구 : VSCode, React, Git
+#### 2. 라이브러리 : React-Router-v6
+#### 3. API : Context, DaumPostcode, html2canvas, jsPDF
+#### 4. 웹 호스팅 : Netlify
 
 ***
 

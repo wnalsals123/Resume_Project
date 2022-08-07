@@ -15,8 +15,7 @@ const BasicInfo = () => {
       document.getElementById("생년월일").value = loadData.생년월일
       document.getElementById("연락처").value = loadData.연락처
       document.getElementById("이메일").value = loadData.이메일
-      setPostValue(loadData.주소)
-      setPostBtn('flex')
+      if(loadData.주소 !== "") setPostBtn("flex"); setPostValue(loadData.주소);
     }
     if(loadImgData !== null){
       document.getElementById("imgUse").className = "imgContent"
