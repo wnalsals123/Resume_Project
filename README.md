@@ -12,7 +12,7 @@
 
 #### resume\src
 * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/index.js">*\index.js*</a> : 리액트 라우터, Context 설정
-* <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/index.css">*\index.js*</a> : body 스타일 설정
+* <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/index.css">*\index.css*</a> : Body 스타일 설정
 * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/App.js">*\App.js*</a> : 페이지 렌더링, 버전 체크
 * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/App.css">*\App.css*</a> : 이력서 페이지 스타일
 
@@ -41,7 +41,7 @@
   * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Post/PopupPostCode.js">*\PopupPostCode.js*</a> : Postcode 설정
 * *\Result*
   * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Result/Preview.js">*\Preview.js*</a> : 미리보기 페이지
-  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Result/Preview.js">*\Preview.js*</a> : 미리보기 페이지 스타일
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Result/Preview.css">*\Preview.css*</a> : 미리보기 페이지 스타일
 
 ***
 

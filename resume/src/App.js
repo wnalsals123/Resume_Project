@@ -10,11 +10,11 @@ function App() {
   useEffect(()=>{
     const validation = localStorage.getItem("dataValidation")
     if(localStorage.length === 0) return;
-    else if(validation === "v1") return;
+    else if(validation === "v1.0") return;
     else {
       alert("유효하지 않은 데이터로 이력서를 초기화합니다!")
       localStorage.clear()
-      localStorage.setItem('dataValidation', 'v1')
+      localStorage.setItem('dataValidation', 'v1.0')
       window.location.replace("/")
     }
   }, [])

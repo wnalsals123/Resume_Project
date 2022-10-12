@@ -180,7 +180,7 @@ const postValues = (UserData) => {
   localStorage.setItem('internshipValue', JSON.stringify(UserData[i++]))
   localStorage.setItem('employmentPreValue', JSON.stringify(UserData[i++]))
   localStorage.setItem('introductionValue', JSON.stringify(UserData[i]))
-  localStorage.setItem('dataValidation', 'v1')
+  localStorage.setItem('dataValidation', 'v1.0')
 }
 
 export { getValues, postValues }
