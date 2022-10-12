@@ -1,4 +1,6 @@
+/* 이력서 데이터 값 얻기 */
 const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
+  // 학력제목
   const getEduTitle = () => {
     let title
     if (document.getElementById("EducheckBox1").checked) title = "고졸 미만"
@@ -7,6 +9,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     if (document.getElementById("EducheckBox4").checked) title = "대졸(4년)"
     return title
   }
+
+  // 학력유형
   const getEduId = () => {
     let id
     if (document.getElementById("EducheckBox1").checked) id = "EducheckBox1"
@@ -15,6 +19,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     if (document.getElementById("EducheckBox4").checked) id = "EducheckBox4"
     return id
   }
+  
+  // 학력 추가 항목
   const plueEdu = () => {
     let temp = addEdu.map((item) => (
       {
@@ -26,6 +32,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     ))
     return temp
   }
+
+  // 경력 추가 항목
   const plueCar = () => {
     let temp = addCar.map((item) => (
       {
@@ -40,6 +48,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     ))
     return temp
   }
+  
+  // 자격증 추가 항목
   const plueCer = () => {
     let temp = addCer.map((item) => (
       {
@@ -50,6 +60,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     ))
     return temp
   }
+
+  // 어학 추가 항목
   const plueLan = () => {
     let temp = addLan.map((item) => (
       {
@@ -60,6 +72,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     ))
     return temp
   }
+
+  // 인턴 추가 항목
   const plueInter = () => {
     let temp = addInter.map((item) => (
       {
@@ -72,6 +86,8 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
     ))
     return temp
   }
+
+  // 이력서 데이터 값 저장
   return (
     [
       {
@@ -151,6 +167,7 @@ const getValues = (addEdu, addCar, addCer, addLan, addInter) => {
   )
 }
 
+/* 이력서 localStorage 생성 */
 const postValues = (UserData) => {
   var i = 0
   console.log(UserData)

@@ -18,6 +18,7 @@ const preSpanStyle = {
   paddingBottom: "15px"
 }
 
+/* 이력서 제목 */
 const ResumeTitleTab = (data) => {
   return (
     <div>
@@ -25,6 +26,8 @@ const ResumeTitleTab = (data) => {
     </div>
   )
 }
+
+/* 기본정보 탭 */
 const BasicInfoTab = (data, img, marginValue, marginChange, layoutView) => {
   return (
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
@@ -57,7 +60,10 @@ const BasicInfoTab = (data, img, marginValue, marginChange, layoutView) => {
     </div>
   )
 }
+
+/* 학력 탭 */
 const EducationTab = (data, marginValue, marginChange, layoutView) => {
+  // 학력 추가 항목
   const addEduTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -76,7 +82,10 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
       ))
     )
   }
+
+  // 고졸 미만
   const EduTab1 = () => {
+    // 검정고시
     const GedOn = () => {
       return (
         <div className="previewEducation">
@@ -89,6 +98,7 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
         </div>
       )
     }
+    // 검정고시 아님
     const GedOff = () => {
       return (
         <div className="previewEducation">
@@ -109,6 +119,8 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
       </div>
     )
   }
+
+  // 고졸
   const EduTab2 = () => {
     return (
       <div className="previewEducationWrap">
@@ -130,6 +142,8 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
       </div>
     )
   }
+
+  // 학력유형 설정
   const SelectEduTab = () => {
     switch (data.학력유형) {
       case '고졸 미만': return <EduTab1 />
@@ -139,6 +153,7 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
       default: return <EduTab1 />
     }
   }
+
   return (
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>학력</h2>
@@ -152,9 +167,12 @@ const EducationTab = (data, marginValue, marginChange, layoutView) => {
     </div>
   )
 }
+
+/* 경력 탭 */
 const CareerTab = (data, marginValue, marginChange, layoutView) => {
   let today = new Date();
   let inService = today.getFullYear() + '.' + ((today.getMonth() + 1) < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1) + 1)
+
   // 경력 계산 
   const getCareerPeriod = (start, end) => {
     if (start === '' || end === '' || start.length < 7 || end.length < 7) return '연월확인'
@@ -188,6 +206,7 @@ const CareerTab = (data, marginValue, marginChange, layoutView) => {
     }
   }
 
+  // 경력 추가 항목
   const addCareerTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -211,6 +230,7 @@ const CareerTab = (data, marginValue, marginChange, layoutView) => {
       ))
     )
   }
+
   return (
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>경력</h2>
@@ -240,7 +260,10 @@ const CareerTab = (data, marginValue, marginChange, layoutView) => {
     </div>
   )
 }
+
+/* 자격증 탭 */
 const CertificateTab = (data, marginValue, marginChange, layoutView) => {
+  // 자격증 추가 항목
   const addCertificateTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -258,6 +281,7 @@ const CertificateTab = (data, marginValue, marginChange, layoutView) => {
       ))
     )
   }
+
   return (
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>자격증</h2>
@@ -281,7 +305,10 @@ const CertificateTab = (data, marginValue, marginChange, layoutView) => {
     </div>
   )
 }
+
+/* 어학 탭 */
 const LanguageStudyTab = (data, marginValue, marginChange, layoutView) => {
+  // 어학 추가 항목
   const addLanguageStudyTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -299,6 +326,7 @@ const LanguageStudyTab = (data, marginValue, marginChange, layoutView) => {
       ))
     )
   }
+
   return (
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>어학</h2>
@@ -322,7 +350,10 @@ const LanguageStudyTab = (data, marginValue, marginChange, layoutView) => {
     </div>
   )
 }
+
+/* 인턴대외활동 탭 */
 const InternshipTab = (data, marginValue, marginChange, layoutView) => {
+  // 인턴대외활동 추가 항목
   const addInternshipTab = () => {
     if (data.plus !== []) return (
       data.plus.map((item) => (
@@ -346,6 +377,7 @@ const InternshipTab = (data, marginValue, marginChange, layoutView) => {
       ))
     )
   }
+
   return (
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
       <h2>인턴·대외활동</h2>
@@ -375,6 +407,8 @@ const InternshipTab = (data, marginValue, marginChange, layoutView) => {
     </div>
   )
 }
+
+/* 병역취업우대 탭 */
 const EmploymentPreTab = (data, marginValue, marginChange, layoutView) => {
   return (
     <div className="previewBox" style={{ paddingBottom: marginValue }}>
@@ -398,6 +432,8 @@ const EmploymentPreTab = (data, marginValue, marginChange, layoutView) => {
     </div>
   )
 }
+
+/* 자기소개서 탭 */
 const IntroductionTab = (data) => {
   return (
     <div className="previewBox" style={{ margin: 0 }}>
@@ -411,6 +447,7 @@ const IntroductionTab = (data) => {
   )
 }
 
+/* 미리보기 페이지 */
 const Preview = () => {
   // 사용자 정보 불러오기
   const resumeLists = JSON.parse(localStorage.getItem("resumeLists"))
@@ -431,15 +468,18 @@ const Preview = () => {
   const [layoutView, setLayoutView] = useState("none")
   const [layoutViewText, setLayoutViewText] = useState("표시")
 
+  // 미리보기 페이지 편집 시 페이지 길이 설정
   useEffect(() => {
     setPreviewHeight(document.getElementById('미리보기').clientHeight)
   }, [heightEvent])
 
+  // 인쇄 및 출력 시 버튼 숨기기
   const setNone = () => {
     setPageLineView("none")
     setLayoutView("none")
   }
 
+  // 인쇄 및 출력 시 레이아웃 숨기기
   const layoutViewVisible = () => {
     if (layoutView === 'block') {
       setLayoutView("none")
@@ -449,10 +489,12 @@ const Preview = () => {
       setLayoutViewText("숨김")
     }
   }
+
   // 출력
   const print = () => {
     window.print()
   }
+
   // 이미지 변환
   const onSaveAs = (uri, filename) => {
     var link = document.createElement('a');
@@ -463,6 +505,7 @@ const Preview = () => {
     document.body.removeChild(link);
   };
 
+  // png로 변환
   const convertPng = () => {
     html2canvas(document.getElementById('미리보기'), { scale: 3 }).then(canvas => {
       onSaveAs(canvas.toDataURL('resume/png'), resumeName)
@@ -471,8 +514,10 @@ const Preview = () => {
     })
   }
 
+  // 저장 취소
   const cancelConfirm = () => console.log("cancel");
 
+  // png로 저장 시 페이지 초과 알림
   const pngConfirm = (message = null) => {
     if (window.confirm(message)) {
       convertPng()
@@ -481,6 +526,7 @@ const Preview = () => {
     }
   };
 
+  // png로 저장
   const toPng = () => {
     if (previewHeight > 1285) {
       pngConfirm("페이지를 초과하면 PDF 저장을 권장합니다.\n그래도 저장하시겠습니까?");
@@ -489,7 +535,8 @@ const Preview = () => {
       convertPng()
     }
   }
-  // pdf 변환
+
+  // pdf로 저장
   const toPdf = () => {
     html2canvas(document.getElementById('미리보기'), { scale: 3 }).then(canvas => {
       var img = canvas.toDataURL('resume/png')
@@ -499,9 +546,11 @@ const Preview = () => {
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
       var position = 0;
+
       // 첫 페이지
       pdf.addImage(img, 'PNG', 0, position, imgWidth, imgHeight)
       heightLeft -= pageHeight;
+
       // 남은 페이지
       while (heightLeft >= 0) {
         position = heightLeft - imgHeight;
@@ -509,12 +558,14 @@ const Preview = () => {
         pdf.addImage(img, 'PNG', 0, position, imgWidth, imgHeight)
         heightLeft -= pageHeight;
       }
+
       // 파일저장
       pdf.save(resumeName)
       setPageLineView("block")
       setLayoutViewText("표시")
     })
   }
+
   // 이력서 간격 설정
   const [basicMargin, setBasicMargin] = useState(0)
   const [eduMargin, setEduMargin] = useState(0)
@@ -524,6 +575,7 @@ const Preview = () => {
   const [interMargin, setInterMargin] = useState(0)
   const [preMargin, setPreMargin] = useState(0)
 
+  // 전체 탭 간격 수정(증가, 감소, 초기화)
   const allMarginChange = (chageState) => {
     if (chageState === 'add') {
       setBasicMargin(basicMargin + 5)
@@ -553,47 +605,55 @@ const Preview = () => {
     setHeightEvent(!heightEvent)
   }
 
+  // 기본정보 마진 설정
   const baiscMarginChange = (chageState) => {
     if (chageState) setBasicMargin(basicMargin + 5)
     else setBasicMargin(basicMargin - 5)
     setHeightEvent(!heightEvent)
   }
 
+  // 학력 마진 설정
   const eduMarginChange = (chageState) => {
     if (chageState) setEduMargin(eduMargin + 5)
     else setEduMargin(eduMargin - 5)
     setHeightEvent(!heightEvent)
   }
 
+  // 경력 마진 설정
   const carMarginChange = (chageState) => {
     if (chageState) setCarMargin(carMargin + 5)
     else setCarMargin(carMargin - 5)
     setHeightEvent(!heightEvent)
   }
 
+  // 자격증 마진 설정
   const cerMarginChange = (chageState) => {
     if (chageState) setCerMargin(cerMargin + 5)
     else setCerMargin(cerMargin - 5)
     setHeightEvent(!heightEvent)
   }
 
+  // 어학 마진 설정
   const lanMarginChange = (chageState) => {
     if (chageState) setLanMargin(lanMargin + 5)
     else setLanMargin(lanMargin - 5)
     setHeightEvent(!heightEvent)
   }
 
+  // 인턴대외활동 마진 설정
   const interMarginChange = (chageState) => {
     if (chageState) setInterMargin(interMargin + 5)
     else setInterMargin(interMargin - 5)
     setHeightEvent(!heightEvent)
   }
 
+  // 병역취업우대 마진 설정
   const preMarginChange = (chageState) => {
     if (chageState) setPreMargin(preMargin + 5)
     else setPreMargin(preMargin - 5)
     setHeightEvent(!heightEvent)
   }
+
   // 미리보기 페이지 렌더링
   return (
     <div>

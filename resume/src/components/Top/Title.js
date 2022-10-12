@@ -1,3 +1,4 @@
+/* 이력서 제목 */
 const Title = () => {
     return (
         <div className="ResumeTitle">

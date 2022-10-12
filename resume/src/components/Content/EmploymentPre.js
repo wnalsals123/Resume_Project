@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+/* 병역취업우대 */
 const EmploymentPre = () => {
   const [milShowDropVis, setMilShowDropVis] = useState("none")
   const [disShowDropVis, setDisShowDropVis] = useState("none")
@@ -8,6 +9,7 @@ const EmploymentPre = () => {
   const [milFontColor, setMilFontColor] = useState("gray")
   const [disFontColor, setDisFontColor] = useState("gray")
 
+  // 저장된 데이터 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("employmentPreValue"))
     if (loadData !== null) {
@@ -27,6 +29,7 @@ const EmploymentPre = () => {
     }
   }, [])
 
+  // 병역 드롭박스
   const MilitaryBox = () => {
     return (
       <ul>
@@ -38,6 +41,7 @@ const EmploymentPre = () => {
     )
   }
 
+  // 장애 드롭박스
   const DisabilityBox = () => {
     return (
       <ul>
@@ -53,35 +57,39 @@ const EmploymentPre = () => {
     )
   }
 
-
+  // 병역 선택
   const showMilRow = (e) => {
     if (e.target.checked) document.getElementById("inputBox 병역").style.display = "inline-block"
     else  document.getElementById("inputBox 병역").style.display = "none"
   }
 
+  // 장애 선택
   const showDisRow = (e) => {
     if (e.target.checked) document.getElementById("inputBox 장애").style.display = "inline-block"
     else  document.getElementById("inputBox 장애").style.display = "none"
   }
 
+  // 병역 드롭박스 보이기
   const milShowDrop = () => {
     setMilShowDropVis("block")
   }
 
+  // 장애 드롭박스 보이기
   const disShowDrop = () => {
     setDisShowDropVis("block")
   }
 
+  // 드롭박스 숨기기
   const HideDrop = (item) => {
     item === '장애' ? setDisShowDropVis('none') : setMilShowDropVis('none')
   }
 
+  // 병역or장애 값 선택
   const SelectValue = (e, item) => {
     item === '장애' ? setDisFontColor("black") : setMilFontColor("black")
     item === '장애' ? setDisValue(e.target.innerText) : setMilValue(e.target.innerText)
     HideDrop(item)
   }
-
 
   return (
     <div className="basicInfo 숨김" id="병역·취업우대" style={{ zIndex: 40 }}>

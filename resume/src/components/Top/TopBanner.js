@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 
+/* 헤더 부분 */
 const TopBanner = () => {
+  /* 이력서 항목 상태 불러오기 */
   useEffect(()=>{
     const loadData = JSON.parse(localStorage.getItem("resumeLists"))
     if(loadData !== null){
@@ -34,6 +36,7 @@ const TopBanner = () => {
       }
     }
   }, [])
+
   // 이력서 항목 이벤트
   const resumeLists = [
     { id: 0, class: "ResumeLi", name: "학력" },
@@ -45,6 +48,7 @@ const TopBanner = () => {
     { id: 6, class: "ResumeLi", name: "자기소개서" },
   ]
   
+  // 이력서 항목 버튼 클릭 리스너
   const LibtuClik = (key) => {
     let element = document.getElementById("listBtn" + key)
     element.className = element.className === "ResumeLi" ? "ResumeLi Clik" : "ResumeLi"
@@ -52,14 +56,16 @@ const TopBanner = () => {
     element.className = element.className === "basicInfo" ? "basicInfo 숨김" : "basicInfo"
   }
 
+  // 이력서 항목 리스트 렌더링
   const ResumeListCreate = resumeLists.map((item) => (
     <li className={item.class} onClick={() => LibtuClik(item.id)} key={item.id} id={"listBtn" + item.id}>{item.name}</li>
   ))
+
   // 페이지 새로고침
   const refresh = () => {
     window.location.replace("/")
   }
-  // 탑 배너
+
   return (
     <div className='ResumeTopHeader' style={{ zIndex: 110 }}>
       <div className="ResumeTop">

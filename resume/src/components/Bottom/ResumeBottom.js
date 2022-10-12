@@ -6,14 +6,17 @@ import ma4 from './ManualImg/ma4.gif'
 import ma5 from './ManualImg/ma5.gif'
 import ma6 from './ManualImg/ma6.gif'
 
+/* 이력서 설명서 */
 const ResumeBottom = () => {
+  // 이미지 visable state
   const [img1, setImg1] = useState('none')
   const [img2, setImg2] = useState('none')
   const [img3, setImg3] = useState('none')
   const [img4, setImg4] = useState('none')
   const [img5, setImg5] = useState('none')
   const [img6, setImg6] = useState('none')
-  
+
+  // 이미지 src state
   const [img1Start, setImg1Start] = useState('')
   const [img2Start, setImg2Start] = useState('')
   const [img3Start, setImg3Start] = useState('')

@@ -2,11 +2,13 @@ import { AddContext } from 'components/Data/AddState';
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
+/* 자격증 */
 const Certificate = () => {
   const { addCer, setAddCer } = useContext(AddContext)
   const [cerEvent, setCerEvent] = useState(false)
   const nextId = useRef(0);
 
+  // 저장된 데이터 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("certificateValue"))
     if (loadData !== null) {
@@ -16,6 +18,7 @@ const Certificate = () => {
     }
   }, [])
 
+  // 추가 항목 불러오기
   const addPlus = () => {
     const loadData = JSON.parse(localStorage.getItem("certificateValue"))
     if (loadData !== null) {
@@ -29,6 +32,7 @@ const Certificate = () => {
     }
   }
 
+  // 자격증 추가
   const addCerEvent = () => {
     const cer = {
       id: "cer" + nextId.current
@@ -39,11 +43,13 @@ const Certificate = () => {
     nextId.current += 1;
   }
 
+  // 자격증 삭제
   const deleteCer = (e) => {
     setAddCer(addCer.filter((item) => (item.id !== e.target.id)))
     setCerEvent(true)
   }
 
+  // 자격증 추가 항목 렌더링
   const AddCerCreate = () => {
     if (cerEvent) return (
       addCer.map((item) => (

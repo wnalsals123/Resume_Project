@@ -2,6 +2,7 @@ const { createContext, useState } = require("react");
 
 const AddContext = createContext(null)
 
+/* Context Provider */
 const AddProvider = ({children}) => {
   const [addEdu, setAddEdu] = useState([])
   const [addCar, setAddCar] = useState([])

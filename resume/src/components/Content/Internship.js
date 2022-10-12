@@ -2,11 +2,13 @@ import { AddContext } from 'components/Data/AddState';
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
+/* 인턴대외활동 */
 const Internship = () => {
   const { addInter, setaddInter } = useContext(AddContext)
   const [interEvent, setInterEvent] = useState(false)
   const nextId = useRef(0);
 
+  // 저장된 데이터 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("internshipValue"))
     if (loadData !== null) {
@@ -18,6 +20,7 @@ const Internship = () => {
     }
   }, [])
 
+  // 추가 항목 불러오기
   const addPlus = () => {
     const loadData = JSON.parse(localStorage.getItem("internshipValue"))
     if (loadData !== null) {
@@ -33,6 +36,7 @@ const Internship = () => {
     }
   }
 
+  // 인턴대외활동 추가
   const addInterEvent = () => {
     const inter = {
       id: "inter" + nextId.current
@@ -43,16 +47,19 @@ const Internship = () => {
     nextId.current += 1;
   }
 
+  // 인턴대외활동 삭제
   const deleteInter = (e) => {
     setaddInter(addInter.filter((item) => (item.id !== e.target.id)))
     setInterEvent(true)
   }
 
+  // 활동 내용 박스 길이 자동 조절
   const autoResizeTextarea = (e) => {
     e.target.style.height = '144px'
     e.target.style.height = (e.target.scrollHeight + 25) + "px"
   };
 
+  // 인턴대외활동 추가 항목 렌더링
   const AddInterCreate = () => {
     if (interEvent) return (
       addInter.map((item) => (
@@ -87,7 +94,6 @@ const Internship = () => {
       ))
     )
   }
-
 
   return (
     <div className="basicInfo 숨김" id="인턴·대외활동" style={{zIndex: 50}}>

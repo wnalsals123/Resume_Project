@@ -2,11 +2,13 @@ import { AddContext } from 'components/Data/AddState';
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
+/* 어학 */
 const LanguageStudy = () => {
   const { addLan, setAddLan } = useContext(AddContext)
   const [lanEvent, setLanEvent] = useState(false)
   const nextId = useRef(0);
 
+  // 저장된 데이터 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("languageStudyValue"))
     if (loadData !== null) {
@@ -16,6 +18,7 @@ const LanguageStudy = () => {
     }
   }, [])
 
+  // 추가 항목 불러오기
   const addPlus = () => {
     const loadData = JSON.parse(localStorage.getItem("languageStudyValue"))
     if (loadData !== null) {
@@ -29,6 +32,7 @@ const LanguageStudy = () => {
     }
   }
 
+  // 어학 추가
   const addLanEvent = () => {
     const lan = {
       id: "lan" + nextId.current
@@ -39,11 +43,13 @@ const LanguageStudy = () => {
     nextId.current += 1;
   }
 
+  // 어학 삭제
   const deleteLan = (e) => {
     setAddLan(addLan.filter((item) => (item.id !== e.target.id)))
     setLanEvent(true)
   }
 
+  // 어학 추가 항목 렌더링
   const AddLanCreate = () => {
     if (lanEvent) return (
       addLan.map((item) => (

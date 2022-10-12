@@ -1,36 +1,47 @@
 # 간단한 이력서 작성 및 편집 웹페이지
 ### Demo page : <a href="https://jmj-resume-page.netlify.app/" target="_blank">JMJ-ResumePage-Demo</a>[![Netlify Status](https://api.netlify.com/api/v1/badges/5fd08a12-3d02-4be8-9cee-760bbf7d8a83/deploy-status)](https://app.netlify.com/sites/jmj-resume-page/deploys)
 
-#### 1. 개발도구 : VSCode, React, Git
-#### 2. 라이브러리 : React-Router-v6
-#### 3. API : Context, DaumPostcode, html2canvas, jsPDF
+#### 1. 개발도구 : VSCode, , Git
+#### 2. 라이브러리 : React(@18.2.0), React Router(@6.3.0)
+#### 3. API : Context, react-daum-postcode(@3.1.1), html2canvas(@1.4.1), jsPDF(@2.5.1)
 #### 4. 웹 호스팅 : Netlify
 
 ***
 
 ### <코드 구조>
 
-#### 1. resume\src
-* *\index.js*   
-: 리액트 라우터, Context 설정
-* *\App.js*   
-: 이력서 작성 페이지 렌더링
+#### resume\src
+* <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/index.js">*\index.js*</a> : 리액트 라우터, Context 설정
+* <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/index.css">*\index.js*</a> : body 스타일 설정
+* <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/App.js">*\App.js*</a> : 페이지 렌더링, 버전 체크
+* <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/App.css">*\App.css*</a> : 이력서 페이지 스타일
 
-#### 2. resume\src\components
-* *\Bottom*   
-: 이력서 간단 사용 설명서, 이력서 미리보기, 저장하기, 초기화
-* *\Content*   
-: 이력서 각 항목(학력, 경력 등) 관리
-  * *\Content\Event*   
-  : 이력서 항목 컴포넌트 각종 이벤트 관리
-* *\Data*   
-: 추가 항목 관리 Context, 유저 데이터 저장
-* *\Post*   
-: 주소 검색 DaumPostcode API
-* *\Result*   
-: 이력서 미리보기 페이지 렌더링
-* *\Top*   
-: 이력서 각 항목 표시/숨김 관리
+#### resume\src\components
+* *\Top*
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Top/TopBanner.js">*\TopBanner.js*</a> : 이력서 각 항목 관리
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Top/Title.js">*\Title.js*</a> : 이력서 제목 설정
+* *\Bottom*
+  * \Event<a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/Event/InputEvent.js">*\InputEvent.js*</a> : Input 이벤트, 구분자 함수
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Bottom/ResumeBottom.js">*\ResumeBottom.js*</a> : 이력서 간단 사용 설명서
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Bottom/ResumeCompleted.js">*\ResumeCompleted.js*</a> : 이력서 미리보기, 저장하기, 초기화
+* *\Content*
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/BasicInfo.js">*\BasicInfo.js*</a> : 기본정보 컴포넌트
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/Career.js">*\Career.js*</a> : 경력 컴포넌트
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/Certificate.js">*\Certificate.js*</a> : 자격증 컴포넌트
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/Education.js">*\Education.js*</a> : 학력 컴포넌트
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/EmploymentPre.js">*\EmploymentPre.js*</a> : 병역·취업우대 컴포넌트
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/Internship.js">*\Internship.js*</a> : 인턴·대외활동 컴포넌트
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/Introduction.js">*\Introduction.js*</a> : 자기소개서 컴포넌트
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Content/LanguageStudy.js">*\LanguageStudy.js*</a> : 어학 컴포넌트
+* *\Data*
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Data/AddState.js">*\AddState.js*</a> : Context Provider 설정
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Data/UserData.js">*\UserData.js*</a> : 이력서 데이터 값 획득 및 저장
+* *\Post* 
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Post/PopupDom.js">*\PopupDom.js*</a> : Postcode Portal 설정
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Post/PopupPostCode.js">*\PopupPostCode.js*</a> : Postcode 설정
+* *\Result*
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Result/Preview.js">*\Preview.js*</a> : 미리보기 페이지
+  * <a href="https://github.com/wnalsals123/Resume_Project/blob/master/resume/src/components/Result/Preview.js">*\Preview.js*</a> : 미리보기 페이지 스타일
 
 ***
 

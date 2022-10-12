@@ -3,7 +3,9 @@ import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
 import { PopupDom, PopupPostCode } from 'components'
 import { ChkNumBirth, ChkNumPhone } from './Event/InputEvent';
 
+/* 기본정보 */
 const BasicInfo = () => {
+  // 저장된 데이터 불러오기
   useEffect(()=>{
     const loadData = JSON.parse(localStorage.getItem("baiscValue"))
     const loadImgData = JSON.parse(localStorage.getItem("uesrImg"))
@@ -23,6 +25,7 @@ const BasicInfo = () => {
       setImgSrc(loadImgData);
     } 
   }, [])
+
   // 성별 선택
   const [sexVisble, setSexVisble] = useState("none")
   const [sexValue, setSexValue] = useState("남자")
@@ -42,6 +45,7 @@ const BasicInfo = () => {
     HideDrop()
   }
 
+  //성별 드롭박스
   const SexBox = () => {
     return (
       <ul>
@@ -50,14 +54,17 @@ const BasicInfo = () => {
       </ul>
     )
   }
-  // 이력서 증명사진 업로드
+
+  // 증명사진 업로드 state
   const imageInput = useRef();
   const [imgSrc, setImgSrc] = useState("");
 
+  // input 클릭 리스너
   const inputClk = () => {
     imageInput.current.click();
   }
 
+  // 이미지 로드
   const loadImg = (e) => {
     const file = e.target.files[0]
     let reader = new FileReader()
@@ -84,6 +91,7 @@ const BasicInfo = () => {
 
     e.target.value = ""
   }
+
   // 이력서 증명사진 삭제
   const imgDelete = () => {
     let elemnet = document.getElementById("imgNotUse")
@@ -92,20 +100,24 @@ const BasicInfo = () => {
     elemnet.className = "imgContent 숨김"
     localStorage.removeItem('uesrImg')
   }
-  // 주소 찾기
+
+  // 주소 찾기 state
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [postValue, setPostValue] = useState("")
   const postRef = useRef();
   const [postBtn, setPostBtn] = useState('none')
 
+  // postcode 오픈 리스너
   const openPostCode = () => {
     if(postBtn === 'none') setIsPopupOpen(true)
   }
 
+  // postcode 클로즈 리스너
   const closePostCode = () => {
     setIsPopupOpen(false)
   }
 
+  // 주소 value 받기
   const setPostInput = () => {
     let result = ""
     const post = postRef.current.value
@@ -122,12 +134,13 @@ const BasicInfo = () => {
     setPostValue(result)
   }
 
+  // 주소 value 삭제
   const deletePostCode = () => {
     setPostValue('')
     setPostBtn('none')
     setIsPopupOpen(true)
   }
-  // 기본 정보 렌더링
+
   return (
     <div className="basicInfo" id="기본정보" style={{zIndex: 100}}>
       <h2>기본 정보</h2>

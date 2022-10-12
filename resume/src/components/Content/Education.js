@@ -2,6 +2,7 @@ import { AddContext } from 'components/Data/AddState';
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent';
 
+/* 고졸 미만 */
 const Edu1 = () => {
   return (
     <div>
@@ -23,9 +24,11 @@ const Edu1 = () => {
   )
 }
 
+/* 고졸 */
 const Edu2 = () => {
   const [schoolName, setSchoolName] = useState("학교명")
 
+  // 검정고시 체크
   const GedChk = (e) => {
     if (e.target.checked) {
       document.getElementById("inputBox 입학년월").style.display = "none"
@@ -70,7 +73,9 @@ const Edu2 = () => {
   )
 }
 
+/* 대졸(2,3년) */
 const Edu3 = () => {
+  // 재학중 체크
   const attending = (e) => {
     const elemet = document.getElementById("inputBox 졸업년월")
     if (e.target.checked) {
@@ -125,7 +130,9 @@ const Edu3 = () => {
   )
 }
 
+/* 대졸(4년) */
 const Edu4 = () => {
+  // 재학중 체크
   const attending = (e) => {
     const elemet = document.getElementById("inputBox 졸업년월")
     if (e.target.checked) {
@@ -136,7 +143,6 @@ const Edu4 = () => {
       document.getElementById("졸업년월").value = ""
     }
   }
-
 
   return (
     <div>
@@ -181,6 +187,7 @@ const Edu4 = () => {
   )
 }
 
+/* 학력 메인 */
 const Education = () => {
   const { addEdu, setAddEdu } = useContext(AddContext)
   const [eduEvent, setEduEvent] = useState(false)
@@ -188,6 +195,7 @@ const Education = () => {
 
   const [onLoad, setOnLoad] = useState(false)
 
+  // 학력 체크박스 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("educationValue"))
     const element = loadData === null ? document.getElementById("EducheckBox1") : document.getElementById(loadData.학력ID)
@@ -196,6 +204,7 @@ const Education = () => {
     setOnLoad(true)
   }, [])
 
+  // 저장된 데이터 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("educationValue"))
     if (loadData !== null) {
@@ -220,6 +229,7 @@ const Education = () => {
     }
   }, [onLoad])
 
+  // 추가 항목 불러오기
   const addPlus = () => {
     const loadData = JSON.parse(localStorage.getItem("educationValue"))
     if (loadData !== null) {
@@ -234,6 +244,7 @@ const Education = () => {
     }
   }
 
+  // 학력 추가
   const addEduEvent = () => {
     const edu = {
       id: "edu" + nextId.current
@@ -244,24 +255,29 @@ const Education = () => {
     nextId.current += 1;
   }
 
+  // 학력 삭제
   const deleteEdu = (e) => {
     setAddEdu(addEdu.filter((item) => (item.id !== e.target.id)))
     setEduEvent(true)
   }
-  // 학력유형 드롭박스
+
+  // 학력유형 드롭박스 포커스
   const ShowDrop = (id) => {
     document.getElementById("학력유형드롭박스" + id).style.display = 'block'
   }
 
+  // 학력유형 드롭박스 블러
   const HideDrop = (id) => {
     document.getElementById("학력유형드롭박스" + id).style.display = 'none'
   }
 
+  // 학력유형 선택
   const SelectValue = (id, item) => {
     document.getElementById("학력유형" + id).value = item
     HideDrop(id)
   }
 
+  // 학력유형 체크박스 렌더링
   const eduTypeBox = (id) => {
     return (
       <ul>
@@ -273,6 +289,7 @@ const Education = () => {
     )
   }
 
+  // 학력 추가 항목 렌더링
   const AddEduCreate = () => {
     var dropboxZindex = 90
     if (eduEvent) return (

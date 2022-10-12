@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { inputBoxFocus, inputBoxBlur } from './Event/InputEvent'
 
+/* 자기소개서 */
 const Introduction = () => {
-
+  // 저장된 데이터 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("introductionValue"))
     if (loadData !== null) {
@@ -10,6 +11,7 @@ const Introduction = () => {
     }
   }, [])
 
+  // 활동 내용 박스 길이 자동 조절
   const autoResizeTextarea = (e) => {
     e.target.style.height = '144px'
     e.target.style.height = (e.target.scrollHeight + 25) + "px"

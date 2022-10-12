@@ -2,11 +2,13 @@ import { AddContext } from 'components/Data/AddState';
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { inputBoxFocus, inputBoxBlur, ChkNum } from './Event/InputEvent'
 
+/* 경력 */
 const Career = () => {
   const { addCar, setAddCar } = useContext(AddContext)
   const [carEvent, setCarEvent] = useState(false)
   const nextId = useRef(0);
 
+  // 저장된 데이터 불러오기
   useEffect(() => {
     const loadData = JSON.parse(localStorage.getItem("careerValue"))
     if (loadData !== null) {
@@ -21,6 +23,7 @@ const Career = () => {
     }
   }, [])
 
+  // 추가 항목 불러오기
   const addPlus = () => {
     const loadData = JSON.parse(localStorage.getItem("careerValue"))
     if (loadData !== null) {
@@ -39,6 +42,7 @@ const Career = () => {
     }
   }
 
+  // 경력 추가
   const addCarEvent = () => {
     const car = {
       id: "car" + nextId.current
@@ -49,11 +53,13 @@ const Career = () => {
     nextId.current += 1;
   }
 
+  // 경력 삭제
   const deleteCar = (e) => {
     setAddCar(addCar.filter((item) => (item.id !== e.target.id)))
     setCarEvent(true)
   }
 
+  // 재직중 표시
   const inService = (e) => {
     const element = document.getElementById("inputBox 퇴사년월")
     if (e.target.checked) {
@@ -63,6 +69,7 @@ const Career = () => {
     }
   }
 
+  // 추가 항목 재직중 표시
   const addInService = (e, id) => {
     const element = document.getElementById("inputBox 퇴사년월" + id)
     if (e.target.checked) {
@@ -72,6 +79,7 @@ const Career = () => {
     }
   }
 
+  // 경력 추가 항목 렌더링
   const AddCarCreate = () => {
     if (carEvent) {
       return (
